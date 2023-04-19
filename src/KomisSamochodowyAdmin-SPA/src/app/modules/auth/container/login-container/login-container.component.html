@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="image">
+      <img src="https://live.staticflickr.com/3614/3568008268_11d265f6ba_b.jpg"/>
+  </div>
+  <div class="login-panel">
+      <h2 class="login-panel__header">Login</h2>
+      <form class="login-panel__form" [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="input-box">
+              <span>Username</span>
+              <mat-form-field>
+                <input formControlName="username" type="text" matInput placeholder="username">
+              </mat-form-field>
+          </div>
+
+          <div class="input-box">
+              <span>Password</span>
+              <mat-form-field>
+                <input formControlName="password" type="password" matInput placeholder="*******">
+              </mat-form-field>
+          </div>
+
+          <div class="input-box">
+              <mat-checkbox>Remember Password</mat-checkbox>
+              <button mat-raised-button color="primary">Login</button>
+          </div>
+
+          <div class="sign-up">
+              <span>Don't have account? </span>
+              <a [routerLink]="['/register']">Sign up</a>
+          </div>
+      </form>
+  </div>
+</div>
