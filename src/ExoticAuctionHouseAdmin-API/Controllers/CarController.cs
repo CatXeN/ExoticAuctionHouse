@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ExoticAuctionHouseAdmin_API.Controllers
+namespace ExoticAuctionHouse_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
