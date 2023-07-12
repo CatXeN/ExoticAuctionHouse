@@ -1,1 +1,39 @@
-<p>menu works!</p>
+<nav class="menu">
+  <div class="header">
+    <h2>Exotic AH</h2>
+  </div>
+
+  <ul class="menu__list">
+    <li class="menu__list--item">
+      <mat-icon fontIcon="grid_view"></mat-icon>
+      <a [routerLink]="['dashboard']" [routerLinkActive]="['is-active']">My Auctions</a>
+    </li>
+    <li class="menu__list--item">
+      <mat-icon fontIcon="store"></mat-icon>
+      <a>All Auctions</a>
+    </li>
+    <li class="menu__list--item">
+      <mat-icon fontIcon="settings"></mat-icon>
+    <!--  <a [routerLink]="['settings']" [routerLinkActive]="['is-active']">Settings</a>-->
+    <a>Settings</a>
+    </li>
+  </ul>
+</nav>
+
+
+<!--  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+          <a [routerLink]="generateRoute(node.name)" [routerLinkActive]="['is-active']">{{node.name}}</a>
+        </mat-tree-node>
+        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+          <mat-icon fontIcon="folder"></mat-icon>
+          <button mat-icon-button matTreeNodeToggle
+          [attr.aria-label]="'Toggle ' + node.name">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+          <a [ngClass]="router.url.indexOf('project') != -1 ? 'is-active' : ''">{{node.name}}</a>
+        </mat-tree-node>
+      </mat-tree>
+      -->

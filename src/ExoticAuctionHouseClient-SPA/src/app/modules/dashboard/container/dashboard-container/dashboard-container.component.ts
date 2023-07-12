@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard-container.component.scss']
 })
 export class DashboardContainerComponent {
-
+      auctions = [ {name:'123', startDate: '123', currentBid:'123'}]
 }
