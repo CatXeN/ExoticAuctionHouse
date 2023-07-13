@@ -1,4 +1,5 @@
 ﻿using ExoticAuctionHouse_API.Repositories;
+using ExoticAuctionHouse_API.Services;
 using ExoticAuctionHouseModel.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace ExoticAuctionHouse_API.Controllers
     public class CarController : ControllerBase
     {
         private readonly ICarRepository _carRepository;
+        private readonly ICarService _carService;
 
-        public CarController(ICarRepository carRepository)
+        public CarController(ICarRepository carRepository, ICarService carService)
         {
             _carRepository = carRepository;
+            _carService = carService;
         }
 
         [HttpGet]
@@ -56,6 +59,12 @@ namespace ExoticAuctionHouse_API.Controllers
         {
             var cars = await _carRepository.NotSoldCars();
             return Ok(cars);
+        }
+
+        [HttpGet("PageData")]
+        public IActionResult PageData()
+        {
+            return Ok(_carService.GetCarPageData());
         }
     }
 }

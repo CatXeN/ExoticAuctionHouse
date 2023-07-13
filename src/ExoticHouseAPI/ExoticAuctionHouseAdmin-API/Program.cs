@@ -1,5 +1,6 @@
 using ExoticAuctionHouse_API.Data;
 using ExoticAuctionHouse_API.Repositories;
+using ExoticAuctionHouse_API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<ICarRepository, CarRepository>();
+builder.Services.AddTransient<ICarService, CarService>();
 
 var app = builder.Build();
 
