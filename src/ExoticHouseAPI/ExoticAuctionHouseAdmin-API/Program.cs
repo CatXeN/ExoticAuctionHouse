@@ -17,6 +17,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<ICarRepository, CarRepository>();
 builder.Services.AddTransient<ICarService, CarService>();
+builder.Services.AddTransient<ICarAttributeRepository, CarAttributeRepository>();
+builder.Services.AddTransient<IAuctionRepository, AuctionRepository>();
+builder.Services.AddTransient<IAuctionHistoryRepository, AuctionHistoryRepository>();
 
 var app = builder.Build();
 

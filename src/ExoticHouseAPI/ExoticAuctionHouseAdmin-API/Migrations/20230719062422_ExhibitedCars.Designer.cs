@@ -4,6 +4,7 @@ using ExoticAuctionHouse_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExoticAuctionHouse_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230719062422_ExhibitedCars")]
+    partial class ExhibitedCars
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,31 +24,6 @@ namespace ExoticAuctionHouse_API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ExoticAuctionHouseModel.Models.Auction", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("AmountStarting")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<DateTimeOffset>("BiddingBegins")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<Guid>("CarId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CarId");
-
-                    b.ToTable("Auctions");
-                });
 
             modelBuilder.Entity("ExoticAuctionHouseModel.Models.AuctionHistory", b =>
                 {
@@ -129,17 +107,6 @@ namespace ExoticAuctionHouse_API.Migrations
                     b.HasIndex("CarId");
 
                     b.ToTable("CarAttributes");
-                });
-
-            modelBuilder.Entity("ExoticAuctionHouseModel.Models.Auction", b =>
-                {
-                    b.HasOne("ExoticAuctionHouseModel.Models.Car", "Car")
-                        .WithMany()
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Car");
                 });
 
             modelBuilder.Entity("ExoticAuctionHouseModel.Models.AuctionHistory", b =>
