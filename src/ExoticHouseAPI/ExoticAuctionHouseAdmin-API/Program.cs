@@ -1,7 +1,12 @@
+using AuthModels.Authorization;
+using AuthModels.Configs;
 using ExoticAuctionHouse_API.Data;
 using ExoticAuctionHouse_API.Repositories;
 using ExoticAuctionHouse_API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,12 +19,49 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddTransient<ICarRepository, CarRepository>();
 builder.Services.AddTransient<ICarService, CarService>();
 builder.Services.AddTransient<ICarAttributeRepository, CarAttributeRepository>();
 builder.Services.AddTransient<IAuctionRepository, AuctionRepository>();
 builder.Services.AddTransient<IAuctionHistoryRepository, AuctionHistoryRepository>();
+
+
+#region Authentication
+builder.Services.AddTransient<IPermissionAccess, PermissionAccess>();
+builder.Services.Configure<TokenConfig>(options => builder.Configuration.GetSection("Token").Bind(options));
+
+var tokenConfigurationSection = builder.Configuration.GetSection("Token");
+var tokenConfig = tokenConfigurationSection.Get<TokenConfig>();
+var key = Encoding.ASCII.GetBytes(tokenConfig.SecurityKey);
+
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(x =>
+    {
+        x.RequireHttpsMetadata = false;
+        x.SaveToken = true;
+        x.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
+
+#endregion
+
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+{
+    builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+}));
 
 var app = builder.Build();
 
@@ -31,6 +73,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+
+app.UseCors("MyPolicy");
 
 app.UseAuthorization();
 
