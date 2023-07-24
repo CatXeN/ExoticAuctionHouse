@@ -26,9 +26,19 @@ namespace ExoticAuctionHouse_API.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<string[]> GetBrands() => await _context.Cars
+            .Select(car => car.Brand)
+            .Distinct()
+            .ToArrayAsync();
+
         public async Task<Car> GetCarById(Guid id) => await _context.Cars.FirstOrDefaultAsync(car => car.Id == id);
 
         public async Task<IEnumerable<Car>> GetCars() => await _context.Cars.ToListAsync();
+
+        public async Task<string[]> GetModels() => await _context.Cars
+            .Select(car => car.Model)
+            .Distinct()
+            .ToArrayAsync();
 
         public async Task<IEnumerable<Car>> NotSoldCars() => await _context.Cars.Where(x => !x.IsSold).ToListAsync();
 

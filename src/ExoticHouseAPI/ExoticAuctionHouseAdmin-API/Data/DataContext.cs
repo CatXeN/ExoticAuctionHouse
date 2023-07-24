@@ -1,4 +1,5 @@
-﻿using ExoticAuctionHouseModel.Models;
+﻿using AuthModels.Models;
+using ExoticAuctionHouseModel.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExoticAuctionHouse_API.Data
@@ -11,5 +12,6 @@ namespace ExoticAuctionHouse_API.Data
         public DbSet<CarAttribute> CarAttributes { get; set; }
         public DbSet<AuctionHistory> AuctionHistory { get; set; }
         public DbSet<Auction> Auctions { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
