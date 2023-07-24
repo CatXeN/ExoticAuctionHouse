@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authorization", "Authorization", "{4CAB907E-31F4-4FA9-AD8B-CF95EA33D34C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{A1D9C410-0A32-407C-BBF3-61E54798A98E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{FD38E2D2-DA67-4E9B-A1C6-7C309898EBAB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExoticAuctionHouse-API", "src\ExoticHouseAPI\ExoticAuctionHouseAdmin-API\ExoticAuctionHouse-API.csproj", "{D88E4372-84DB-45A4-868A-AD9A452C3FDF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthAPI", "src\AuthorizationServer\AuthAPI\AuthAPI.csproj", "{ED3272E7-9DE0-4CAA-BF0F-E8168D51A486}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExoticAuctionHouseModel", "src\ExoticHouseAPI\ExoticAuctionHouseModel\ExoticAuctionHouseModel.csproj", "{B519C605-643A-42E6-AD96-D25116061486}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthModels", "src\AuthorizationServer\AuthModels\AuthModels.csproj", "{B3C18E8A-3410-40F8-8911-469CE4219A60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D88E4372-84DB-45A4-868A-AD9A452C3FDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D88E4372-84DB-45A4-868A-AD9A452C3FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D88E4372-84DB-45A4-868A-AD9A452C3FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D88E4372-84DB-45A4-868A-AD9A452C3FDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED3272E7-9DE0-4CAA-BF0F-E8168D51A486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED3272E7-9DE0-4CAA-BF0F-E8168D51A486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED3272E7-9DE0-4CAA-BF0F-E8168D51A486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED3272E7-9DE0-4CAA-BF0F-E8168D51A486}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B519C605-643A-42E6-AD96-D25116061486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B519C605-643A-42E6-AD96-D25116061486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B519C605-643A-42E6-AD96-D25116061486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B519C605-643A-42E6-AD96-D25116061486}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C18E8A-3410-40F8-8911-469CE4219A60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C18E8A-3410-40F8-8911-469CE4219A60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C18E8A-3410-40F8-8911-469CE4219A60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C18E8A-3410-40F8-8911-469CE4219A60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D88E4372-84DB-45A4-868A-AD9A452C3FDF} = {A1D9C410-0A32-407C-BBF3-61E54798A98E}
+		{ED3272E7-9DE0-4CAA-BF0F-E8168D51A486} = {4CAB907E-31F4-4FA9-AD8B-CF95EA33D34C}
+		{B519C605-643A-42E6-AD96-D25116061486} = {FD38E2D2-DA67-4E9B-A1C6-7C309898EBAB}
+		{B3C18E8A-3410-40F8-8911-469CE4219A60} = {FD38E2D2-DA67-4E9B-A1C6-7C309898EBAB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B38EE940-DC43-4A19-AA23-D225E99B882B}
+	EndGlobalSection
+EndGlobal

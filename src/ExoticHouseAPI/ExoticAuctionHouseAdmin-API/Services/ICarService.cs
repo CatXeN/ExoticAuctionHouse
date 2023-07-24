@@ -4,6 +4,6 @@ namespace ExoticAuctionHouse_API.Services
 {
     public interface ICarService
     {
-        CarPageData GetCarPageData();
+        Task<CarPageData> GetCarPageData();
     }
 }

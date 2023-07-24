@@ -10,5 +10,7 @@ namespace ExoticAuctionHouse_API.Repositories
         Task DeleteCar(Guid id);
         Task UpdateCar(Car car);
         Task<IEnumerable<Car>> NotSoldCars();
+        Task<string[]> GetBrands();
+        Task<string[]> GetModels();
     }
 }

@@ -62,9 +62,10 @@ namespace ExoticAuctionHouse_API.Controllers
         }
 
         [HttpGet("PageData")]
-        public IActionResult PageData()
+        public async Task<IActionResult> PageData()
         {
-            return Ok(_carService.GetCarPageData());
+            var pageData = await _carService.GetCarPageData();
+            return Ok(pageData);
         }
     }
 }
