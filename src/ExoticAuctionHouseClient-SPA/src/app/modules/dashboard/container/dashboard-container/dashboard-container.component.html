@@ -1,18 +1,70 @@
 <div class="container">
-  <table class="table table-striped table-bordered">
-      <thead>
-          <tr>
-              <th>Name</th>
-              <th>Start Date</th>
-              <th>Current bid</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let auction of auctions">
-              <td>{{auction.name}}</td>
-              <td>{{auction.startDate}}</td>
-              <td>{{auction.currentBid}}</td>
-          </tr>
-      </tbody>
-  </table>
+  <form class="search-filter" [formGroup]="filterForm">
+    <h3 class="search-filter__header">Find your feature car:</h3>
+
+    <div>
+      <mat-form-field class="search-filter__field">
+        <mat-label>Brand</mat-label>
+        <input type="text"
+               placeholder="Choose brand"
+               aria-label="Number"
+               matInput
+               formControlName="brand"
+               [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getModelsByBrand($event)">
+          <mat-option *ngFor="let option of filteredBrands | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="search-filter__field">
+        <mat-label>Model</mat-label>
+        <input type="text"
+               placeholder="Choose model"
+               aria-label="Number"
+               matInput
+               formControlName="model"
+               [matAutocomplete]="model">
+        <mat-autocomplete #model="matAutocomplete">
+          <mat-option *ngFor="let option of filteredModels | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="search-filter__field">
+        <mat-label>Fuel</mat-label>
+        <input type="text"
+               placeholder="Choose fuel"
+               aria-label="Number"
+               matInput
+               formControlName="fuelType"
+               [matAutocomplete]="fuelType">
+        <mat-autocomplete #fuelType="matAutocomplete">
+          <mat-option *ngFor="let option of filteredFuelTypes | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="search-filter__field">
+        <mat-label>Body</mat-label>
+        <input type="text"
+               placeholder="select body"
+               aria-label="Number"
+               matInput
+               formControlName="bodyType"
+               [matAutocomplete]="bodyType">
+        <mat-autocomplete #bodyType="matAutocomplete">
+          <mat-option *ngFor="let option of filteredBodyTypes | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+  </form>
 </div>

@@ -3,6 +3,7 @@ import { LoginContainerComponent } from './modules/auth/container/login-containe
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './core/layouts/main-layout/main-layout.component';
+import {AuthGuard} from "./modules/auth/guard/auth.guard";
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+        loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
+        canActivate: [AuthGuard]
       }
     ]
   },
@@ -31,7 +33,8 @@ const routes: Routes = [
     children: [
       {
         path: 'bet',
-        loadChildren: () => import('./modules/bet/bet.module').then(m => m.BetModule)
+        loadChildren: () => import('./modules/bet/bet.module').then(m => m.BetModule),
+        canActivate: [AuthGuard]
       }
     ]
   }
