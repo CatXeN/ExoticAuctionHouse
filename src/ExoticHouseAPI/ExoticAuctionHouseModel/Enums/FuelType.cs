@@ -10,6 +10,7 @@ namespace ExoticAuctionHouseModel.Enums
     {
         Petrol,
         Disel,
-        Hybrid
+        Hybrid,
+        All
     }
 }

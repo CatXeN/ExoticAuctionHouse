@@ -2,6 +2,8 @@
 using ExoticAuctionHouse_API.Repositories;
 using ExoticAuctionHouseModel.Enums;
 using ExoticAuctionHouseModel.Informations;
+using ExoticAuctionHouseModel.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExoticAuctionHouse_API.Services
 {
@@ -24,6 +26,22 @@ namespace ExoticAuctionHouse_API.Services
             };
 
             return carPageData;
+        }
+
+        public async Task<IEnumerable<Car>> GetCarsByFilter(SearchModel searchModel)
+        {
+            var cars = _carRepository.GetCarsQueryable(searchModel.Brand);
+
+            if (!string.IsNullOrEmpty(searchModel.Model))
+                cars = cars.Where(car => car.Model == searchModel.Model);
+
+            if (searchModel.BodyType != BodyType.All)
+                cars = cars.Where(car => car.BodyType == searchModel.BodyType);
+
+            if (searchModel.FuelType != FuelType.All)
+                cars = cars.Where(car => car.FuelType == searchModel.FuelType);
+
+            return await cars.ToListAsync();
         }
     }
 }

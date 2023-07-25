@@ -12,5 +12,6 @@ namespace ExoticAuctionHouse_API.Repositories
         Task<IEnumerable<Car>> NotSoldCars();
         Task<string[]> GetBrands();
         Task<string[]> GetModels(string brand);
+        IQueryable<Car> GetCarsQueryable(string brand);
     }
 }

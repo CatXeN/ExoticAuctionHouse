@@ -1,5 +1,6 @@
 ﻿using ExoticAuctionHouse_API.Repositories;
 using ExoticAuctionHouse_API.Services;
+using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -73,6 +74,13 @@ namespace ExoticAuctionHouse_API.Controllers
         {
             var models = await _carRepository.GetModels(brand);
             return Ok(models);
+        }
+
+        [HttpGet("Search")]
+        public async Task<IActionResult> GetCarsByFilter([FromQuery]SearchModel searchModel)
+        {
+            var cars = await _carService.GetCarsByFilter(searchModel);
+            return Ok(cars);
         }
     }
 }
