@@ -11,6 +11,6 @@ namespace ExoticAuctionHouse_API.Repositories
         Task UpdateCar(Car car);
         Task<IEnumerable<Car>> NotSoldCars();
         Task<string[]> GetBrands();
-        Task<string[]> GetModels();
+        Task<string[]> GetModels(string brand);
     }
 }

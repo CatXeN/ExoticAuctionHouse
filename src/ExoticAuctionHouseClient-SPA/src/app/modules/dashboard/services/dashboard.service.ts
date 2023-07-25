@@ -15,4 +15,8 @@ export class DashboardService {
   getPageData(): Observable<CarPageData> {
     return this.httpClient.get<CarPageData>(this.baseUrl + 'PageData')
   }
+
+  getModelsByBrand(brand: string): Observable<string[]> {
+    return this.httpClient.get<string[]>(this.baseUrl + 'GetModels/' + brand);
+  }
 }
