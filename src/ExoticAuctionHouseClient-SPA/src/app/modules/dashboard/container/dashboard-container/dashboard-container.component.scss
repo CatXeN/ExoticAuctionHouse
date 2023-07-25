@@ -1,0 +1,29 @@
+.container {
+  width: 50%;
+  margin-top: 20px;
+
+  .search-filter {
+    margin-left: 40px;
+    border: 1px solid rgba(255,255,255,.2);;
+
+    &__header {
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+
+    &__field {
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: 95% !important;
+
+    .search-filter {
+      margin-left: 10px;
+    }
+  }
+}

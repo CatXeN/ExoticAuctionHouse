@@ -9,7 +9,6 @@ namespace ExoticAuctionHouseModel.Informations
     public class CarPageData
     {
         public string[] Brand { get; set; }
-        public string[] Model { get; set; }
         public string[] BodyTypes { get; set; }
         public string[] FuelTypes { get; set; }
     }

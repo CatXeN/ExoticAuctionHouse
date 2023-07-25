@@ -67,5 +67,12 @@ namespace ExoticAuctionHouse_API.Controllers
             var pageData = await _carService.GetCarPageData();
             return Ok(pageData);
         }
+
+        [HttpGet("GetModels/{brand}")]
+        public async Task<IActionResult> GetModels(string brand)
+        {
+            var models = await _carRepository.GetModels(brand);
+            return Ok(models);
+        }
     }
 }

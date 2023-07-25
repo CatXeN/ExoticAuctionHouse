@@ -19,7 +19,6 @@ namespace ExoticAuctionHouse_API.Services
             CarPageData carPageData = new CarPageData
             {
                 Brand = await _carRepository.GetBrands(),
-                Model = await _carRepository.GetModels(),
                 BodyTypes = EnumHelper.ExtractValues<BodyType>(),
                 FuelTypes = EnumHelper.ExtractValues<FuelType>()
             };
