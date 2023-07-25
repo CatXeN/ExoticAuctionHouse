@@ -24,11 +24,16 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'auctions',
+        loadChildren: () => import('./modules/auctions/auction.module').then(m => m.AuctionModule),
+        canActivate: [AuthGuard]
       }
     ]
   },
   {
-    path: 'panel',
+    path: 'user',
     component: MainLayoutComponent,
     children: [
       {

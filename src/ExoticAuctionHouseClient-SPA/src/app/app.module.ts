@@ -12,6 +12,7 @@ import { AuthLayoutComponent } from './core/layouts/auth-layout/auth-layout.comp
 import { MainLayoutComponent } from './core/layouts/main-layout/main-layout.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { BetModule } from './modules/bet/bet.module';
+import { AuctionModule } from './modules/auctions/auction.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BetModule } from './modules/bet/bet.module';
     BetModule,
     BrowserAnimationsModule,
     SharedModule,
-    AuthModule
+    AuthModule,
+    AuctionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
