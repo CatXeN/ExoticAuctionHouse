@@ -2,6 +2,8 @@
 using ExoticAuctionHouse_API.Repositories;
 using ExoticAuctionHouseModel.Enums;
 using ExoticAuctionHouseModel.Informations;
+using ExoticAuctionHouseModel.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExoticAuctionHouse_API.Services
 {

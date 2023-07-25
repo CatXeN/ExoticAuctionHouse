@@ -1,5 +1,6 @@
 ﻿using ExoticAuctionHouse_API.Repositories;
 using ExoticAuctionHouse_API.Services;
+using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

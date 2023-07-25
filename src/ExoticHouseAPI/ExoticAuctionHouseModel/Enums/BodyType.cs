@@ -10,6 +10,7 @@ namespace ExoticAuctionHouseModel.Enums
     {
         Sedan,
         Combi,
-        Suv
+        Suv,
+        All
     }
 }
