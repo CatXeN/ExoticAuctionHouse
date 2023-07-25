@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {AuctionService} from "../../services/auction.service";
 import {SearchModel} from "../../../../shared/models/search.model";
 import {Car} from "../../../../shared/models/car.model";
+import {Auction} from "../../../../shared/models/auction.model";
 
 @Component({
   selector: 'app-auction-container',
@@ -10,7 +11,7 @@ import {Car} from "../../../../shared/models/car.model";
   styleUrls: ['./auction-container.component.scss']
 })
 export class AuctionContainerComponent implements OnInit {
-  public cars: Car[] = [];
+  public cars: Auction[] = [];
 
   constructor(private route: ActivatedRoute, private auctionService: AuctionService) {}
 
@@ -24,6 +25,7 @@ export class AuctionContainerComponent implements OnInit {
       }
 
       this.auctionService.getCarsByFilter(searchModel).subscribe(result => {
+        console.log(result);
         this.cars = result;
       })
     })

@@ -75,12 +75,5 @@ namespace ExoticAuctionHouse_API.Controllers
             var models = await _carRepository.GetModels(brand);
             return Ok(models);
         }
-
-        [HttpGet("Search")]
-        public async Task<IActionResult> GetCarsByFilter([FromQuery]SearchModel searchModel)
-        {
-            var cars = await _carService.GetCarsByFilter(searchModel);
-            return Ok(cars);
-        }
     }
 }
