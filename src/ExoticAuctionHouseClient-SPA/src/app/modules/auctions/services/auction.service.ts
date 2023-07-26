@@ -14,6 +14,6 @@ export class AuctionService {
   constructor(private  httpClient: HttpClient) { }
 
   getCarsByFilter(searchModel: SearchModel): Observable<Auction[]> {
-    return this.httpClient.get<Auction[]>(this.baseUrl + 'Search', {params: searchModel as any});
+    return this.httpClient.post<Auction[]>(this.baseUrl + 'Search', searchModel);
   }
 }

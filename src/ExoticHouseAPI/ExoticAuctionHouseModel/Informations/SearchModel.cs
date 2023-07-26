@@ -10,7 +10,7 @@ namespace ExoticAuctionHouseModel.Informations
     public class SearchModel
     {
         public string Brand { get; set; }
-        public string Model { get; set; }
+        public string? Model { get; set; }
         public FuelType FuelType { get; set; }
         public BodyType BodyType { get; set; }
     }

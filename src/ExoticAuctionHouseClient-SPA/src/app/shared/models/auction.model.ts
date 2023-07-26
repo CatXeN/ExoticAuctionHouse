@@ -7,4 +7,6 @@ export interface Auction {
   createdAt: Date;
   biddingBegins: Date;
   amountStarting: number;
+  currentPrice: number;
+  location: string;
 }

@@ -8,5 +8,7 @@ export interface Car {
     bodyType: number;
     productionDate: Date;
     isSold: boolean;
+    capacity: number;
+    horsepower: number;
 }
 

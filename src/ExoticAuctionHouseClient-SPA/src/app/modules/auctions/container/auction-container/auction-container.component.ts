@@ -11,7 +11,7 @@ import {Auction} from "../../../../shared/models/auction.model";
   styleUrls: ['./auction-container.component.scss']
 })
 export class AuctionContainerComponent implements OnInit {
-  public cars: Auction[] = [];
+  public auctions: Auction[] = [];
 
   constructor(private route: ActivatedRoute, private auctionService: AuctionService) {}
 
@@ -20,13 +20,13 @@ export class AuctionContainerComponent implements OnInit {
       let searchModel: SearchModel = {
         brand: data['brand'],
         model: data['model'],
-        fuelType: data['fuelType'],
-        bodyType: data['bodyType']
+        fuelType: Number(data['fuelType']),
+        bodyType: Number(data['bodyType'])
       }
 
       this.auctionService.getCarsByFilter(searchModel).subscribe(result => {
         console.log(result);
-        this.cars = result;
+        this.auctions = result;
       })
     })
   }

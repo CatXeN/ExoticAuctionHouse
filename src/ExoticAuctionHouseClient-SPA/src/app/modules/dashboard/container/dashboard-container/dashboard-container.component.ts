@@ -15,7 +15,7 @@ import {SearchModel} from "../../../../shared/models/search.model";
 export class DashboardContainerComponent implements OnInit {
   filterForm = this.fb.group({
     brand: ['', Validators.required],
-    model: ['', Validators.required],
+    model: [''],
     fuelType: ['', Validators.required],
     bodyType: ['', Validators.required]
   });
@@ -75,8 +75,8 @@ export class DashboardContainerComponent implements OnInit {
 
   public searchCars(): void {
     if (this.filterForm.valid) {
-      let fuelType: number = 3;
-      let bodyType: number = 3;
+      let fuelType: number = 0;
+      let bodyType: number = 0;
 
       if (this.filterForm.controls.fuelType.value !== null) {
         fuelType = this._fuelTypes.indexOf(this.filterForm.controls.fuelType.value);
@@ -86,11 +86,15 @@ export class DashboardContainerComponent implements OnInit {
         bodyType = this._bodyTypes.indexOf(this.filterForm.controls.bodyType.value);
       }
 
-      const data: SearchModel = {
+      let data: any = {
         brand: this.filterForm.controls.brand.value,
-        model: this.filterForm.controls.model.value,
+        //model: this.filterForm.controls.model.value,
         fuelType: fuelType,
         bodyType: bodyType
+      }
+
+      if (this.filterForm.controls.model.value !== '') {
+        data.model = this.filterForm.controls.model.value;
       }
 
       this.router.navigate(['panel/auctions'], { queryParams: data });

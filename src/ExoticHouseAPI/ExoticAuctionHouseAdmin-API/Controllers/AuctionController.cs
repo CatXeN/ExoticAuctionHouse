@@ -45,8 +45,8 @@ namespace ExoticAuctionHouse_API.Controllers
             }
         }
 
-        [HttpGet("Search")]
-        public async Task<IActionResult> GetCarsByFilter([FromQuery] SearchModel searchModel)
+        [HttpPost("Search")]
+        public async Task<IActionResult> GetCarsByFilter(SearchModel searchModel)
         {
             var cars = await _auctionRepository.GetCarsByFilter(searchModel);
             return Ok(cars);

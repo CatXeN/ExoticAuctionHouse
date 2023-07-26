@@ -22,7 +22,9 @@ namespace ExoticAuctionHouse_API.Repositories
                 AmountStarting = auction.AmountStarting,
                 BiddingBegins = auction.BiddingBegins,
                 CarId = auction.CarId,
-                CreatedAt = auction.CreatedAt
+                CreatedAt = auction.CreatedAt,
+                CurrentPrice = auction.CurrentPrice,
+                Location = auction.Location
             };
 
             await _context.AddAsync(auctionToAdd);

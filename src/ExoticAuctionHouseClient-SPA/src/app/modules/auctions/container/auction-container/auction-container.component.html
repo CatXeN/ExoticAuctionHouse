@@ -1,11 +1,13 @@
-<div class="product-card">
-  <div class="product-image">
-    <img src="https://th.bing.com/th/id/R.3e6873a5aff0630a1a8031a17889b4e9?rik=WxXcgzy27IKilA&riu=http%3a%2f%2fwww.hdcarwallpapers.com%2fwalls%2flamborghini_in_auto_expo-wide.jpg&ehk=bC%2bWVFXP2eWDEunPTtjctvE6NRctCY61ewqZPacwPAI%3d&risl=&pid=ImgRaw&r=0" alt="BMW 3 Series">
-  </div>
-  <div class="product-info">
-    <h3 class="product-name">Lambordżini</h3>
-    <p class="product-price">29 900 PLN</p>
-    <p class="product-details">2010 | 2.0 Diesel | 184 KM | Sedan</p>
-    <p class="product-location">Warszawa, Mazowieckie</p>
+<div class="product-display-view" style="display: flex; flex-direction: row;">
+  <div class="product-card" *ngFor="let auction of auctions" >
+    <div class="product-image">
+      <img src="https://th.bing.com/th/id/R.3e6873a5aff0630a1a8031a17889b4e9?rik=WxXcgzy27IKilA&riu=http%3a%2f%2fwww.hdcarwallpapers.com%2fwalls%2flamborghini_in_auto_expo-wide.jpg&ehk=bC%2bWVFXP2eWDEunPTtjctvE6NRctCY61ewqZPacwPAI%3d&risl=&pid=ImgRaw&r=0" alt="BMW 3 Series">
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">{{auction.car.brand}} {{auction.car.model}}</h3>
+      <p class="product-price">{{auction.currentPrice}} EUR </p>
+      <p class="product-details">{{auction.car.productionDate | date: "yyyy" }} | {{auction.car.capacity}}cm3 | {{auction.car.fuelType | fuelPipeTranslator}} | {{auction.car.mileage}} | {{auction.car.horsepower}} HP | {{auction.car.bodyType | bodyPipeTranslator}} </p>
+      <p class="product-location">{{auction.location}}</p>
+    </div>
   </div>
 </div>
