@@ -1,4 +1,5 @@
 ﻿using ExoticAuctionHouse_API.Repositories;
+using ExoticAuctionHouse_API.Services;
 using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 using Microsoft.AspNetCore.Http;
@@ -11,10 +12,12 @@ namespace ExoticAuctionHouse_API.Controllers
     public class AuctionController : ControllerBase
     {
         private readonly IAuctionRepository _auctionRepository;
+        private readonly IAuctionService _auctionService;
 
-        public AuctionController(IAuctionRepository auctionRepository)
+        public AuctionController(IAuctionRepository auctionRepository, IAuctionService auctionService)
         {
             _auctionRepository = auctionRepository;
+            _auctionService = auctionService;
         }
 
         [HttpGet]
@@ -48,7 +51,7 @@ namespace ExoticAuctionHouse_API.Controllers
         [HttpPost("Search")]
         public async Task<IActionResult> GetCarsByFilter(SearchModel searchModel)
         {
-            var cars = await _auctionRepository.GetCarsByFilter(searchModel);
+            var cars = await _auctionService.GetCarsByFilter(searchModel);
             return Ok(cars);
         }
         //TODO: Once the auction is over, the car from the auction should fly into the auction history

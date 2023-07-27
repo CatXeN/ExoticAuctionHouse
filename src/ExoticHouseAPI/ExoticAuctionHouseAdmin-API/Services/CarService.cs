@@ -16,6 +16,27 @@ namespace ExoticAuctionHouse_API.Services
             _carRepository = carRepository;
         }
 
+        public Task<Guid> AddCar(AddCarInformation addCarInformation)
+        {
+            var car = new Car()
+            {
+                Capacity = addCarInformation.Capacity,
+                ProductionDate = addCarInformation.ProductionDate,
+                BodyType = addCarInformation.BodyType,
+                Brand = addCarInformation.Brand,
+                FuelType = addCarInformation.FuelType,
+                Generation = addCarInformation.Generation,
+                Horsepower = addCarInformation.Horsepower,
+                IsSold = false,
+                Mileage = addCarInformation.Mileage,
+                Model = addCarInformation.Model
+            };
+
+            var id = _carRepository.AddCar(car);
+
+            return id;
+        }
+
         public async Task<CarPageData> GetCarPageData()
         {
             CarPageData carPageData = new CarPageData

@@ -3,9 +3,8 @@ using ExoticAuctionHouseModel.Models;
 
 namespace ExoticAuctionHouse_API.Services
 {
-    public interface ICarService
+    public interface IAuctionService
     {
-        Task<CarPageData> GetCarPageData();
-        Task<Guid> AddCar(AddCarInformation addCarInformation);
+        Task<IEnumerable<Auction>> GetCarsByFilter(SearchModel searchModel);
     }
 }

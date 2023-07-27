@@ -16,4 +16,8 @@ export class AuctionService {
   getCarsByFilter(searchModel: SearchModel): Observable<Auction[]> {
     return this.httpClient.post<Auction[]>(this.baseUrl + 'Search', searchModel);
   }
+
+  getExhabitedCars(): Observable<Auction[]> {
+    return this.httpClient.get<Auction[]>(this.baseUrl);
+  }
 }

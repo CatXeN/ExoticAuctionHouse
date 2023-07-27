@@ -13,10 +13,11 @@ namespace ExoticAuctionHouse_API.Repositories
             _context = context;
         }
 
-        public async Task AddCar(Car car)
+        public async Task<Guid> AddCar(Car car)
         {
             await _context.Cars.AddAsync(car);
             await _context.SaveChangesAsync();
+            return car.Id;
         }
 
         public async Task DeleteCar(Guid id)

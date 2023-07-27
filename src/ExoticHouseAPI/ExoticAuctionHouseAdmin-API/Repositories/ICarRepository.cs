@@ -6,7 +6,7 @@ namespace ExoticAuctionHouse_API.Repositories
     {
         Task<Car> GetCarById(Guid id);
         Task<IEnumerable<Car>> GetCars();
-        Task AddCar(Car car);
+        Task<Guid> AddCar(Car car);
         Task DeleteCar(Guid id);
         Task UpdateCar(Car car);
         Task<IEnumerable<Car>> NotSoldCars();

@@ -8,6 +8,6 @@ namespace ExoticAuctionHouse_API.Repositories
         Task<IEnumerable<Auction>> Get();
         Task Add(AuctionInformation auction);
         Task<Auction> GetById(Guid id);
-        Task<IEnumerable<Auction>> GetCarsByFilter(SearchModel searchModel);
+        IQueryable<Auction> GetAuctionWithCarsQuerable(string brand);
     }
 }

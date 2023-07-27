@@ -10,24 +10,6 @@ import {Auction} from "../../../../shared/models/auction.model";
   templateUrl: './auction-container.component.html',
   styleUrls: ['./auction-container.component.scss']
 })
-export class AuctionContainerComponent implements OnInit {
-  public auctions: Auction[] = [];
+export class AuctionContainerComponent {
 
-  constructor(private route: ActivatedRoute, private auctionService: AuctionService) {}
-
-  ngOnInit(): void {
-    this.route.queryParams.subscribe(data => {
-      let searchModel: SearchModel = {
-        brand: data['brand'],
-        model: data['model'],
-        fuelType: Number(data['fuelType']),
-        bodyType: Number(data['bodyType'])
-      }
-
-      this.auctionService.getCarsByFilter(searchModel).subscribe(result => {
-        console.log(result);
-        this.auctions = result;
-      })
-    })
-  }
 }
