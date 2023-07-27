@@ -35,6 +35,10 @@ namespace ExoticAuctionHouse_API.Repositories
 
         public async Task<IEnumerable<Car>> GetCars() => await _context.Cars.ToListAsync();
 
+        public IQueryable<Car> GetCarsQueryable(string brand) => _context.Cars
+            .Where(car => car.Brand == brand)
+            .AsQueryable();
+
         public async Task<string[]> GetModels(string brand) => await _context.Cars
             .Where(car  => car.Brand == brand)
             .Select(car => car.Model)

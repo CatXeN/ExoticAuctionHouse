@@ -1,4 +1,5 @@
 ﻿using ExoticAuctionHouseModel.Informations;
+using ExoticAuctionHouseModel.Models;
 
 namespace ExoticAuctionHouse_API.Services
 {

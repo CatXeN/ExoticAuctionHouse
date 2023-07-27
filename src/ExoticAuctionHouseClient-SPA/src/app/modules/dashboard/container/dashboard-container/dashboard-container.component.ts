@@ -4,6 +4,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {Route, Router} from "@angular/router";
+import {SearchModel} from "../../../../shared/models/search.model";
 
 @Component({
   selector: 'app-dashboard-container',
@@ -13,7 +15,7 @@ import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 export class DashboardContainerComponent implements OnInit {
   filterForm = this.fb.group({
     brand: ['', Validators.required],
-    model: ['', Validators.required],
+    model: [''],
     fuelType: ['', Validators.required],
     bodyType: ['', Validators.required]
   });
@@ -28,7 +30,7 @@ export class DashboardContainerComponent implements OnInit {
   filteredFuelTypes: Observable<string[]> = new Observable<string[]>();
   filteredBodyTypes: Observable<string[]> = new Observable<string[]>();
 
-  constructor(private fb: FormBuilder, private dashboardService: DashboardService) {}
+  constructor(private fb: FormBuilder, private dashboardService: DashboardService, private router: Router) {}
 
   ngOnInit() {
     this.dashboardService.getPageData().subscribe(result => {
@@ -58,7 +60,7 @@ export class DashboardContainerComponent implements OnInit {
     return collection.filter(x => x.toLowerCase().includes(filterValue));
   }
 
-  public getModelsByBrand(brand: MatAutocompleteSelectedEvent) {
+  public getModelsByBrand(brand: MatAutocompleteSelectedEvent): void {
     this.filterForm.controls.model.patchValue('')
 
     this.dashboardService.getModelsByBrand(brand.option.value).subscribe(result => {
@@ -69,5 +71,33 @@ export class DashboardContainerComponent implements OnInit {
         map(value => this._filter(value || '', this._models))
       )
     })
+  }
+
+  public searchCars(): void {
+    if (this.filterForm.valid) {
+      let fuelType: number = 0;
+      let bodyType: number = 0;
+
+      if (this.filterForm.controls.fuelType.value !== null) {
+        fuelType = this._fuelTypes.indexOf(this.filterForm.controls.fuelType.value);
+      }
+
+      if (this.filterForm.controls.bodyType.value !== null) {
+        bodyType = this._bodyTypes.indexOf(this.filterForm.controls.bodyType.value);
+      }
+
+      let data: any = {
+        brand: this.filterForm.controls.brand.value,
+        //model: this.filterForm.controls.model.value,
+        fuelType: fuelType,
+        bodyType: bodyType
+      }
+
+      if (this.filterForm.controls.model.value !== '') {
+        data.model = this.filterForm.controls.model.value;
+      }
+
+      this.router.navigate(['panel/auctions'], { queryParams: data });
+    }
   }
 }

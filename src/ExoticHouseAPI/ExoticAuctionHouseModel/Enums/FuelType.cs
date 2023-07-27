@@ -8,8 +8,10 @@ namespace ExoticAuctionHouseModel.Enums
 {
     public enum FuelType
     {
-        Petrol,
-        Disel,
-        Hybrid
+        Petrol = 1,
+        Disel = 2,
+        Hybrid = 3,
+        Electric = 4,
+        All = 0
     }
 }

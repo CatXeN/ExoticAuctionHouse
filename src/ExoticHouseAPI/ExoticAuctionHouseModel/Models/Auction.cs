@@ -22,5 +22,9 @@ namespace ExoticAuctionHouseModel.Models
 
         [Column(TypeName = "decimal(18, 2)")]
         public decimal AmountStarting { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal CurrentPrice { get; set; }
+        public string Location { get; set; }
+
     }
 }
