@@ -8,6 +8,8 @@ import { FuelPipeTranslatorPipe } from './pipe/fuel-pipe-translator.pipe';
 import { CarCardComponent } from './presenter/car-card/car-card.component';
 import { AuctionDetailContainerComponent } from './container/auction-detail-container/auction-detail-container.component';
 import { CarDetailComponent } from './presenter/car-detail/car-detail.component';
+import { CarDetailInfoComponent } from './presenter/car-detail-info/car-detail-info.component';
+import { CarDetailAccessoriesComponent } from './presenter/car-detail-accessories/car-detail-accessories.component';
 
 @NgModule({
     imports: [
@@ -22,7 +24,9 @@ import { CarDetailComponent } from './presenter/car-detail/car-detail.component'
     FuelPipeTranslatorPipe,
     CarCardComponent,
     AuctionDetailContainerComponent,
-    CarDetailComponent
+    CarDetailComponent,
+    CarDetailInfoComponent,
+    CarDetailAccessoriesComponent
   ],
   exports: [
     BodyPipeTranslatorPipe,

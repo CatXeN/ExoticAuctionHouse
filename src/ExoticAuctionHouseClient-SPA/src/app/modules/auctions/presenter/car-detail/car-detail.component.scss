@@ -7,7 +7,10 @@
   }
 
   &__information {
-    margin-top: 20px;
     margin-left: 20px;
+
+    &--price {
+      color: #0e9c0e;
+    }
   }
 }
