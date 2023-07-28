@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-mobile-menu',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./mobile-menu.component.scss']
 })
 export class MobileMenuComponent {
+  @Output() stateMenuChange = new EventEmitter<boolean>();
 
+  switchMenuState() {
+    this.stateMenuChange.emit(true);
+  }
 }

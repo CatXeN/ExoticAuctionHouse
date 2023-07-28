@@ -1,0 +1,13 @@
+.auction {
+  display: flex;
+
+  &__image {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  &__information {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+}

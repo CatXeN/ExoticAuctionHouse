@@ -6,6 +6,8 @@ import { AuctionRoutingModule } from './auction-routing.module';
 import { BodyPipeTranslatorPipe } from './pipe/body-pipe-translator.pipe';
 import { FuelPipeTranslatorPipe } from './pipe/fuel-pipe-translator.pipe';
 import { CarCardComponent } from './presenter/car-card/car-card.component';
+import { AuctionDetailContainerComponent } from './container/auction-detail-container/auction-detail-container.component';
+import { CarDetailComponent } from './presenter/car-detail/car-detail.component';
 
 @NgModule({
     imports: [
@@ -18,7 +20,9 @@ import { CarCardComponent } from './presenter/car-card/car-card.component';
     AuctionContainerComponent,
     BodyPipeTranslatorPipe,
     FuelPipeTranslatorPipe,
-    CarCardComponent
+    CarCardComponent,
+    AuctionDetailContainerComponent,
+    CarDetailComponent
   ],
   exports: [
     BodyPipeTranslatorPipe,

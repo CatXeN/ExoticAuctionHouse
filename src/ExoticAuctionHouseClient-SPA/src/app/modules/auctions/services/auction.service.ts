@@ -20,4 +20,8 @@ export class AuctionService {
   getExhabitedCars(): Observable<Auction[]> {
     return this.httpClient.get<Auction[]>(this.baseUrl);
   }
+
+  getAuction(id: string): Observable<Auction> {
+    return this.httpClient.get<Auction>(this.baseUrl + id);
+  }
 }

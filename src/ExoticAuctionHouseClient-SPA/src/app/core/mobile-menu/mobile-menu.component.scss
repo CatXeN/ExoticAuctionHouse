@@ -1,59 +1,19 @@
 .menu {
-  .header {
-    margin-top: 20px;
-    padding-left: 20px;
-  }
-
-  background-color: #9c27b0;;
-  height: 100%;
-  width: 100%;
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: #9c27b0;
 
-  &__list {
-    font-size: 18px;
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    padding-top: 28px;
-    margin-top: 3px;
-
-    padding-left: 20px;
-
-    &--item {
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      margin-left: 40px;
-
-      a {
-        margin-left: 10px;
-        text-decoration: none;
-        color: #fff;
-      }
-    }
-
-    &--profile {
-      margin-bottom: 10px;
-      display: flex;
-      align-items: flex-end;
+  &__header {
+    span {
       margin-left: 20px;
-
-      a {
-        margin-left: 10px;
-        text-decoration: none;
-        color: #7F7E83;
-      }
-    }
-
-    .is-active {
-      color: #f77cce;
+      font-size: 1.3em;
+      font-weight: bold;
     }
   }
 
-  .mat-tree-node, .mat-nested-tree-node {
-    background-color: #F8FAFB;
-    font-size: 18px;
-    color: #7F7E83;
+  &__panel {
+    margin-right: 20px;
   }
 }

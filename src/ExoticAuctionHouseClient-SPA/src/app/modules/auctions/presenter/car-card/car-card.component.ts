@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Auction} from "../../../../shared/models/auction.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuctionService} from "../../services/auction.service";
 import {SearchModel} from "../../../../shared/models/search.model";
 
@@ -12,7 +12,7 @@ import {SearchModel} from "../../../../shared/models/search.model";
 export class CarCardComponent implements OnInit{
   public auctions: Auction[] = [];
 
-  constructor(private route: ActivatedRoute, private auctionService: AuctionService) {}
+  constructor(private route: ActivatedRoute, private auctionService: AuctionService, private router: Router) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(data => {
@@ -34,5 +34,10 @@ export class CarCardComponent implements OnInit{
         });
       }
     })
+  }
+
+  showDetail(id: string): void {
+    console.log(id);
+    this.router.navigate(['panel/auctions', id]);
   }
 }
