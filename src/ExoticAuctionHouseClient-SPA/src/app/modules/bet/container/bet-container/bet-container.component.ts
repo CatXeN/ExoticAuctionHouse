@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import * as signalR from "@microsoft/signalr";
 import {HubConnection} from "@microsoft/signalr";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 
 @Component({
   selector: 'app-bet-container',
@@ -10,8 +11,13 @@ import {HubConnection} from "@microsoft/signalr";
 export class BetContainerComponent implements OnInit {
   connection: HubConnection | undefined;
   userId: string | null = null;
+  auctionId: string = '';
+  currentPrice: number = 0;
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.auctionId = params.get('id') || '';
+    })
   }
 
   ngOnInit(): void {
@@ -27,12 +33,11 @@ export class BetContainerComponent implements OnInit {
     }).catch(err => console.log(err));
 
     this.connection.on("ReceiveMessage", (user, message) => {
-      console.log(this.userId);
-      console.log(message);
+      console.log("User: " + user + " Bid: " + message);
     });
   }
 
   sendMessage(): void {
-    this.connection?.invoke("SendMessage", "test", "test");
+    this.connection?.invoke("SendMessage", this.userId, this.auctionId, '10');
   }
 }

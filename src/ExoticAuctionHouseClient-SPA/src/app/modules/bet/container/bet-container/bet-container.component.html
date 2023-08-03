@@ -1,3 +1,13 @@
-<p>bet-container works!</p>
+<div class="bid">
+  <p>bet-container works!</p>
 
-<button (click)="sendMessage()">Send</button>
+
+  <mat-progress-spinner
+    class="example-margin"
+    color="primary"
+    mode="determinate"
+    value="100">
+  </mat-progress-spinner>
+
+  <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
+</div>

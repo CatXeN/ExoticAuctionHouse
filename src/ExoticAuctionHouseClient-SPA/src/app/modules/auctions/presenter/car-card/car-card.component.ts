@@ -29,7 +29,7 @@ export class CarCardComponent implements OnInit{
           this.auctions = result;
         })
       } else {
-        this.auctionService.getExhabitedCars().subscribe(result => {
+        this.auctionService.getExhibitedCars().subscribe(result => {
           this.auctions = result;
         });
       }

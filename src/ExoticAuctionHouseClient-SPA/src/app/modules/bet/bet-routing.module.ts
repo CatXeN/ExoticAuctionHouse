@@ -4,7 +4,7 @@ import { BetContainerComponent } from './container/bet-container/bet-container.c
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: BetContainerComponent
   }
 ];

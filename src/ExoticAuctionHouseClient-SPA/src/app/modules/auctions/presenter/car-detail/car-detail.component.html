@@ -24,5 +24,10 @@
     </div>
 
     <h2 class="auction__information--price">{{auction.currentPrice}} EUR</h2>
+
+    <div class="auction__information--action">
+      <button mat-raised-button color="primary">Buy</button>
+      <button mat-raised-button color="accent" [routerLink]="['/user/bet/', auction.id]">Bid</button>
+    </div>
   </div>
 </div>
