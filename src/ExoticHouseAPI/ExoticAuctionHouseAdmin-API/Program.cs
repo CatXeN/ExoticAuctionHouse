@@ -28,7 +28,6 @@ builder.Services.AddTransient<IAuctionRepository, AuctionRepository>();
 builder.Services.AddTransient<IAuctionHistoryRepository, AuctionHistoryRepository>();
 builder.Services.AddTransient<IAuctionService, AuctionService>();
 
-
 #region Authentication
 builder.Services.AddTransient<IPermissionAccess, PermissionAccess>();
 builder.Services.Configure<TokenConfig>(options => builder.Configuration.GetSection("Token").Bind(options));

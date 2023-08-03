@@ -1,4 +1,7 @@
+using AuctionServer.Data;
 using AuctionServer.Hubs;
+using AuctionServer.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSignalR();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<DataContext>(options => options
+                    .UseSqlServer(connectionString));
+
+builder.Services.AddHostedService<TimeHostedService>();
 
 builder.Services.AddCors(options =>
 {
