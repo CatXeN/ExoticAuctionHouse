@@ -1,0 +1,28 @@
+<div class="auction" *ngIf="auction">
+  <div class="auction__image">
+    <img src="https://autogen.pl/cars/_mini/Por992TurboS-850x430.jpg" alt="Desc" />
+  </div>
+  <div class="auction__information">
+    <h3>{{setFullName()}}</h3>
+
+    <div class="auction__information--details">
+      <span>
+        {{auction.car.productionDate | date: 'yyyy'}} |
+      </span>
+
+      <span>
+        {{auction.car.mileage}} km |
+      </span>
+
+      <span>
+        {{auction.car.fuelType | fuelPipeTranslator}} |
+      </span>
+
+      <span>
+        {{auction.car.bodyType | bodyPipeTranslator}}
+      </span>
+    </div>
+
+    <h2 class="auction__information--price">{{auction.currentPrice}} EUR</h2>
+  </div>
+</div>

@@ -1,4 +1,7 @@
+using AuctionServer.Data;
 using AuctionServer.Hubs;
+using AuctionServer.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,24 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSignalR();
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<DataContext>(options => options
+                    .UseSqlServer(connectionString));
+
+builder.Services.AddHostedService<TimeHostedService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "Angular",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:4201")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials(); //TODO: https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/signalr/authn-and-authz.md
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,6 +41,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("Angular");
 
 app.UseAuthorization();
 

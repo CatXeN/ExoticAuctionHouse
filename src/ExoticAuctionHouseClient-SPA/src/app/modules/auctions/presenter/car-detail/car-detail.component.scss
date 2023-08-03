@@ -1,0 +1,36 @@
+.auction {
+  display: flex;
+
+  &__image {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  &__information {
+    margin-left: 20px;
+
+    &--price {
+      color: #0e9c0e;
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .auction {
+    align-items: center;
+    flex-direction: column-reverse;
+
+    &__image {
+      display: flex;
+      justify-content: center;
+      margin-left: 0;
+      img {
+        width: 80%;
+      }
+    }
+
+    &__information {
+      margin-left: 0;
+    }
+  }
+}

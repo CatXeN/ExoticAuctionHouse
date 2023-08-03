@@ -13,11 +13,9 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   overflow: hidden;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 10px;
   align-items: center;
+  cursor: pointer;
 }
 
 .product-image {
@@ -45,7 +43,7 @@
 
 .product-price {
   font-size: 20px;
-  color: green;
+  color: #0e9c0e;
 }
 
 .product-details {

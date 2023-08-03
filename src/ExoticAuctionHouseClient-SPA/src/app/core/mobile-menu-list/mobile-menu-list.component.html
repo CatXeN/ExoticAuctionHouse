@@ -1,0 +1,13 @@
+<div class="background"></div>
+<div class="container">
+  <div class="header">
+    <button mat-icon-button (click)="switchMenuState()">
+      <span class="material-icons">close</span>
+    </button>
+  </div>
+
+  <ul class="menu">
+    <li class="menu__item" (click)="switchMenuState()" [routerLink]="['dashboard']">Search</li>
+    <li class="menu__item" (click)="switchMenuState()" [routerLink]="['auctions']">Auctions</li>
+  </ul>
+</div>

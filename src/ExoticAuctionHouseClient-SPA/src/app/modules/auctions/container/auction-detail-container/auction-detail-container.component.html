@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="container-back">
+    <button mat-icon-button color="primary" [routerLink]="['/panel/auctions']">
+      <mat-icon fontIcon="arrow_back"></mat-icon>
+    </button>
+    Return to auctions
+  </div>
+
+  <app-car-detail [auctionId]="auctionId"></app-car-detail>
+  <app-car-detail-info></app-car-detail-info>
+  <app-car-detail-accessories></app-car-detail-accessories>
+</div>

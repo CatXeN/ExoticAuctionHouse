@@ -1,5 +1,6 @@
 <div>
   <app-menu class="desktop"></app-menu>
-  <app-mobile-menu class="mobile"></app-mobile-menu>
+  <app-mobile-menu-list class="mobile menu-extend" (stateMenuChange)="openMenu($event)" *ngIf="menuState === 0" ></app-mobile-menu-list>
+  <app-mobile-menu class="mobile" (stateMenuChange)="openMenu($event)" *ngIf="menuState === 1"></app-mobile-menu>
   <router-outlet></router-outlet>
 </div>

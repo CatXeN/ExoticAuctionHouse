@@ -8,6 +8,11 @@ import {AuthGuard} from "./modules/auth/guard/auth.guard";
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'panel/dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: 'auth',
     component: AuthLayoutComponent,
     children: [
       {
@@ -23,12 +28,12 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
-        canActivate: [AuthGuard]
+        // canActivate: [AuthGuard]
       },
       {
         path: 'auctions',
         loadChildren: () => import('./modules/auctions/auction.module').then(m => m.AuctionModule),
-        canActivate: [AuthGuard]
+        // canActivate: [AuthGuard]
       }
     ]
   },

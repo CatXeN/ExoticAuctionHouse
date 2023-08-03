@@ -4,12 +4,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
+import { MobileMenuListComponent } from './mobile-menu-list/mobile-menu-list.component';
 
 @NgModule({
   declarations: [
 
 
-    MobileMenuComponent
+    MobileMenuComponent,
+        MobileMenuListComponent
   ],
   imports: [
     RouterModule,
@@ -18,7 +20,8 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
     SharedModule
   ],
     exports: [
-        MobileMenuComponent
+        MobileMenuComponent,
+        MobileMenuListComponent
     ]
 })
 export class CoreModule { }

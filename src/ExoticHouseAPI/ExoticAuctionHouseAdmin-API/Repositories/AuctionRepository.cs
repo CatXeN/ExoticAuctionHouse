@@ -45,7 +45,7 @@ namespace ExoticAuctionHouse_API.Repositories
 
         public async Task<Auction> GetById(Guid id)
         {
-            var auction = await _context.Auctions.FirstOrDefaultAsync(a => a.Id == id);
+            var auction = await _context.Auctions.Include(a => a.Car).FirstOrDefaultAsync(a => a.Id == id);
 
             return auction ?? throw new InvalidDataException($"Auction with id {id}");
         }
