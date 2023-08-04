@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BetRoutingModule } from './bet-routing.module';
 import { BetContainerComponent } from './container/bet-container/bet-container.component';
+import { BetPanelComponent } from './presenter/bet-panel/bet-panel.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { BetContainerComponent } from './container/bet-container/bet-container.c
     SharedModule
   ],
   declarations: [
-    BetContainerComponent
+    BetContainerComponent,
+    BetPanelComponent
   ]
 })
 export class BetModule { }

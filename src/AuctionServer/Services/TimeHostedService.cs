@@ -35,15 +35,27 @@ namespace AuctionServer.Services
                 if (context == null)
                     return;
 
-                var lunchedAuctions = context.Auctions.Select(a => a.Id);
+                var lunchedAuctions = context.Bets.Select(a => a.AuctionId);
                 var auctions = await res.Content.ReadFromJsonAsync<List<Auction>>();
 
-                var newAuctions = auctions.Where(x => !lunchedAuctions.Contains(x.Id)).ToList();
-
-                if (newAuctions.Count > 0)
+                if (auctions != null && auctions.Any())
                 {
-                    await context.AddRangeAsync(newAuctions);
-                    await context.SaveChangesAsync();
+                    var newAuctions = auctions.Where(x => !lunchedAuctions.Contains(x.Id))
+                        .Select(b => new Bet
+                        {
+                            Id = Guid.NewGuid(),
+                            AuctionId = b.Id,
+                            CarId = b.CarId,
+                            CurrentPrice = b.AmountStarting,
+                            LastTime = b.BiddingBegins,
+                            LastUserId = Guid.Empty
+                        }).ToList();
+
+                    if (newAuctions.Count > 0)
+                    {
+                        await context.AddRangeAsync(newAuctions);
+                        await context.SaveChangesAsync();
+                    }
                 }
             }
         }
