@@ -4,6 +4,7 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 import * as signalR from "@microsoft/signalr";
 import {Auction} from "../../../../shared/models/auction.model";
 import {inputNames} from "@angular/cdk/schematics";
+import {BetService} from "../../services/bet.service";
 
 @Component({
   selector: 'app-bet-panel',
@@ -20,11 +21,14 @@ export class BetPanelComponent implements OnInit {
   @Input() set auctionInput(value: Auction | null) {
     if (value !== undefined && value !== null) {
       this.auction = value;
-      this.currentPrice = value.currentPrice;
+
+      this.betService.getById(this.auction.id).subscribe(result => {
+        this.currentPrice = result.currentPrice;
+      });
     }
   }
 
-  constructor() {}
+  constructor(private betService: BetService) {}
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('id');

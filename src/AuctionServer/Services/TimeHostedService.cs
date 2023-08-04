@@ -60,9 +60,25 @@ namespace AuctionServer.Services
             }
         }
 
+        private async void BiddingIsEnd(object? state)
+        {
+            using var scope = _serviceProvider.CreateScope();
+            var context = scope.ServiceProvider.GetService<DataContext>();
+
+            if (context == null)
+                return;
+
+            var auctions = context.Bets.Where(b => b.LastTime > DateTime.Now.AddMinutes(-1));
+
+            //delete endedAuctions and Add HistoryAuctions in Main DB
+        }
+
         public Task StartAsync(CancellationToken cancellationToken)
         {
             _timer = new Timer(CheckAuctions, null, TimeSpan.Zero,
+                TimeSpan.FromMinutes(1));
+
+            _timer = new Timer(BiddingIsEnd, null, TimeSpan.Zero,
                 TimeSpan.FromMinutes(1));
 
             return Task.CompletedTask;
