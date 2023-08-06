@@ -26,4 +26,12 @@ export class CarDetailComponent {
   public setFullName(): string {
     return `${this.auction?.car.brand} ${this.auction?.car.model} ${this.auction?.car.generation}`;
   }
+
+  public IsActive(): boolean {
+    if (!this.auction) {
+      return false;
+    }
+
+    return new Date(this.auction?.biddingBegins).getTime() < new Date().getTime();
+  }
 }

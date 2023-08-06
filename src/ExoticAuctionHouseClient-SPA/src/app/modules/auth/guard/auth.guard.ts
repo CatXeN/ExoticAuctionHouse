@@ -23,7 +23,7 @@ export class AuthGuard {
       if (Date.now() >= decodedToken.exp * 1000) {
         localStorage.removeItem('token');
         localStorage.removeItem('id');
-        this.router.navigate(['']);
+        this.router.navigate(['/auth/login']);
         return false;
       }
 

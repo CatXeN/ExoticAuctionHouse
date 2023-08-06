@@ -14,5 +14,6 @@ namespace ExoticAuctionHouseModel.Informations
         public decimal AmountStarting { get; set; }
         public decimal CurrentPrice { get; set; }
         public string Location { get; set; }
+        public bool IsEnd { get; set; }
     }
 }

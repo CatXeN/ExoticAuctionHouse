@@ -1,0 +1,11 @@
+.bid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__price {
+    margin-bottom: 20px;
+    color: #0e9c0e;
+  }
+}

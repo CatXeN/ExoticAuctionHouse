@@ -1,4 +1,5 @@
-﻿using ExoticAuctionHouseModel.Models;
+﻿using ExoticAuctionHouseModel.Informations;
+using ExoticAuctionHouseModel.Models;
 
 namespace ExoticAuctionHouse_API.Repositories
 {
@@ -6,6 +7,6 @@ namespace ExoticAuctionHouse_API.Repositories
     {
         Task<IEnumerable<AuctionHistory>> Get();
         Task<AuctionHistory> GetById(Guid id);
-        Task Add(AuctionHistory auctionHistory);
+        Task Add(AuctionHistory[] auctionHistory);
     }
 }

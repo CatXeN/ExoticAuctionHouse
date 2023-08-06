@@ -1,4 +1,5 @@
 ﻿using ExoticAuctionHouse_API.Data;
+using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,9 +14,9 @@ namespace ExoticAuctionHouse_API.Repositories
             _context = context;
         }
 
-        public async Task Add(AuctionHistory auctionHistory)
+        public async Task Add(AuctionHistory[] auctionHistory)
         {
-            await _context.AddAsync(auctionHistory);
+            await _context.AuctionHistory.AddRangeAsync(auctionHistory);
             await _context.SaveChangesAsync();
         }
 

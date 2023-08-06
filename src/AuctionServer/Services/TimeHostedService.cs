@@ -2,8 +2,11 @@
 using ExoticAuctionHouseModel.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Validations;
+using Newtonsoft.Json;
 using System.Net.Http;
+using System.Text;
 
 namespace AuctionServer.Services
 {
@@ -35,14 +38,59 @@ namespace AuctionServer.Services
                 if (context == null)
                     return;
 
-                var lunchedAuctions = context.Auctions.Select(a => a.Id);
+                var lunchedAuctions = context.Bets.Select(a => a.AuctionId);
                 var auctions = await res.Content.ReadFromJsonAsync<List<Auction>>();
 
-                var newAuctions = auctions.Where(x => !lunchedAuctions.Contains(x.Id)).ToList();
-
-                if (newAuctions.Count > 0)
+                if (auctions != null && auctions.Any())
                 {
-                    await context.AddRangeAsync(newAuctions);
+                    var newAuctions = auctions.Where(x => !lunchedAuctions.Contains(x.Id))
+                        .Select(b => new Bet
+                        {
+                            Id = Guid.NewGuid(),
+                            AuctionId = b.Id,
+                            CarId = b.CarId,
+                            CurrentPrice = b.AmountStarting,
+                            LastTime = b.BiddingBegins,
+                            LastUserId = Guid.Empty
+                        }).ToList();
+
+                    if (newAuctions.Count > 0)
+                    {
+                        await context.AddRangeAsync(newAuctions);
+                        await context.SaveChangesAsync();
+                    }
+                }
+            }
+        }
+
+        private async void BiddingIsEnd(object? state)
+        {
+            using var scope = _serviceProvider.CreateScope();
+            var context = scope.ServiceProvider.GetService<DataContext>();
+
+            if (context == null)
+                return;
+
+            var auctions = context.Bets.Where(b => b.LastTime < DateTime.Now.AddMinutes(-1));
+
+            if (auctions.Any())
+            {
+                var auctionsHistory = auctions.Select(auction => new AuctionHistory()
+                {
+                    CarId = auction.CarId,
+                    IsSold = auction.LastUserId != Guid.Empty,
+                    Price = auction.CurrentPrice,
+                    SoldAt = auction.LastTime,
+                    UserId = auction.LastUserId,
+                    Id = auction.AuctionId,
+                }).ToList();
+
+                HttpContent body = new StringContent(JsonConvert.SerializeObject(auctionsHistory), Encoding.UTF8, "application/json");
+                var res = await _httpClient.PostAsync("auctionHistory/", body);
+
+                if (res.IsSuccessStatusCode)
+                {
+                    context.Bets.RemoveRange(auctions.ToList());
                     await context.SaveChangesAsync();
                 }
             }
@@ -51,6 +99,9 @@ namespace AuctionServer.Services
         public Task StartAsync(CancellationToken cancellationToken)
         {
             _timer = new Timer(CheckAuctions, null, TimeSpan.Zero,
+                TimeSpan.FromMinutes(1));
+
+            _timer = new Timer(BiddingIsEnd, null, TimeSpan.Zero,
                 TimeSpan.FromMinutes(1));
 
             return Task.CompletedTask;

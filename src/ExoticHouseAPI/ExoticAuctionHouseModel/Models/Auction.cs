@@ -25,6 +25,6 @@ namespace ExoticAuctionHouseModel.Models
         [Column(TypeName = "decimal(18, 2)")]
         public decimal CurrentPrice { get; set; }
         public string Location { get; set; }
-
+        public bool IsEnd { get; set; }
     }
 }
