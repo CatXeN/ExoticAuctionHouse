@@ -23,6 +23,13 @@ namespace ExoticAuctionHouse_API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetExhibitedCars()
         {
+            var cars = await _auctionRepository.GetNotEnded();
+            return Ok(cars);
+        }
+
+        [HttpGet("allAuctions")]
+        public async Task<IActionResult> GetAuctionsWithEnds()
+        {
             var cars = await _auctionRepository.Get();
             return Ok(cars);
         }

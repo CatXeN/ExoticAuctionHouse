@@ -2,8 +2,11 @@
 using ExoticAuctionHouseModel.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Validations;
+using Newtonsoft.Json;
 using System.Net.Http;
+using System.Text;
 
 namespace AuctionServer.Services
 {
@@ -68,9 +71,29 @@ namespace AuctionServer.Services
             if (context == null)
                 return;
 
-            var auctions = context.Bets.Where(b => b.LastTime > DateTime.Now.AddMinutes(-1));
+            var auctions = context.Bets.Where(b => b.LastTime < DateTime.Now.AddMinutes(-1));
 
-            //delete endedAuctions and Add HistoryAuctions in Main DB
+            if (auctions.Any())
+            {
+                var auctionsHistory = auctions.Select(auction => new AuctionHistory()
+                {
+                    CarId = auction.CarId,
+                    IsSold = auction.LastUserId != Guid.Empty,
+                    Price = auction.CurrentPrice,
+                    SoldAt = auction.LastTime,
+                    UserId = auction.LastUserId,
+                    Id = auction.AuctionId,
+                }).ToList();
+
+                HttpContent body = new StringContent(JsonConvert.SerializeObject(auctionsHistory), Encoding.UTF8, "application/json");
+                var res = await _httpClient.PostAsync("auctionHistory/", body);
+
+                if (res.IsSuccessStatusCode)
+                {
+                    context.Bets.RemoveRange(auctions.ToList());
+                    await context.SaveChangesAsync();
+                }
+            }
         }
 
         public Task StartAsync(CancellationToken cancellationToken)

@@ -25,10 +25,31 @@ namespace ExoticAuctionHouse_API.Repositories
                 CarId = auction.CarId,
                 CreatedAt = auction.CreatedAt,
                 CurrentPrice = auction.CurrentPrice,
-                Location = auction.Location
+                Location = auction.Location,
+                IsEnd = false
             };
 
             await _context.AddAsync(auctionToAdd);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task End(Guid[] ids)
+        {
+            var auctions = _context.Auctions.Where(a => ids.Contains(a.Id));
+
+            var endedAuctions = auctions.Select(a => new Auction()
+            {
+                Id = a.Id,
+                AmountStarting = a.AmountStarting,
+                BiddingBegins = a.BiddingBegins,
+                CarId = a.CarId,
+                CreatedAt = a.CreatedAt,
+                CurrentPrice = a.CurrentPrice,
+                Location = a.Location,
+                IsEnd = true
+            });
+
+            _context.UpdateRange(endedAuctions);
             await _context.SaveChangesAsync();
         }
 
@@ -50,5 +71,14 @@ namespace ExoticAuctionHouse_API.Repositories
             return auction ?? throw new InvalidDataException($"Auction with id {id}");
         }
 
+        public async Task<IEnumerable<Auction>> GetNotEnded()
+        {
+            var cars = await _context.Auctions
+                .Include(x => x.Car)
+                .Where(a => !a.IsEnd)
+                .ToListAsync();
+
+            return cars;
+        }
     }
 }
