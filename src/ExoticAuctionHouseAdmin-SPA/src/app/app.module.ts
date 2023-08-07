@@ -10,8 +10,7 @@ import { MenuComponent } from './core/menu/menu.component';
 import { CoreModule } from './core/core.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RegisterContainerComponent } from './modules/auth/container/register-container/register-container.component';
-import { LoginContainerComponent } from './modules/auth/container/login-container/login-container.component';
+import {CarsModule} from "./modules/cars/cars.module";
 
 @NgModule({
   declarations: [
@@ -27,7 +26,8 @@ import { LoginContainerComponent } from './modules/auth/container/login-containe
     DashboardModule,
     BrowserAnimationsModule,
     SharedModule,
-    AuthModule
+    AuthModule,
+    CarsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

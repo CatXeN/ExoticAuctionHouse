@@ -1,11 +1,11 @@
-import { LoginContainerComponent } from './container/login-container/login-container.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {CarsListContainerComponent} from "./container/cars-list-container/cars-list-container.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginContainerComponent
+    component: CarsListContainerComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AuthRoutingModule {}
+export class CarsRoutingModule {}
