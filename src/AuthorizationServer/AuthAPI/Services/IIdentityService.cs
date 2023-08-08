@@ -9,5 +9,6 @@ namespace AuthAPI.Services
         Task<string> GetToken(string username, string password);
         Task<Guid> SerachUserByEmail(string email);
         Task<User> GetUserData(Guid userId);
+        Task<bool> IsAdmin(string username);
     }
 }

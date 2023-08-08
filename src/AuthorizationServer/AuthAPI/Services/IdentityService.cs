@@ -1,6 +1,7 @@
 ﻿using AuthAPI.Data;
 using AuthAPI.Helpers;
 using AuthModels.Configs;
+using AuthModels.Enums;
 using AuthModels.Exceptions;
 using AuthModels.Informations;
 using AuthModels.Models;
@@ -86,6 +87,16 @@ namespace AuthAPI.Services
                 throw new UserNotFoundException("User not found");
 
             return user;
+        }
+
+        public async Task<bool> IsAdmin(string username)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+
+            if (user == null)
+                throw new UserNotFoundException($"{username}");
+
+            return user.Role == Roles.Admin;
         }
 
         public async Task<Guid> SerachUserByEmail(string email)

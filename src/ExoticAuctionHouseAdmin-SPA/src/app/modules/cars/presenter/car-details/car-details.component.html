@@ -1,0 +1,35 @@
+<div>
+  <h2 *ngIf="car">Edit car: {{car.id}}</h2>
+  <h2 *ngIf="!car">New car</h2>
+
+  <div [formGroup]="carForm">
+    <mat-form-field>
+      <mat-label>Brand</mat-label>
+      <input formControlName="brand" matInput>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Model</mat-label>
+      <input formControlName="model" matInput>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Generation</mat-label>
+      <input formControlName="generation" matInput>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Fuel type</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let fuel of fuelTypes">{{fuel}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Body type</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let body of bodyTypes">{{body}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

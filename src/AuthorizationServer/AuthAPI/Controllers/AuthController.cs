@@ -1,6 +1,7 @@
 ﻿using AuthAPI.Services;
 using AuthModels.Informations;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Validations;
 
 namespace AuthAPI.Controllers
 {
@@ -39,6 +40,29 @@ namespace AuthAPI.Controllers
 
             try
             {
+                token = await _service.GetToken(userInformation.Username, userInformation.Password);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            if (string.IsNullOrEmpty(token))
+                return Unauthorized();
+
+            return new JsonResult(token);
+        }
+
+        [HttpPost("loginAsAdmin")]
+        public async Task<IActionResult> LoginAsAdmin(UserLoginInformation userInformation)
+        {
+            string token;
+
+            try
+            {
+                if (await _service.IsAdmin(userInformation.Username) == false)
+                    return BadRequest("No authority");
+
                 token = await _service.GetToken(userInformation.Username, userInformation.Password);
             }
             catch (Exception e)

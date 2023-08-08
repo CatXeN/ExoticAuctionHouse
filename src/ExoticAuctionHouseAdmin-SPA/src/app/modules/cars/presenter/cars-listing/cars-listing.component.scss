@@ -1,0 +1,19 @@
+.cars-listing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__table {
+    width: 80%;
+  }
+
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 80%;
+  }
+
+  //td, th {
+  //  width: 25%;
+  //}
+
+}
