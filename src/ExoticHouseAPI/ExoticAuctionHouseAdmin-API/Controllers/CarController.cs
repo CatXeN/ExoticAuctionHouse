@@ -38,7 +38,7 @@ namespace ExoticAuctionHouse_API.Controllers
         public async Task<IActionResult> AddCar(AddCarInformation car)
         {
             var id = await _carService.AddCar(car);
-            return Ok($"Added car: {id}");
+            return new JsonResult($"Added car: {id}");
         }
 
         [HttpPut]

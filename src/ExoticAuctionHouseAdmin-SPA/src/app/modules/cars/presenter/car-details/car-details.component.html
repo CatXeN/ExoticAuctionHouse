@@ -1,35 +1,69 @@
-<div>
+<div class="edit-car">
   <h2 *ngIf="car">Edit car: {{car.id}}</h2>
   <h2 *ngIf="!car">New car</h2>
 
   <div [formGroup]="carForm">
-    <mat-form-field>
-      <mat-label>Brand</mat-label>
-      <input formControlName="brand" matInput>
-    </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Model</mat-label>
-      <input formControlName="model" matInput>
-    </mat-form-field>
+    <div class="edit-car__form--row">
+      <mat-form-field>
+        <mat-label>Brand</mat-label>
+        <input formControlName="brand" matInput>
+      </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Generation</mat-label>
-      <input formControlName="generation" matInput>
-    </mat-form-field>
+      <mat-form-field>
+        <mat-label>Model</mat-label>
+        <input formControlName="model" matInput>
+      </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Fuel type</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let fuel of fuelTypes">{{fuel}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+      <mat-form-field>
+        <mat-label>Generation</mat-label>
+        <input formControlName="generation" matInput>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field>
-      <mat-label>Body type</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let body of bodyTypes">{{body}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="edit-car__form--row">
+      <mat-form-field>
+        <mat-label>Fuel type</mat-label>
+        <mat-select formControlName="fuelType">
+          <mat-option *ngFor="let fuel of fuelTypes; let i = index;" [value]="i">{{fuel}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Body type</mat-label>
+        <mat-select formControlName="fuelType">
+          <mat-option *ngFor="let body of bodyTypes; let i = index;" [value]="i">{{body}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Production date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="productionDate">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="edit-car__form--row">
+      <mat-form-field>
+        <mat-label>Capacity</mat-label>
+        <input formControlName="capacity" matInput>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Horsepower</mat-label>
+        <input formControlName="horsepower" matInput>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Mileage</mat-label>
+        <input formControlName="mileage" matInput>
+      </mat-form-field>
+    </div>
+
+    <div class="edit-car__form--actions">
+      <button mat-raised-button color="warn" [routerLink]="['/panel/cars']">Cancel</button>
+      <button mat-raised-button color="primary" (click)="saveChanges()">Save</button>
+    </div>
   </div>
 </div>

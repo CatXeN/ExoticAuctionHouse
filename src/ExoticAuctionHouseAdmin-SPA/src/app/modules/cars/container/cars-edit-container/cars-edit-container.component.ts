@@ -13,9 +13,11 @@ export class CarsEditContainerComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private carService: CarsService) {
     this.route.params.subscribe(params => {
-      this.carService.getCar(params['id']).subscribe(result => {
-        this.car = result;
-      });
+      if (params['id'] !== undefined) {
+        this.carService.getCar(params['id']).subscribe(result => {
+          this.car = result;
+        });
+      }
     });
   }
 
