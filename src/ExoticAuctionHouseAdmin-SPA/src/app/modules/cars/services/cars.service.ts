@@ -22,4 +22,12 @@ export class CarsService {
   getPageData(): Observable<CarPageData> {
     return this.httpClient.get<CarPageData>(this.baseUrl + '/PageData')
   }
+
+  public addCar(car: Car): Observable<string> {
+    return this.httpClient.post<string>(this.baseUrl, car);
+  }
+
+  public editCar(car: Car): Observable<Car> {
+    return this.httpClient.put<Car>(this.baseUrl, car);
+  }
 }

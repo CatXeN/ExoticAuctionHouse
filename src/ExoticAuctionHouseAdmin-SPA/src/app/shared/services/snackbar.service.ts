@@ -8,6 +8,8 @@ export class SnackbarService {
   constructor(private _snackBar: MatSnackBar) { }
 
   alert(message: string, action: string): void {
-    this._snackBar.open(message, action);
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

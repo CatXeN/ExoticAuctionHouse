@@ -1,4 +1,7 @@
 <div class="cars-listing">
+  <button mat-raised-button color="primary" [routerLink]="['/edit']">Add car</button>
+
+
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Search car" #input>
