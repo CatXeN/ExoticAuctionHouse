@@ -1,4 +1,5 @@
 ﻿using ExoticAuctionHouse_API.Data;
+using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,17 +14,31 @@ namespace ExoticAuctionHouse_API.Repositories
             _context = context;
         }
 
-        public async Task AddAttributes(List<CarAttribute> attributes)
-        {
-            await _context.AddAsync(attributes);
-            await _context.SaveChangesAsync();
-        }
+        public async Task<CarAttribute> GetAttributes(Guid carId) => await _context.CarAttributes.FirstOrDefaultAsync(x => x.CarId == carId);
 
-        public async Task<IEnumerable<CarAttribute>> GetAttributes(Guid carId) => await _context.CarAttributes.Where(x => x.CarId == carId).ToListAsync();
-
-        public async Task UpdateAttribute(CarAttribute attribute)
+        public async Task UpdateAttribute(AddCarAttributeInformation attribute)
         {
-            throw new NotImplementedException();
+            var carAttribute = await _context.CarAttributes.FirstOrDefaultAsync(ca => ca.CarId == attribute.CarId);
+
+            if (carAttribute == null) 
+            {
+                var ca = new CarAttribute()
+                {
+                    CarId = attribute.CarId,
+                    Attributes = attribute.Attributes,
+                    Id = Guid.NewGuid()
+                };
+
+                await _context.CarAttributes.AddAsync(ca);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                carAttribute.Attributes = attribute.Attributes;
+
+                _context.Update(carAttribute);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

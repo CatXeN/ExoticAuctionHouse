@@ -45,7 +45,7 @@ namespace AuctionServer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Bets");
+                    b.ToTable("Bets", (string)null);
                 });
 #pragma warning restore 612, 618
         }

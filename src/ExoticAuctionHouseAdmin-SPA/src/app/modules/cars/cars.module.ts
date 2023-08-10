@@ -6,6 +6,7 @@ import {CarsRoutingModule} from "./cars-routing.module";
 import { CarsListingComponent } from './presenter/cars-listing/cars-listing.component';
 import { CarsEditContainerComponent } from './container/cars-edit-container/cars-edit-container.component';
 import { CarDetailsComponent } from './presenter/car-details/car-details.component';
+import { CarAttributesComponent } from './presenter/car-attributes/car-attributes.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { CarDetailsComponent } from './presenter/car-details/car-details.compone
     CarsListContainerComponent,
     CarsListingComponent,
     CarsEditContainerComponent,
-    CarDetailsComponent
+    CarDetailsComponent,
+    CarAttributesComponent
   ]
 })
 export class CarsModule { }
