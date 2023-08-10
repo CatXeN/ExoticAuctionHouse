@@ -1,4 +1,5 @@
 ﻿using ExoticAuctionHouse_API.Repositories;
+using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,7 @@ namespace ExoticAuctionHouse_API.Controllers
             _carAttributeRepository = carAttributeRepository;
         }
 
-        [HttpGet]
+        [HttpGet("{carId}")]
         public async Task<IActionResult> GetAttributesForCar(Guid carId)
         {
             var res = await _carAttributeRepository.GetAttributes(carId);
@@ -24,10 +25,10 @@ namespace ExoticAuctionHouse_API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAttributes(List<CarAttribute> carAttributes)
+        public async Task<IActionResult> AddAttributes(AddCarAttributeInformation carAttributes)
         {
-            await _carAttributeRepository.AddAttributes(carAttributes);
-            return Ok();
+            await _carAttributeRepository.UpdateAttribute(carAttributes);
+            return new JsonResult("Updated");
         }
     }
 }

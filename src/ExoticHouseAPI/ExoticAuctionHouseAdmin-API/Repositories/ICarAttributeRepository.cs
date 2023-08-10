@@ -1,11 +1,11 @@
-﻿using ExoticAuctionHouseModel.Models;
+﻿using ExoticAuctionHouseModel.Informations;
+using ExoticAuctionHouseModel.Models;
 
 namespace ExoticAuctionHouse_API.Repositories
 {
     public interface ICarAttributeRepository
     {
-        Task AddAttributes(List<CarAttribute> attributes);
-        Task UpdateAttribute(CarAttribute attribute);
-        Task<IEnumerable<CarAttribute>> GetAttributes(Guid carId);
+        Task UpdateAttribute(AddCarAttributeInformation attribute);
+        Task<CarAttribute> GetAttributes(Guid carId);
     }
 }
