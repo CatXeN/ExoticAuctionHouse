@@ -27,7 +27,7 @@ namespace ExoticAuctionHouse_API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAttributes(AddCarAttributeInformation carAttributes)
         {
-            await _carAttributeRepository.UpdateAttribute(carAttributes);
+            await _carAttributeRepository.AddAtribute(carAttributes);
             return new JsonResult("Updated");
         }
     }

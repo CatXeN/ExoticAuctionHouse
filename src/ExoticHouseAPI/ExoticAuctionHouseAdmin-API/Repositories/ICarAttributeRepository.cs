@@ -5,7 +5,7 @@ namespace ExoticAuctionHouse_API.Repositories
 {
     public interface ICarAttributeRepository
     {
-        Task UpdateAttribute(AddCarAttributeInformation attribute);
+        Task AddAtribute(AddCarAttributeInformation attribute);
         Task<CarAttribute> GetAttributes(Guid carId);
     }
 }

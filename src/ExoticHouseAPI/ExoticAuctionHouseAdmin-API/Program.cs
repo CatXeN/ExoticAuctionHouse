@@ -27,6 +27,7 @@ builder.Services.AddTransient<ICarAttributeRepository, CarAttributeRepository>()
 builder.Services.AddTransient<IAuctionRepository, AuctionRepository>();
 builder.Services.AddTransient<IAuctionHistoryRepository, AuctionHistoryRepository>();
 builder.Services.AddTransient<IAuctionService, AuctionService>();
+builder.Services.AddTransient<IAttributeRepository, AttributeRepository>();
 
 #region Authentication
 builder.Services.AddTransient<IPermissionAccess, PermissionAccess>();
