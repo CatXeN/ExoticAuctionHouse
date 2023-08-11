@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Car} from "../../../../shared/models/car.model";
 import {CarsService} from "../../services/cars.service";
 import {AddCarAttribute} from "../../../../shared/models/add-car-attributes.model";
+import {AttributeService} from "../../../../shared/services/attribute.service";
 
 @Component({
   selector: 'app-car-attributes',
@@ -15,12 +16,16 @@ export class CarAttributesComponent {
       this.carId = value.id;
 
       this.carService.getAttributes(this.carId).subscribe((data) => {
-        console.log(JSON.parse(data.attributes));
+        // console.log(JSON.parse(data.attributes));
+      });
+
+      this.attributeService.getAttributes().subscribe((data) => {
+        console.log(data);
       });
     }
   }
 
-  constructor(private carService: CarsService) { }
+  constructor(private carService: CarsService, private  attributeService: AttributeService) { }
 
   saveChanges() {
     let carAttributes:AddCarAttribute  = {

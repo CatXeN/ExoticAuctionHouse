@@ -12,10 +12,25 @@ namespace ExoticAuctionHouseModel.Models
     {
         [Key]
         public Guid Id { get; set; }
-        public string Attributes { get; set; }
+
+        [ForeignKey("Attribute")]
+        public Guid AttributeId { get; set; }
+        public Attribute Attribute { get; set; }
 
         [ForeignKey("Car")]
         public Guid CarId { get; set; }
         public virtual Car Car { get; set; }
+
+        public CarAttribute()
+        {
+            
+        }
+
+        public CarAttribute(Guid attributeId, Guid carId)
+        {
+            Id = Guid.NewGuid();
+            AttributeId = attributeId;
+            CarId = carId;
+        }
     }
 }
