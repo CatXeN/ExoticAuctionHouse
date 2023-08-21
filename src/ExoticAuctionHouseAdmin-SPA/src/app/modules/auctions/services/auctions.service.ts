@@ -16,10 +16,13 @@ export class AuctionsService {
       return this.httpClient.get<Auction[]>(this.baseUrl);
     }
 
+    public getAllAuctions(): Observable<Auction[]> {
+      return this.httpClient.get<Auction[]>(this.baseUrl + '/allAuctions');
+    }
+
     public getAuction(id: string): Observable<Auction> {
       return this.httpClient.get<Auction>(this.baseUrl + '/' + id);
     }
-
 
     public addAuction(auction: Auction): Observable<string> {
       return this.httpClient.post<string>(this.baseUrl, auction);

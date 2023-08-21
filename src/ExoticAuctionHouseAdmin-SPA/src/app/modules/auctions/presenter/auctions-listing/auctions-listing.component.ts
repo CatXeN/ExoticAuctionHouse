@@ -11,14 +11,14 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./auctions-listing.component.scss']
 })
 export class AuctionsListingComponent {
-  displayedColumns: string[] = [ 'id', 'Starting amount', 'Start date', 'Car id', 'Creation date', 'Current Price', 'Location', 'isEnd' ];
+  displayedColumns: string[] = [ 'id', 'Starting amount', 'Current Price', 'Start date', 'Creation date', 'Car id', 'Location', 'isEnd' ];
   dataSource: MatTableDataSource<Auction> = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
   @ViewChild(MatTab) sort: any = MatTab;
 
   constructor(private auctionService: AuctionsService) {
-    this.auctionService.getAuctions().subscribe(result => {
+    this.auctionService.getAllAuctions().subscribe(result => {
       this.dataSource = new MatTableDataSource(result);
     });
   }
