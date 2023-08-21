@@ -29,6 +29,11 @@ const routes: Routes = [
         path: 'cars',
         loadChildren: () => import('./modules/cars/cars.module').then(m => m.CarsModule),
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'auctions',
+        loadChildren: () => import('./modules/auctions/auctions.module').then(m => m.AuctionsModule),
+        canActivate: [AuthGuard]
       }
     ]
   }
