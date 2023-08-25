@@ -1,5 +1,18 @@
 <div class="car-attributes">
   <h3>List of Attributes</h3>
 
+  <div>
+    <mat-form-field>
+      <mat-label>Car attributes</mat-label>
+      <mat-select multiple [(ngModel)]="attributes" [compareWith]="compareObjects">
+        <mat-optgroup *ngFor="let group of groupedAttributes" [label]="group.category">
+          <mat-option *ngFor="let attribute of group.attributes" [value]="attribute">
+            {{attribute.value}}
+          </mat-option>
+        </mat-optgroup>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
   <button mat-raised-button color="primary" (click)="saveChanges()">Save</button>
 </div>
