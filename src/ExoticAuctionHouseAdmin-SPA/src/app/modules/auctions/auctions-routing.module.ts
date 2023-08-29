@@ -10,11 +10,11 @@ const routes: Routes = [
     component: AuctionsListContainerComponent
   },
   {
-    path: 'edit/:id',
+    path: 'auctionedit/:id',
     component: AuctionsEditContainerComponent
   },
   {
-    path: 'edit',
+    path: 'auctionedit',
     component: AuctionsEditContainerComponent
   }
 ];

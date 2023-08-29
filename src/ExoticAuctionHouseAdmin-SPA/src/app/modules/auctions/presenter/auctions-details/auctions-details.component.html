@@ -1,1 +1,56 @@
-<p>auctions-details works!</p>
+<div class="edit-auction">
+  <h2 *ngIf="auction">Edit auction</h2>
+  <h2 *ngIf="!auction">New auction</h2>
+
+  <div [formGroup]="auctionForm">
+
+    <div class="edit-auction__form--row">
+      <mat-form-field>
+        <mat-label>Starting amount</mat-label>
+        <input formControlName="amountStarting" matInput>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Current amount</mat-label>
+        <input formControlName="currentPrice" matInput>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Start date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="biddingBegins">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>End date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="biddingEnds">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="edit-auction__form--row">
+
+      <mat-form-field>
+        <mat-label>Car ID</mat-label>
+        <input formControlName="carId" matInput>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input formControlName="location" matInput>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Is end</mat-label>
+        <input formControlName="isEnd" matInput>
+      </mat-form-field>
+    </div>
+      <div class="edit-action__form--actions">
+        <button mat-raised-button color="primary" (click)="saveChanges()">Save</button>
+        <button mat-raised-button color="warn" [routerLink]="['/panel/auctions']">Cancel</button>
+      </div>
+
+    </div>
+  </div>
