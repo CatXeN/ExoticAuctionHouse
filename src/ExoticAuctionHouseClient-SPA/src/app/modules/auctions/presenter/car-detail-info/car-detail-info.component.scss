@@ -1,3 +1,11 @@
 .details-info {
   margin-left: 20px;
+
+  &__details {
+    display: flex;
+  }
+}
+
+.spacer-left {
+  margin-left: 20px;
 }

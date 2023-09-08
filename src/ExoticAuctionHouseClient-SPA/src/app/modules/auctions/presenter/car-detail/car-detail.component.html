@@ -1,6 +1,17 @@
 <div class="auction" *ngIf="auction">
   <div class="auction__image">
-    <img src="https://autogen.pl/cars/_mini/Por992TurboS-850x430.jpg" alt="Desc" />
+    <div class="auction__image--arrows">
+      <button mat-icon-button color="primary" (click)="changeImage(-1)">
+        <mat-icon fontIcon="arrow_back"></mat-icon>
+      </button>
+      <button mat-icon-button color="primary" (click)="changeImage(1)">
+        <mat-icon fontIcon="arrow_forward"></mat-icon>
+      </button>
+    </div>
+    <img [src]="images[currentImage]" alt="Desc" />
+    <div class="auction__image--counter">
+      <b>{{currentImage + 1}}/{{images.length}}</b>
+    </div>
   </div>
   <div class="auction__information">
     <h3>{{setFullName()}}</h3>
