@@ -1,4 +1,10 @@
 <div class="accessories">
   <h3 class="accessories__header">Accessories</h3>
-  pdc, climatronic, Carplay ....
+
+  <div *ngFor="let category of categories">
+    <h5>{{category}}</h5>
+    <div *ngFor="let attr of getAttributes(category)">
+      <p>{{attr.name}}</p>
+    </div>
+  </div>
 </div>

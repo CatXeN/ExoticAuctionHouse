@@ -1,5 +1,23 @@
 <div class="details-info">
   <h3 class="details-info__header">Details</h3>
 
-  Brand, model, generation, Capacity, Horse Power ....
+  <div class="details-info__details">
+    <div>
+      <p>Brand: {{car?.brand}}</p>
+      <p>Model: {{car?.model}}</p>
+      <p>Generation: {{car?.generation}}</p>
+    </div>
+
+    <div class="spacer-left">
+      <p>Capacity: {{car?.capacity}}</p>
+      <p>Horsepower: {{car?.horsepower}}</p>
+      <p>Mileage: {{car?.mileage}}</p>
+    </div>
+
+    <div class="spacer-left" *ngIf="car">
+      <p>Body type: {{car.bodyType | bodyPipeTranslator}}</p>
+      <p>Fuel type: {{car.fuelType | fuelPipeTranslator}}</p>
+      <p>Year of production: {{car.productionDate | date: 'yyyy/M/dd'}}</p>
+    </div>
+  </div>
 </div>
