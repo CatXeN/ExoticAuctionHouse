@@ -7,5 +7,6 @@ namespace ExoticAuctionHouse_API.Repositories
     {
         Task AddAtribute(AddCarAttributeInformation attribute);
         Task<IEnumerable<CarAttribute>> GetAttributes(Guid carId);
+        Task<IEnumerable<CarAttribute>> GetAllAttributesWithInfo(Guid carId);
     }
 }

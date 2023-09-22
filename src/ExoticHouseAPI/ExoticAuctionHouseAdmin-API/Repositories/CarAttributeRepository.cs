@@ -33,5 +33,11 @@ namespace ExoticAuctionHouse_API.Repositories
             await _context.CarAttributes.AddRangeAsync(newAttribute);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<CarAttribute>> GetAllAttributesWithInfo(Guid carId)
+        {
+            var attributes = await _context.CarAttributes.Include(a => a.Attribute).Where(x => x.CarId == carId).ToListAsync();
+            return attributes;
+        }
     }
 }

@@ -71,7 +71,7 @@ namespace AuctionServer.Services
             if (context == null)
                 return;
 
-            var auctions = context.Bets.Where(b => b.LastTime < DateTime.Now.AddMinutes(-1));
+            var auctions = context.Bets.Where(b => b.LastTime < DateTime.Now.AddMinutes(-2));
 
             if (auctions.Any())
             {

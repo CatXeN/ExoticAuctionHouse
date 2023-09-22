@@ -10,10 +10,14 @@ namespace ExoticAuctionHouse_API.Services
     public class CarService : ICarService
     {
         private readonly ICarRepository _carRepository;
+        private readonly ICarAttributeRepository _carAttributeRepository;
+        private readonly IAttributeRepository _attributeRepository;
 
-        public CarService(ICarRepository carRepository)
+        public CarService(ICarRepository carRepository, ICarAttributeRepository carAttributeRepository, IAttributeRepository attributeRepository)
         {
             _carRepository = carRepository;
+            _carAttributeRepository = carAttributeRepository;
+            _attributeRepository = attributeRepository;
         }
 
         public Task<Guid> AddCar(AddCarInformation addCarInformation)
@@ -47,6 +51,17 @@ namespace ExoticAuctionHouse_API.Services
             };
 
             return carPageData;
+        }
+
+        public async Task<List<TranslatedAttribute>> GetTranslatedAttribute(Guid carId)
+        {
+            var carAttributes = await _carAttributeRepository.GetAllAttributesWithInfo(carId);
+
+            return carAttributes.Select(x => new TranslatedAttribute()
+            {
+                Category = x.Attribute.Category,
+                Name = x.Attribute.Value
+            }).ToList();
         }
     }
 }

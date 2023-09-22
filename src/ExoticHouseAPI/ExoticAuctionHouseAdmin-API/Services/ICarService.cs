@@ -7,5 +7,6 @@ namespace ExoticAuctionHouse_API.Services
     {
         Task<CarPageData> GetCarPageData();
         Task<Guid> AddCar(AddCarInformation addCarInformation);
+        Task<List<TranslatedAttribute>> GetTranslatedAttribute(Guid carId);
     }
 }
