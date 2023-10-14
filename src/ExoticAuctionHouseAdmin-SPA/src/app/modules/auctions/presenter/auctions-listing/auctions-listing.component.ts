@@ -11,7 +11,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./auctions-listing.component.scss']
 })
 export class AuctionsListingComponent {
-  displayedColumns: string[] = [ 'id', 'Starting amount', 'Current Price', 'Start date', 'Creation date', 'Car id', 'Location', 'isEnd', 'actions'];
+  displayedColumns: string[] = [ 'id', 'amountStarting', 'currentPrice', 'biddingBegins', 'createdAt', 'carId', 'location', 'isEnd', 'actions'];
   dataSource: MatTableDataSource<Auction> = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
