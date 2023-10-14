@@ -1,3 +1,5 @@
+using ExoticAuctionHousePaymentApi.Enums;
+
 namespace ExoticAuctionHousePaymentApi.Models;
 
 public class Payment

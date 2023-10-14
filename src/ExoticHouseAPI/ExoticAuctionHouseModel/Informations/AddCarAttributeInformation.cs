@@ -10,7 +10,7 @@ namespace ExoticAuctionHouseModel.Informations
 {
     public class AddCarAttributeInformation
     {
-        public Guid AttributeId { get; set; }
+        public Guid[] Attributes { get; set; }
         public Guid CarId { get; set; }
     }
 }

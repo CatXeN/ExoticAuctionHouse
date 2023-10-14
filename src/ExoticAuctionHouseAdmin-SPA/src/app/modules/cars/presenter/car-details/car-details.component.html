@@ -31,7 +31,7 @@
 
       <mat-form-field>
         <mat-label>Body type</mat-label>
-        <mat-select formControlName="fuelType">
+        <mat-select formControlName="bodyType">
           <mat-option *ngFor="let body of bodyTypes; let i = index;" [value]="i">{{body}}</mat-option>
         </mat-select>
       </mat-form-field>

@@ -2,8 +2,39 @@
   display: flex;
 
   &__image {
+    background-color: #f0f2f6;
+    width: 40%;
+    height: 400px;
     margin-left: 20px;
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--arrows {
+      width: 40%;
+      position: absolute;
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        color: white;
+      }
+    }
+
+    &--counter {
+      position: absolute;
+      width: 40%;
+      margin-top: 18%;
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 30px;
+    }
+
+    img {
+      object-fit: contain;
+      width: 100%;
+    }
   }
 
   &__information {

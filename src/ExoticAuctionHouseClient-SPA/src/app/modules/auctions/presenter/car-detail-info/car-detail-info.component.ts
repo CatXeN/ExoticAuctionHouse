@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { AuctionService } from '../../services/auction.service';
-import { Auction } from 'src/app/shared/models/auction.model';
+import {Component, Input} from '@angular/core';
+import {Car} from "../../../../shared/models/car.model";
 
 @Component({
   selector: 'app-car-detail-info',
@@ -8,18 +7,11 @@ import { Auction } from 'src/app/shared/models/auction.model';
   styleUrls: ['./car-detail-info.component.scss']
 })
 export class CarDetailInfoComponent {
-  private _auctionId: string = '';
-  public auction: Auction | null = null;
-  @Input() set auctionId(value: string) {
-    if (value !== undefined) {
-      this._auctionId = value;
+  public car: Car | null = null;
 
-      this.auctionService.getAuction(this._auctionId).subscribe(result => {
-        this.auction = result;
-        console.log(this.auction);
-      });
+  @Input() set carModel(value: Car | undefined) {
+    if (value) {
+      this.car = value;
     }
   }
-
-  constructor(private auctionService: AuctionService) { }
 }

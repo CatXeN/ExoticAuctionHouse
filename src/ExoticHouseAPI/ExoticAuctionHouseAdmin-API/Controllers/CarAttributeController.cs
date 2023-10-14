@@ -1,4 +1,5 @@
 ﻿using ExoticAuctionHouse_API.Repositories;
+using ExoticAuctionHouse_API.Services;
 using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 using Microsoft.AspNetCore.Http;
@@ -11,16 +12,25 @@ namespace ExoticAuctionHouse_API.Controllers
     public class CarAttributeController : ControllerBase
     {
         private readonly ICarAttributeRepository _carAttributeRepository;
+        private readonly ICarService _carService;
 
-        public CarAttributeController(ICarAttributeRepository carAttributeRepository)
+        public CarAttributeController(ICarAttributeRepository carAttributeRepository, ICarService carService)
         {
             _carAttributeRepository = carAttributeRepository;
+            _carService = carService;
         }
 
         [HttpGet("{carId}")]
         public async Task<IActionResult> GetAttributesForCar(Guid carId)
         {
             var res = await _carAttributeRepository.GetAttributes(carId);
+            return Ok(res);
+        }
+
+        [HttpGet("translated/{carId}")]
+        public async Task<IActionResult> GetTranslatedAttributesForCar(Guid carId)
+        {
+            var res = await _carService.GetTranslatedAttribute(carId);
             return Ok(res);
         }
 

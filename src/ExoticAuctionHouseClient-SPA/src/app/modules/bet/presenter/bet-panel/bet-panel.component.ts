@@ -16,7 +16,8 @@ export class BetPanelComponent implements OnInit {
   userId: string | null = null;
   currentPrice: number = 0;
   auction: Auction | null = null;
-
+  public remainingTime: number = 120;
+  private interval: any;
 
   @Input() set auctionInput(value: Auction | null) {
     if (value !== undefined && value !== null) {
@@ -44,6 +45,13 @@ export class BetPanelComponent implements OnInit {
 
     this.connection.on("ReceiveMessage", (user, message) => {
       console.log("User: " + user + " Bid: " + message);
+
+      this.interval = setInterval(() => {
+        if(this.remainingTime > 0) {
+          this.remainingTime--;
+        }
+      },1000)
+
       this.currentPrice = Number(message);
     });
 

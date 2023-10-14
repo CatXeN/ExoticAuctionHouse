@@ -1,14 +1,16 @@
 <div class="bid">
-  <h3 *ngIf="auction">{{auction.car.brand}} {{auction.car.model}} {{auction.car.generation}}</h3>
+  <h3 class="bid__name" *ngIf="auction">{{auction.car.brand}} {{auction.car.model}} {{auction.car.generation}}</h3>
 
-  <b class="bid__price">{{currentPrice}}</b>
+  <b class="bid__price">{{currentPrice}} $</b>
 
   <mat-progress-spinner
     class="example-margin"
     color="primary"
     mode="determinate"
-    value="100">
+    value="{{(remainingTime / 120) * 100}}">
   </mat-progress-spinner>
+
+  <h3>Time remaining: {{remainingTime}} sec</h3>
 
   <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
 </div>
