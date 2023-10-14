@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {CarsService} from "../../services/cars.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
+import {MatSort, MatSortModule} from '@angular/material/sort';
 import {Car} from "../../../../shared/models/car.model";
 
 @Component({

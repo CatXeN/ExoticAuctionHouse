@@ -35,8 +35,8 @@ export class CarsService {
     return this.httpClient.put<Car>(this.baseUrl, car);
   }
 
-  public getAttributes(carId: string): Observable<CarAttribute> {
-    return this.httpClient.get<CarAttribute>(this.urlAttributes  + '/' + carId);
+  public getAttributes(carId: string): Observable<CarAttribute[]> {
+    return this.httpClient.get<CarAttribute[]>(this.urlAttributes  + '/' + carId);
   }
 
   public addAttributes(carAttribute: AddCarAttribute): Observable<string> {

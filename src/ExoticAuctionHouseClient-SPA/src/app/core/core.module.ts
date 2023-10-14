@@ -8,10 +8,8 @@ import { MobileMenuListComponent } from './mobile-menu-list/mobile-menu-list.com
 
 @NgModule({
   declarations: [
-
-
     MobileMenuComponent,
-        MobileMenuListComponent
+    MobileMenuListComponent
   ],
   imports: [
     RouterModule,
@@ -19,9 +17,9 @@ import { MobileMenuListComponent } from './mobile-menu-list/mobile-menu-list.com
     HttpClientModule,
     SharedModule
   ],
-    exports: [
-        MobileMenuComponent,
-        MobileMenuListComponent
-    ]
+  exports: [
+    MobileMenuComponent,
+    MobileMenuListComponent
+  ]
 })
 export class CoreModule { }

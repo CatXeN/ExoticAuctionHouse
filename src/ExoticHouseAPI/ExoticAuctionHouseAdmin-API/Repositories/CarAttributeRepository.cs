@@ -14,14 +14,30 @@ namespace ExoticAuctionHouse_API.Repositories
             _context = context;
         }
 
-        public async Task<CarAttribute> GetAttributes(Guid carId) => await _context.CarAttributes.FirstOrDefaultAsync(x => x.CarId == carId);
+        public async Task<IEnumerable<CarAttribute>> GetAttributes(Guid carId) => await _context.CarAttributes.Where(x => x.CarId == carId).ToListAsync();
 
         public async Task AddAtribute(AddCarAttributeInformation attribute)
         {
-            var newAttribute = new CarAttribute(attribute.AttributeId, attribute.CarId);
+            var attributes = _context.CarAttributes.Where(c => c.CarId == attribute.CarId).ToList();
 
-            await _context.AddAsync(newAttribute);
+            if (attributes.Any())
+                _context.RemoveRange(attributes);
+
+            var newAttribute = attribute.Attributes.Select(a => new CarAttribute()
+            {
+                CarId = attribute.CarId,
+                AttributeId = a,
+                Id = Guid.NewGuid()
+            }).ToList();
+
+            await _context.CarAttributes.AddRangeAsync(newAttribute);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<CarAttribute>> GetAllAttributesWithInfo(Guid carId)
+        {
+            var attributes = await _context.CarAttributes.Include(a => a.Attribute).Where(x => x.CarId == carId).ToListAsync();
+            return attributes;
         }
     }
 }
