@@ -11,8 +11,8 @@ import {Car} from "../../../../shared/models/car.model";
   styleUrls: ['./cars-listing.component.scss']
 })
 export class CarsListingComponent {
-  displayedColumns: string[] = [ 'id', 'brand', 'model', 'generation', 'year', 'actions' ];
-  dataSource: MatTableDataSource<Car> = new MatTableDataSource<Car>();
+  displayedColumns: string[] = [ 'id', 'brand', 'model', 'generation', 'productionDate', 'actions' ];
+  dataSource: MatTableDataSource<Car> = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
   @ViewChild(MatSort) sort: any = MatSort;
@@ -20,11 +20,11 @@ export class CarsListingComponent {
   constructor(private carService: CarsService) {
     this.carService.getCars().subscribe(result => {
       this.dataSource = new MatTableDataSource(result);
-
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

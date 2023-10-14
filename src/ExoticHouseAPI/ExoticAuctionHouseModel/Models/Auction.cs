@@ -17,8 +17,8 @@ namespace ExoticAuctionHouseModel.Models
         public Guid CarId { get; set; }
         public virtual Car Car { get; set; }
 
-        public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset BiddingBegins { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime BiddingBegins { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
         public decimal AmountStarting { get; set; }

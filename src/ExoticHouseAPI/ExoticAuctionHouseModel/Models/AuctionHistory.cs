@@ -16,7 +16,7 @@ namespace ExoticAuctionHouseModel.Models
         public Guid CarId { get; set; }
         public virtual Car Car { get; set; }
 
-        public DateTimeOffset SoldAt { get; set; }
+        public DateTime SoldAt { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
         public bool IsSold { get; set; }

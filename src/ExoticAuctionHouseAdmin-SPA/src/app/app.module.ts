@@ -12,6 +12,7 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CarsModule} from "./modules/cars/cars.module";
 import {MAT_DATE_LOCALE} from "@angular/material/core";
+import { AuctionsModule } from './modules/auctions/auctions.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {MAT_DATE_LOCALE} from "@angular/material/core";
     MainLayoutComponent,
     AuthLayoutComponent,
     MenuComponent
+
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import {MAT_DATE_LOCALE} from "@angular/material/core";
     BrowserAnimationsModule,
     SharedModule,
     AuthModule,
-    CarsModule
+    CarsModule,
+    AuctionsModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},

@@ -15,6 +15,6 @@ namespace ExoticAuctionHouseModel.Models
         [Column(TypeName = "decimal(18, 2)")]
         public decimal CurrentPrice { get; set; }
         public Guid LastUserId { get; set; }
-        public DateTimeOffset LastTime { get; set; }
+        public DateTime LastTime { get; set; }
     }
 }
