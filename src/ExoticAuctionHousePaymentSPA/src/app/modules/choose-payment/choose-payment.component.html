@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Payment</h1>
+
+  <h3>Choose method of payment</h3>
+
+  <div class="container__payments">
+    <div class="container__payments--card" [ngClass]="{'selected-payment': selectedPayment === 1}" (click)="selectedEvent(1)">
+      <mat-icon class="icon" aria-hidden="false" fontIcon="credit_card"></mat-icon>
+      <span>Card payment</span>
+    </div>
+
+    <div class="container__payments--card" [ngClass]="{'selected-payment': selectedPayment === 2}" (click)="selectedEvent(2)">
+      <mat-icon class="icon" aria-hidden="false" fontIcon="phone_iphone"></mat-icon>
+      <span>Phone payment</span>
+    </div>
+
+    <div class="container__payments--card" [ngClass]="{'selected-payment': selectedPayment === 3}" (click)="selectedEvent(3)">
+      <mat-icon class="icon" aria-hidden="false" fontIcon="calendar_month"></mat-icon>
+      <span>Leasing payment</span>
+    </div>
+  </div>
+
+  <button [disabled]="selectedPayment === 0" (click)="pay()" class="pay-button" mat-raised-button color="primary">Go next</button>
+</div>

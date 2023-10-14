@@ -1,4 +1,4 @@
-namespace ExoticAuctionHousePaymentApi.Models;
+namespace ExoticAuctionHousePaymentApi.Enums;
 
 public enum PaymentStatus
 {

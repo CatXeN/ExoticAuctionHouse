@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Auction} from "../../../../shared/models/auction.model";
 import {AuctionService} from "../../services/auction.service";
+import {CreatePayment} from "../../../../shared/models/create-payment";
 
 @Component({
   selector: 'app-car-detail',
@@ -23,6 +24,17 @@ export class CarDetailComponent {
 
   public setFullName(): string {
     return `${this.auction?.car.brand} ${this.auction?.car.model} ${this.auction?.car.generation}`;
+  }
+
+  public createPayment(): void {
+    let payment: CreatePayment = {
+      auctionId: this.auction?.id!,
+      clientId: localStorage.getItem('id')!
+    }
+
+    this.auctionService.createPayment(payment).subscribe(result => {
+      console.log(result);
+    });
   }
 
   public IsActive(): boolean {
