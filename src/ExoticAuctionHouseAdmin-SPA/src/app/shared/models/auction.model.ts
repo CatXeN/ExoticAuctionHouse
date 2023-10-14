@@ -1,9 +1,9 @@
 export interface Auction {
   id: string;
-  startingAmount: number;
-  startDate: Date;
   carId: string;
-  creationDate: Date;
+  createdAt: Date;
+  biddingBegins: Date;
+  amountStarting: number;
   currentPrice: number;
   location: string;
   isEnd: boolean;

@@ -1,5 +1,5 @@
 <div class="auctions-listing">
-  <button class="auctions-listing__action" mat-raised-button color="primary" [routerLink]="['/auctionedit']">Add auction</button>
+  <button class="auctions-listing__action" mat-raised-button color="primary" [routerLink]="['/auction/edit']">Add auction</button>
 
   <mat-form-field>
     <mat-label>Filter</mat-label>
@@ -55,7 +55,21 @@
       <!-- is End -->
       <ng-container matColumnDef="isEnd">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> is End </th>
-        <td mat-cell *matCellDef="let row"> {{row.isEnd}} </td>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox  [checked]="row.isEnd" [disabled]="true">
+            {{row.isEnd.value}}
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Actions -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+        <td class="edit" mat-cell *matCellDef="let row">
+          <button mat-icon-button color="accent" [routerLink]="['auction/edit', row.id]">
+            <mat-icon fontIcon="edit"></mat-icon>
+          </button>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -67,6 +81,6 @@
       </tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of auctions"></mat-paginator>
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of auctions"></mat-paginator>
   </div>
 </div>

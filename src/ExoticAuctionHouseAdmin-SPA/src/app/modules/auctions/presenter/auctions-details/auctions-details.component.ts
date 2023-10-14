@@ -4,14 +4,20 @@ import { Auction } from 'src/app/shared/models/auction.model';
 import { AuctionsService } from '../../services/auctions.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
+import { Car } from 'src/app/shared/models/car.model';
+import * as moment from 'moment';
+import { CarsService } from 'src/app/modules/cars/services/cars.service';
 
 @Component({
   selector: 'app-auctions-details',
   templateUrl: './auctions-details.component.html',
   styleUrls: ['./auctions-details.component.scss']
 })
-export class AuctionsDetailsComponent {
+export class AuctionsDetailsComponent implements OnInit {
   public auction: Auction | null = null;
+  public car: Car | null = null;
+  public momento: any = null;
+  public cars: Car[] = [];
 
   @Input() set _auction(value: Auction | null) {
     if (value) {
@@ -19,10 +25,10 @@ export class AuctionsDetailsComponent {
 
       this.auctionForm.patchValue({
         id: this.auction.id,
-        startingAmount: this.auction.startingAmount,
+        amountStarting: this.auction.amountStarting,
         currentPrice: this.auction.currentPrice,
-        startDate: this.auction.startDate.toString(),
-        creationDate: this.auction.creationDate.toString(),
+        biddingBegins: this.auction.biddingBegins.toString(),
+        createdAt: this.auction.createdAt.toString(),
         carId: this.auction.carId,
         location: this.auction.location,
         isEnd: this.auction.isEnd
@@ -32,31 +38,40 @@ export class AuctionsDetailsComponent {
 
   auctionForm = this.fb.group({
     id: [''],
-    startingAmount: [0, Validators.required],
+    amountStarting: [0, Validators.required],
     currentPrice: [0, Validators.required],
-    startDate: ['', Validators.required],
-    creationDate: ['', Validators.required],
+    biddingBegins: ['', Validators.required],
+    createdAt: ['', Validators.required],
     carId: ['', Validators.required],
     location: ['', Validators.required],
     isEnd: [true, Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private auctionService: AuctionsService, private snackbarService: SnackbarService, private router: Router) {}
+  constructor(private fb: FormBuilder, private auctionService: AuctionsService, private snackbarService: SnackbarService, private router: Router, private carsService: CarsService) {}
 
+
+  ngOnInit(): void {
+    this.carsService.getCars().subscribe(result => {
+      this.cars = result;
+    });
+  }
+
+  generateNameOfCar(car: Car): string {
+    return `${car.id.substring(0,6)} ${car.brand} ${car.model} ${car.generation}`;
+  }
 
   saveChanges(): void {
-    let auction: Auction = {
-      id: this.auctionForm.get('id')?.value!,
-      startingAmount: this.auctionForm.get('startingAmount')?.value!,
+    let auction: any = {
+      amountStarting: this.auctionForm.get('startingAmount')?.value!,
       currentPrice: this.auctionForm.get('currentPrice')?.value!,
-      startDate: new Date(this.auctionForm.get('startDate')?.value!),
-      creationDate: new Date(this.auctionForm.get('creationDate')?.value!),
+      biddingBegins: moment(this.auctionForm.get('startDate')?.value!),
+      createdAt: moment(this.auctionForm.get('creationDate')?.value!),
       carId: this.auctionForm.get('carId')?.value!,
       location: this.auctionForm.get('location')?.value!,
       isEnd: this.auctionForm.get('isEnd')?.value!
     };
 
-    if (auction.id === '') {
+    if (!auction.id) {
       this.auctionService.addAuction(auction).subscribe(result => {
         this.snackbarService.alert(result, 'Auction added successfully!');
         this.router.navigate(['/auctions'])
