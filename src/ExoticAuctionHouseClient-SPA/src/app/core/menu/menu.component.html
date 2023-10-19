@@ -21,7 +21,8 @@
       <a>Followed</a>
       </li>
     <li class="menu__list--profile">
-      <button mat-icon-button> <mat-icon>person</mat-icon></button>
+      <button mat-icon-button [routerLink]="['/user/user']" [routerLinkActive]="['is-active']"> <mat-icon>person</mat-icon></button>
+      <a></a>
     </li>
   </ul>
 </nav>

@@ -13,6 +13,7 @@ import { MainLayoutComponent } from './core/layouts/main-layout/main-layout.comp
 import { AuthModule } from './modules/auth/auth.module';
 import { BetModule } from './modules/bet/bet.module';
 import { AuctionModule } from './modules/auctions/auction.module';
+import { UserModule } from './modules/user/user.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AuctionModule } from './modules/auctions/auction.module';
     BrowserAnimationsModule,
     SharedModule,
     AuthModule,
-    AuctionModule
+    AuctionModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
