@@ -6,13 +6,14 @@ import {Auction} from "../../../shared/models/auction.model";
 import {CarAttribute} from "../../../shared/models/cat-attribute.model";
 import {TrasnlatedAttribute} from "../../../shared/models/translated-attribute.model";
 import {CreatePayment} from "../../../shared/models/create-payment";
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuctionService {
-  private baseUrl: string = 'https://localhost:7218/api/auction/'
-  private carUrl: string = 'https://localhost:7218/api/CarAttribute/'
+  private baseUrl: string = environment.apiUrl + '/api/auction/'
+  private carUrl: string = environment.apiUrl + '/api/CarAttribute/'
   private basePaymentUrl = 'https://localhost:7260'
 
   constructor(private  httpClient: HttpClient) { }

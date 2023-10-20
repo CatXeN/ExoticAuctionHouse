@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CarPageData } from 'src/app/shared/models/car-page-data.model';
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
 
-  baseUrl: string = 'https://localhost:7218/api/car/'
+  baseUrl: string = environment.apiUrl + '/api/car/'
 
   constructor(private httpClient: HttpClient) { }
 
