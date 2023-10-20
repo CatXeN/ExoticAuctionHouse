@@ -1,6 +1,8 @@
 using AuctionServer.Data;
 using AuctionServer.Hubs;
 using AuctionServer.Services;
+using AuthModels.Configs;
+using ExoticAuctionHouseModel.Config;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +20,8 @@ builder.Services.AddDbContext<DataContext>(options => options
                     .UseSqlServer(connectionString));
 
 builder.Services.AddHostedService<TimeHostedService>();
+builder.Services.Configure<ServicesConfig>(options => builder.Configuration.GetSection("Services").Bind(options));
+
 
 builder.Services.AddCors(options =>
 {

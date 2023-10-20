@@ -1,7 +1,10 @@
 ﻿using AuctionServer.Data;
+using AuthModels.Configs;
+using ExoticAuctionHouseModel.Config;
 using ExoticAuctionHouseModel.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Validations;
 using Newtonsoft.Json;
@@ -15,14 +18,15 @@ namespace AuctionServer.Services
         private Timer? _timer = null;
         private static HttpClient _httpClient;
         private readonly IServiceScopeFactory _serviceProvider;
+        private readonly ServicesConfig _servicesConfig;
 
-        public TimeHostedService(IServiceScopeFactory serviceProvider)
+        public TimeHostedService(IServiceScopeFactory serviceProvider, IOptions<ServicesConfig> config)
         {
             _serviceProvider = serviceProvider;
-
+            _servicesConfig = config.Value;
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("https://localhost:7218/api/") // Should be get from config
+                BaseAddress = new Uri(_servicesConfig.ExoticAuctionHouseAPI + "/api/") // Should be get from config
             };
         }
 

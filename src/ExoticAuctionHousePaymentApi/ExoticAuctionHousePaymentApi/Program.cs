@@ -1,3 +1,4 @@
+using ExoticAuctionHouseModel.Config;
 using ExoticAuctionHousePaymentApi.Data;
 using ExoticAuctionHousePaymentApi.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
+builder.Services.Configure<ServicesConfig>(options => builder.Configuration.GetSection("Services").Bind(options));
+
 
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 {
