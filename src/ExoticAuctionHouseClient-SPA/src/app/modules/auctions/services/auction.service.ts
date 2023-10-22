@@ -7,34 +7,33 @@ import {CarAttribute} from "../../../shared/models/cat-attribute.model";
 import {TrasnlatedAttribute} from "../../../shared/models/translated-attribute.model";
 import {CreatePayment} from "../../../shared/models/create-payment";
 import { environment } from '../../../../environments/environment';
+import { apiEndpoints } from 'src/app/core/http/api.endpoints';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuctionService {
-  private baseUrl: string = environment.apiUrl + '/api/auction/'
-  private carUrl: string = environment.apiUrl + '/api/CarAttribute/'
   private basePaymentUrl = 'https://localhost:7260'
 
   constructor(private  httpClient: HttpClient) { }
 
   getCarsByFilter(searchModel: SearchModel): Observable<Auction[]> {
-    return this.httpClient.post<Auction[]>(this.baseUrl + 'Search', searchModel);
+    return this.httpClient.post<Auction[]>(apiEndpoints.auction.getCarsByFilter, searchModel);
   }
 
   getExhibitedCars(): Observable<Auction[]> {
-    return this.httpClient.get<Auction[]>(this.baseUrl);
+    return this.httpClient.get<Auction[]>(apiEndpoints.auction.getExhibitedCars);
   }
 
   getAuction(id: string): Observable<Auction> {
-    return this.httpClient.get<Auction>(this.baseUrl + id);
+    return this.httpClient.get<Auction>(apiEndpoints.auction.getAuction + id);
   }
 
   public getAttributes(carId: string): Observable<TrasnlatedAttribute[]> {
-    return this.httpClient.get<TrasnlatedAttribute[]>(this.carUrl + 'translated/' + carId);
+    return this.httpClient.get<TrasnlatedAttribute[]>(apiEndpoints.carAttributes.getAttributes + carId);
   }
 
   createPayment(data: CreatePayment): Observable<any> {
-    return this.httpClient.post<any>(this.basePaymentUrl + '/Payment', data);
+    return this.httpClient.post<any>(apiEndpoints.payments.createPayment, data);
   }
 }

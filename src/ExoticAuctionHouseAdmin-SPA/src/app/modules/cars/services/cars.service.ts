@@ -5,41 +5,39 @@ import {Car} from "../../../shared/models/car.model";
 import {CarPageData} from "../../../shared/models/car-page-data.model";
 import {CarAttribute} from "../../../shared/models/car-attribute.model";
 import {AddCarAttribute} from "../../../shared/models/add-car-attributes.model";
+import { apiEndpoints } from 'src/app/core/http/api.endpoints';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarsService {
-  private baseUrl: string = 'https://localhost:7218/api/Car'
-  private urlAttributes: string = 'https://localhost:7218/api/CarAttribute'
-
   constructor(private  httpClient: HttpClient) { }
 
   public getCars(): Observable<Car[]> {
-    return this.httpClient.get<Car[]>(this.baseUrl);
+    return this.httpClient.get<Car[]>(apiEndpoints.cars.carController);
   }
 
   public getCar(id: string): Observable<Car> {
-    return this.httpClient.get<Car>(this.baseUrl + '/' + id);
+    return this.httpClient.get<Car>(apiEndpoints.cars.carController + id);
   }
 
   getPageData(): Observable<CarPageData> {
-    return this.httpClient.get<CarPageData>(this.baseUrl + '/PageData')
+    return this.httpClient.get<CarPageData>(apiEndpoints.cars.pageData)
   }
 
   public addCar(car: Car): Observable<string> {
-    return this.httpClient.post<string>(this.baseUrl, car);
+    return this.httpClient.post<string>(apiEndpoints.cars.carController, car);
   }
 
   public editCar(car: Car): Observable<Car> {
-    return this.httpClient.put<Car>(this.baseUrl, car);
+    return this.httpClient.put<Car>(apiEndpoints.cars.carController, car);
   }
 
   public getAttributes(carId: string): Observable<CarAttribute[]> {
-    return this.httpClient.get<CarAttribute[]>(this.urlAttributes  + '/' + carId);
+    return this.httpClient.get<CarAttribute[]>(apiEndpoints.carAttributes.carAttributeController + carId);
   }
 
   public addAttributes(carAttribute: AddCarAttribute): Observable<string> {
-    return this.httpClient.post<string>(this.urlAttributes, carAttribute);
+    return this.httpClient.post<string>(apiEndpoints.carAttributes.carAttributeController, carAttribute);
   }
 }
