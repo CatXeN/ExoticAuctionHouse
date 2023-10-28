@@ -1,7 +1,7 @@
 <div class="product-display-view">
   <div class="product-card" *ngFor="let auction of auctions" (click)="showDetail(auction.id)">
     <div class="product-image">
-      <img ngSrc="https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/0x0.jpg" width="400" height="200" alt="BMW 3 Series">
+      <img [ngSrc]="auction.car.mainImage" width="400" height="200" alt="BMW 3 Series">
     </div>
     <div class="product-info">
       <h3 class="product-name">{{auction.car.brand}} {{auction.car.model}}</h3>

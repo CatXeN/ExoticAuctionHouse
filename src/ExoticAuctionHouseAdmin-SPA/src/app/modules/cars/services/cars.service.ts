@@ -40,4 +40,8 @@ export class CarsService {
   public addAttributes(carAttribute: AddCarAttribute): Observable<string> {
     return this.httpClient.post<string>(apiEndpoints.carAttributes.carAttributeController, carAttribute);
   }
+
+  public updateImage(formData: FormData, carId: string): Observable<boolean> {
+    return this.httpClient.post<boolean>(apiEndpoints.cars.uploadImages + carId, formData);
+  }
 }

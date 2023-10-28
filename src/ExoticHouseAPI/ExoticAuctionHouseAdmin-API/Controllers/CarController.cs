@@ -75,5 +75,20 @@ namespace ExoticAuctionHouse_API.Controllers
             var models = await _carRepository.GetModels(brand);
             return Ok(models);
         }
+
+        [HttpPost("uploadImages/{id}")]
+        public async Task<IActionResult> UploadImages(Guid id, List<IFormFile> files)
+        {
+            try
+            {
+                await _carService.UploadFiles(files, id.ToString());
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error upload file");
+            }
+
+            return Ok();
+        }
     }
 }

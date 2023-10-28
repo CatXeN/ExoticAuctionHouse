@@ -10,5 +10,7 @@ export interface Car {
     isSold: boolean;
     capacity: number;
     horsepower: number;
+    mainImage: string;
+    images: string;
 }
 

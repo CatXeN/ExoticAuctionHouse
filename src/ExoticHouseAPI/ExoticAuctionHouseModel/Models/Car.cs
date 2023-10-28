@@ -22,5 +22,7 @@ namespace ExoticAuctionHouseModel.Models
         public BodyType BodyType { get; set; }
         public DateTime ProductionDate { get; set; }
         public bool IsSold { get; set; }
+        public string MainImage { get; set; }
+        public string Images { get; set; }
     }
 }

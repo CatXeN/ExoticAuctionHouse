@@ -1,9 +1,15 @@
-﻿using ExoticAuctionHouse_API.Helpers;
+﻿using Azure.Core;
+using ExoticAuctionHouse_API.Helpers;
 using ExoticAuctionHouse_API.Repositories;
 using ExoticAuctionHouseModel.Enums;
 using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
+using FluentFTP;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
+using System.IO.Pipes;
+using System.Net;
 
 namespace ExoticAuctionHouse_API.Services
 {
@@ -62,6 +68,46 @@ namespace ExoticAuctionHouse_API.Services
                 Category = x.Attribute.Category,
                 Name = x.Attribute.Value
             }).ToList();
+        }
+
+        public async Task<List<string>> UploadFiles(List<IFormFile> files, string id)
+        {
+            var car = await _carRepository.GetCarById(Guid.Parse(id));
+            List<string> filesUrls = new List<string>();
+
+            foreach (var file in files)
+            {
+                var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "images\\",
+                    file.FileName);
+
+                if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "images"))
+                    Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "images");
+
+                using (var stream = File.Create(filePath))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                try
+                {
+                    var client = new FtpClient("217.182.77.168", "administrator", "QweAsdZxc1231");
+                    client.AutoConnect();
+                    client.CreateDirectory($"/dev/{id}");
+                    client.UploadFile(filePath, $"/dev/{id}/{file.FileName}");
+
+                    filesUrls.Add($"https://www.image.exoticah.pl/dev/{id}/{file.FileName}");
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+
+            car.MainImage = filesUrls[0];
+            car.Images = string.Join(',', filesUrls);
+            await _carRepository.UpdateCar(car);
+
+            return filesUrls;
         }
     }
 }
