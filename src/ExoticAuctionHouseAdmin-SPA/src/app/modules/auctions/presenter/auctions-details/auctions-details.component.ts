@@ -71,7 +71,7 @@ export class AuctionsDetailsComponent implements OnInit {
       isEnd: this.auctionForm.get('isEnd')?.value!
     };
 
-    if (!auction.id) {
+    if (!this.auction?.id) {
       this.auctionService.addAuction(auction).subscribe(result => {
         this.snackbarService.alert(result, 'Auction added successfully!');
         this.router.navigate(['/auctions'])
