@@ -62,7 +62,7 @@ export class AuctionsDetailsComponent implements OnInit {
 
   saveChanges(): void {
     let auction: any = {
-      amountStarting: this.auctionForm.get('startingAmount')?.value!,
+      amountStarting: this.auctionForm.get('amountStarting')?.value!,
       currentPrice: this.auctionForm.get('currentPrice')?.value!,
       biddingBegins: moment(this.auctionForm.get('startDate')?.value!),
       createdAt: moment(this.auctionForm.get('creationDate')?.value!),
