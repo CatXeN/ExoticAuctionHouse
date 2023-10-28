@@ -18,12 +18,14 @@ namespace ExoticAuctionHouse_API.Services
         private readonly ICarRepository _carRepository;
         private readonly ICarAttributeRepository _carAttributeRepository;
         private readonly IAttributeRepository _attributeRepository;
+        private readonly IHostEnvironment _hostingEnv;
 
-        public CarService(ICarRepository carRepository, ICarAttributeRepository carAttributeRepository, IAttributeRepository attributeRepository)
+        public CarService(ICarRepository carRepository, ICarAttributeRepository carAttributeRepository, IAttributeRepository attributeRepository, IHostEnvironment hostingEnv)
         {
             _carRepository = carRepository;
             _carAttributeRepository = carAttributeRepository;
             _attributeRepository = attributeRepository;
+            _hostingEnv = hostingEnv;
         }
 
         public Task<Guid> AddCar(AddCarInformation addCarInformation)
@@ -72,6 +74,8 @@ namespace ExoticAuctionHouse_API.Services
 
         public async Task<List<string>> UploadFiles(List<IFormFile> files, string id)
         {
+            var mode = _hostingEnv.IsDevelopment() ? "dev" : "prod";
+
             var car = await _carRepository.GetCarById(Guid.Parse(id));
             List<string> filesUrls = new List<string>();
 
@@ -92,10 +96,10 @@ namespace ExoticAuctionHouse_API.Services
                 {
                     var client = new FtpClient("217.182.77.168", "administrator", "QweAsdZxc1231");
                     client.AutoConnect();
-                    client.CreateDirectory($"/dev/{id}");
-                    client.UploadFile(filePath, $"/dev/{id}/{file.FileName}");
+                    client.CreateDirectory($"/{mode}/{id}");
+                    client.UploadFile(filePath, $"/{mode}/{id}/{file.FileName}");
 
-                    filesUrls.Add($"https://www.image.exoticah.pl/dev/{id}/{file.FileName}");
+                    filesUrls.Add($"https://www.image.exoticah.pl/{mode}/{id}/{file.FileName}");
                 }
                 catch (Exception ex)
                 {
