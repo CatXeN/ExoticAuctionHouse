@@ -23,6 +23,7 @@ builder.Services.AddHttpContextAccessor();
 #region Authentication
 builder.Services.AddTransient<IPermissionAccess, PermissionAccess>();
 builder.Services.AddTransient<IIdentityService, IdentityService>();
+builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.Configure<TokenConfig>(options => builder.Configuration.GetSection("Token").Bind(options));
 
 var tokenConfigurationSection = builder.Configuration.GetSection("Token");

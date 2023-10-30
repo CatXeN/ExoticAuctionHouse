@@ -20,5 +20,8 @@ export const apiEndpoints = {
   },
   attributes: {
     getAttributes: `${environment.apiUrl}/api/attribute/`
+  },
+  users: {
+    getUsers: `${environment.authApiUrl}/api/users/`
   }
 }
