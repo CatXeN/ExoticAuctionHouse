@@ -61,7 +61,6 @@ namespace ExoticAuctionHouse_API.Repositories
 
         public IQueryable<Auction> GetAuctionWithCarsQuerable(string brand) => _context.Auctions
             .Include(x => x.Car)
-            .Where(car => car.Car.Brand == brand)
             .AsQueryable();
 
         public async Task<Auction> GetById(Guid id)
@@ -79,6 +78,24 @@ namespace ExoticAuctionHouse_API.Repositories
                 .ToListAsync();
 
             return cars;
+        }
+
+        public async Task Update(UpdateAuctionInformation auction)
+        {
+            var auctionToUpadate = new Auction()
+            {
+                AmountStarting = auction.AmountStarting,
+                BiddingBegins = auction.BiddingBegins,
+                CarId = auction.CarId,
+                CreatedAt = auction.CreatedAt,
+                CurrentPrice = auction.CurrentPrice,
+                Id = auction.Id,
+                IsEnd = auction.IsEnd,
+                Location = auction.Location,
+            };
+
+            _context.Auctions.Update(auctionToUpadate);
+            await _context.SaveChangesAsync();
         }
     }
 }

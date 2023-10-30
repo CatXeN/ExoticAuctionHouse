@@ -14,10 +14,10 @@ import {SearchModel} from "../../../../shared/models/search.model";
 })
 export class DashboardContainerComponent implements OnInit {
   filterForm = this.fb.group({
-    brand: ['', Validators.required],
+    brand: [''],
     model: [''],
-    fuelType: ['', Validators.required],
-    bodyType: ['', Validators.required]
+    fuelType: [''],
+    bodyType: ['']
   });
 
   private _brands: string[] = [];
@@ -77,6 +77,7 @@ export class DashboardContainerComponent implements OnInit {
     if (this.filterForm.valid) {
       let fuelType: number = 0;
       let bodyType: number = 0;
+      let model: string = '';
 
       if (this.filterForm.controls.fuelType.value !== null) {
         fuelType = this._fuelTypes.indexOf(this.filterForm.controls.fuelType.value);
@@ -86,15 +87,17 @@ export class DashboardContainerComponent implements OnInit {
         bodyType = this._bodyTypes.indexOf(this.filterForm.controls.bodyType.value);
       }
 
-      let data: any = {
-        brand: this.filterForm.controls.brand.value,
-        //model: this.filterForm.controls.model.value,
-        fuelType: fuelType,
-        bodyType: bodyType
+      if (this.filterForm.controls.model.value !== '' && this.filterForm.controls.model.value !== null) {
+        model = this.filterForm.controls.model.value;
       }
 
-      if (this.filterForm.controls.model.value !== '') {
-        data.model = this.filterForm.controls.model.value;
+      console.log(fuelType);
+
+      let data: any = {
+        brand: this.filterForm.controls.brand.value,
+        model: model,
+        fuelType: fuelType === -1 ? 0 : fuelType,
+        bodyType: bodyType === -1 ? 0 : bodyType
       }
 
       this.router.navigate(['panel/auctions'], { queryParams: data });

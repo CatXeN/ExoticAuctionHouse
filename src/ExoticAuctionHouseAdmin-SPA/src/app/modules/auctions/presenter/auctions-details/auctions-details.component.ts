@@ -44,7 +44,7 @@ export class AuctionsDetailsComponent implements OnInit {
     createdAt: ['', Validators.required],
     carId: ['', Validators.required],
     location: ['', Validators.required],
-    isEnd: [true, Validators.required]
+    isEnd: [false, Validators.required]
   });
 
   constructor(private fb: FormBuilder, private auctionService: AuctionsService, private snackbarService: SnackbarService, private router: Router, private carsService: CarsService) {}
@@ -74,12 +74,14 @@ export class AuctionsDetailsComponent implements OnInit {
     if (!this.auction?.id) {
       this.auctionService.addAuction(auction).subscribe(result => {
         this.snackbarService.alert(result, 'Auction added successfully!');
-        this.router.navigate(['/auctions'])
+        this.router.navigate(['/panel/auctions'])
       });
       } else {
+        auction.id = this.auction?.id;
+
         this.auctionService.editAuction(auction).subscribe(result => {
           this.snackbarService.alert("car added successfully", 'Auction edited successfully!');
-          this.router.navigate(['/auctions'])
+          this.router.navigate(['/panel/auctions'])
         });
     }
   }

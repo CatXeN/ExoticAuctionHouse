@@ -41,7 +41,9 @@ namespace ExoticAuctionHouse_API.Services
                 Horsepower = addCarInformation.Horsepower,
                 IsSold = false,
                 Mileage = addCarInformation.Mileage,
-                Model = addCarInformation.Model
+                Model = addCarInformation.Model,
+                Images = "",
+                MainImage = ""
             };
 
             var id = _carRepository.AddCar(car);

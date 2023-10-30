@@ -1,6 +1,30 @@
-.edit-auction{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.edit-auction {
+  margin-top: 20px;
+  margin-left: 20px;
 
+  &__form {
+    &--row {
+      mat-form-field:first-child {
+        margin-left: 0;
+      }
+
+      .spacer-bottom {
+        margin-bottom: 20px;
+      }
+
+      .spacer-label {
+        margin-right: 10px;
+      }
+
+      mat-form-field {
+        margin-left: 10px;
+      }
+    }
+
+    &--actions {
+      button:last-child {
+        margin-left: 10px;
+      }
+    }
+  }
 }

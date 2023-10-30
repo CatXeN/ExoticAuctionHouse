@@ -41,6 +41,13 @@ namespace ExoticAuctionHouse_API.Controllers
             return new JsonResult("Added car on auction");
         }
 
+        [HttpPut]
+        public async Task<IActionResult> UpdateAuction(UpdateAuctionInformation auction)
+        {
+            await _auctionRepository.Update(auction);
+            return new JsonResult("Updated auction");
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {

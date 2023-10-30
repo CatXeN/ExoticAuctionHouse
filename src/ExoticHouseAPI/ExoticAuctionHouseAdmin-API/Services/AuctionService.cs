@@ -38,6 +38,9 @@ namespace ExoticAuctionHouse_API.Services
         {
             var cars = _repository.GetAuctionWithCarsQuerable(searchModel.Brand);
 
+            if (!string.IsNullOrEmpty(searchModel.Brand))
+                cars = cars.Where(car => car.Car.Brand == searchModel.Brand);
+
             if (!string.IsNullOrEmpty(searchModel.Model))
                 cars = cars.Where(car => car.Car.Model == searchModel.Model);
 
