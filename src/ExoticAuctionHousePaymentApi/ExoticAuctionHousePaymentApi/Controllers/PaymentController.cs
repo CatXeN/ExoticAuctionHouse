@@ -50,9 +50,6 @@ public class PaymentController : ControllerBase
         var order = OrderHelper.CreateOrder(auction, payment.ClientId);
         var res = await _paymentRepository.CreateTicket(order);
 
-        if (_hostingEnv.IsDevelopment())
-            return Redirect("http://localhost:4202/method/" + res);
-        else
-            return Redirect("https://payment.exoticah.pl/method/" + res);
+        return Ok(res);
     }
 }

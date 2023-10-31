@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Auction} from "../../../../shared/models/auction.model";
 import {AuctionService} from "../../services/auction.service";
 import {CreatePayment} from "../../../../shared/models/create-payment";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-car-detail',
@@ -37,7 +38,11 @@ export class CarDetailComponent {
     }
 
     this.auctionService.createPayment(payment).subscribe(result => {
-      console.log(result);
+      if (environment.production) {
+        location.href = "https://payment.exoticah.pl/method/" + result;
+      } else {
+        location.href = 'http://localhost:4202/method/' + result;
+      }
     });
   }
 
