@@ -7,7 +7,7 @@ import {AuthGuard} from "./modules/auth/guard/auth.guard";
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'auth',
     component: AuthLayoutComponent,
     children: [
       {
@@ -40,7 +40,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule)
       }
     ]
-  }
+  },
+  {
+    path: '', redirectTo: '/panel/dashboard', pathMatch: 'full'
+  },
 ];
 
 @NgModule({
