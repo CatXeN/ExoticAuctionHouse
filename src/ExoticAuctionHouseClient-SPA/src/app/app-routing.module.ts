@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './core/layouts/main-layout/main-layout.component';
 import {AuthGuard} from "./modules/auth/guard/auth.guard";
+import {TokenGuard} from "./modules/auth/guard/token.guard";
 
 const routes: Routes = [
   {
@@ -28,12 +29,12 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
-        // canActivate: [AuthGuard]
+        canActivate: [TokenGuard]
       },
       {
         path: 'auctions',
         loadChildren: () => import('./modules/auctions/auction.module').then(m => m.AuctionModule),
-        // canActivate: [AuthGuard]
+        canActivate: [TokenGuard]
       }
     ]
   },

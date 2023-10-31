@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
+  public loggedIn: boolean = false;
 
+  constructor() {
+    this.loggedIn = localStorage.getItem('token') != null
+  }
 }

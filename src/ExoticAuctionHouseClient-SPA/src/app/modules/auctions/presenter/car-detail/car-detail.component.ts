@@ -13,8 +13,11 @@ export class CarDetailComponent {
   private _auctionId: string = '';
   public images = [''];
   public currentImage: number = 0;
+  public loggedIn: boolean = false;
 
-  constructor(private auctionService: AuctionService) {}
+  constructor(private auctionService: AuctionService) {
+    this.loggedIn = this.localStorage.getItem('token') != null;
+  }
 
   @Input() set auctionId(value: Auction | undefined) {
     if (value !== undefined) {
@@ -53,4 +56,6 @@ export class CarDetailComponent {
 
     this.currentImage += index;
   }
+
+  protected readonly localStorage = localStorage;
 }
