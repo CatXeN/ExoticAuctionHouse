@@ -28,7 +28,9 @@
     <li class="menu__list--profile" *ngIf="loggedIn">
       <button mat-icon-button> <mat-icon>person</mat-icon></button>
     </li>
+  </ul>
 
+  <ul class="menu__list">
     <li *ngIf="!loggedIn">
       <button mat-raised-button color="accent" [routerLink]="['/auth/login']">Log in</button>
     </li>

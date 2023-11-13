@@ -8,5 +8,6 @@ namespace ExoticAuctionHouse_API.Repositories
         Task<IEnumerable<AuctionHistory>> Get();
         Task<AuctionHistory> GetById(Guid id);
         Task Add(AuctionHistory[] auctionHistory);
+        Task Add(AuctionHistory auctionHistory);
     }
 }

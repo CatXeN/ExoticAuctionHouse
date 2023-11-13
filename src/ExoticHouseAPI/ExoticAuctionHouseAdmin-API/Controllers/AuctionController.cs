@@ -68,7 +68,12 @@ namespace ExoticAuctionHouse_API.Controllers
             var cars = await _auctionService.GetCarsByFilter(searchModel);
             return Ok(cars);
         }
-        //TODO: Once the auction is over, the car from the auction should fly into the auction history
-        //Support with AuctionServer
+
+        [HttpPost("SoldCar")]
+        public async Task<IActionResult> SoldCar(SoldCarInformation soldCarInformation)
+        {
+            await _auctionService.SoldCar(soldCarInformation);
+            return Ok();
+        }
     }
 }

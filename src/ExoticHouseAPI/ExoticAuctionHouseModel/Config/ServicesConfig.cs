@@ -9,5 +9,6 @@ namespace ExoticAuctionHouseModel.Config
     public class ServicesConfig
     {
         public string ExoticAuctionHouseAPI { get; set; }
+        public string ExoticAuctionPaymentAPI { get; set; }
     }
 }

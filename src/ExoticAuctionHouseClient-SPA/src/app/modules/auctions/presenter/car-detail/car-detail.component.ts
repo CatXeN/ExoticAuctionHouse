@@ -3,6 +3,7 @@ import {Auction} from "../../../../shared/models/auction.model";
 import {AuctionService} from "../../services/auction.service";
 import {CreatePayment} from "../../../../shared/models/create-payment";
 import {environment} from "../../../../../environments/environment";
+import {SnackbarService} from "../../../../shared/services/snackbar.service";
 
 @Component({
   selector: 'app-car-detail',
@@ -16,7 +17,7 @@ export class CarDetailComponent {
   public currentImage: number = 0;
   public loggedIn: boolean = false;
 
-  constructor(private auctionService: AuctionService) {
+  constructor(private auctionService: AuctionService, private snackBar: SnackbarService) {
     this.loggedIn = this.localStorage.getItem('token') != null;
   }
 
@@ -37,13 +38,21 @@ export class CarDetailComponent {
       clientId: localStorage.getItem('id')!
     }
 
-    this.auctionService.createPayment(payment).subscribe(result => {
-      if (environment.production) {
-        location.href = "https://payment.exoticah.pl/method/" + result;
-      } else {
-        location.href = 'http://localhost:4202/method/' + result;
+    this.auctionService.createPayment(payment).subscribe(
+      {
+        next: result => {
+          if (environment.production) {
+            location.href = "https://payment.exoticah.pl/method/" + result;
+          } else {
+            location.href = 'http://localhost:4202/method/' + result;
+          }
+        },
+        error: err => {
+          console.log(err);
+          this.snackBar.alert(err.error, "Ok!");
+        }
       }
-    });
+    );
   }
 
   public IsActive(): boolean {

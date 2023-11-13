@@ -11,6 +11,7 @@ namespace ExoticAuctionHouse_API.Repositories
         Task<Auction> GetById(Guid id);
         IQueryable<Auction> GetAuctionWithCarsQuerable(string brand);
         Task End(Guid[] ids);
+        Task Update(Auction auction);
         Task Update(UpdateAuctionInformation auction);
     }
 }

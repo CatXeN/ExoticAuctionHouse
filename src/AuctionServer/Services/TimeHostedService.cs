@@ -26,7 +26,7 @@ namespace AuctionServer.Services
             _servicesConfig = config.Value;
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri(_servicesConfig.ExoticAuctionHouseAPI + "/api/") // Should be get from config
+                BaseAddress = new Uri(_servicesConfig.ExoticAuctionHouseAPI + "/api/")
             };
         }
 
@@ -100,12 +100,24 @@ namespace AuctionServer.Services
             }
         }
 
+        private async void PaymentTimeOut(object? state)
+        {
+            var _paymentClient = new HttpClient
+            {
+                BaseAddress = new Uri(_servicesConfig.ExoticAuctionPaymentAPI + "/payment/")
+            };
+            await _paymentClient.PostAsync("clearTickets", null); //Should security :D
+        }
+
         public Task StartAsync(CancellationToken cancellationToken)
         {
             _timer = new Timer(CheckAuctions, null, TimeSpan.Zero,
                 TimeSpan.FromMinutes(1));
 
             _timer = new Timer(BiddingIsEnd, null, TimeSpan.Zero,
+                TimeSpan.FromMinutes(1));
+
+            _timer = new Timer(PaymentTimeOut, null, TimeSpan.Zero,
                 TimeSpan.FromMinutes(1));
 
             return Task.CompletedTask;

@@ -36,7 +36,6 @@ namespace ExoticAuctionHouse_API.Repositories
         public async Task End(Guid[] ids)
         {
             var auctions = _context.Auctions.Where(a => ids.Contains(a.Id));
-
             var endedAuctions = auctions.Select(a => new Auction()
             {
                 Id = a.Id,
@@ -95,6 +94,12 @@ namespace ExoticAuctionHouse_API.Repositories
             };
 
             _context.Auctions.Update(auctionToUpadate);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Update(Auction auction)
+        {
+            _context.Auctions.Update(auction);
             await _context.SaveChangesAsync();
         }
     }

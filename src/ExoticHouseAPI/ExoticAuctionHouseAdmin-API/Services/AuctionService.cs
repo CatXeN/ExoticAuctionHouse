@@ -10,11 +10,14 @@ namespace ExoticAuctionHouse_API.Services
     {
         private readonly IAuctionRepository _repository;
         private readonly IAuctionHistoryRepository _historyRepository;
+        private readonly ICarRepository _carRepository;
 
-        public AuctionService(IAuctionRepository repository, IAuctionHistoryRepository historyRepository)
+        public AuctionService(IAuctionRepository repository, IAuctionHistoryRepository historyRepository
+            , ICarRepository carRepository)
         {
             _repository = repository;
             _historyRepository = historyRepository;
+            _carRepository = carRepository;
         }
 
         public async Task EndAuctions(AuctionHistoryInformation[] auctionHistoryInformation)
@@ -52,6 +55,28 @@ namespace ExoticAuctionHouse_API.Services
 
 
             return await cars.ToListAsync();
+        }
+
+        public async Task SoldCar(SoldCarInformation soldCarInformation)
+        {
+            var auction = await _repository.GetById(soldCarInformation.AuctionId) ?? throw new Exception("error");
+            auction.IsEnd = true;
+            await _repository.Update(auction);
+
+            var car = await _carRepository.GetCarById(auction.CarId) ?? throw new Exception("error");
+            car.IsSold = true;
+            await _carRepository.UpdateCar(car);
+
+            var auctionHistory = new AuctionHistory
+            {
+                CarId = auction.CarId,
+                IsSold = true,
+                Price = auction.CurrentPrice,
+                SoldAt = DateTime.Now,
+                UserId = soldCarInformation.UserId
+            };
+
+            await _historyRepository.Add(auctionHistory);
         }
     }
 }

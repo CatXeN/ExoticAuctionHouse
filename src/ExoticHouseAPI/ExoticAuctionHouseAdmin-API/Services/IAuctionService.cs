@@ -7,5 +7,6 @@ namespace ExoticAuctionHouse_API.Services
     {
         Task<IEnumerable<Auction>> GetCarsByFilter(SearchModel searchModel);
         Task EndAuctions(AuctionHistoryInformation[] auctionHistoryInformation);
+        Task SoldCar(SoldCarInformation soldCarInformation);
     }
 }

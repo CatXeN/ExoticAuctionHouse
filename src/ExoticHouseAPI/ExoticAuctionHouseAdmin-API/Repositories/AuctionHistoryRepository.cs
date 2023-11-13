@@ -20,6 +20,12 @@ namespace ExoticAuctionHouse_API.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task Add(AuctionHistory auctionHistory)
+        {
+            await _context.AuctionHistory.AddAsync(auctionHistory);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<AuctionHistory>> Get()
         {
             var auctions = await _context.AuctionHistory.ToListAsync();
