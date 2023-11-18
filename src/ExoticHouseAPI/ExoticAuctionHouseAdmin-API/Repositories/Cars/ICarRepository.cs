@@ -1,6 +1,6 @@
 ﻿using ExoticAuctionHouseModel.Models;
 
-namespace ExoticAuctionHouse_API.Repositories
+namespace ExoticAuctionHouse_API.Repositories.Cars
 {
     public interface ICarRepository
     {
@@ -13,5 +13,6 @@ namespace ExoticAuctionHouse_API.Repositories
         Task<string[]> GetBrands();
         Task<string[]> GetModels(string brand);
         IQueryable<Car> GetCarsQueryable(string brand);
+        Task<IEnumerable<Car>> AvailableCars();
     }
 }

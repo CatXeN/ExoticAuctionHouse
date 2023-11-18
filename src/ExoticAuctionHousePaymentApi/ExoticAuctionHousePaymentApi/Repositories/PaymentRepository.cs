@@ -68,5 +68,13 @@ namespace ExoticAuctionHousePaymentApi.Repositories
             await _context.SaveChangesAsync();
             return ticket;
         }
+
+        public async Task<IEnumerable<Payment>> GetClientPayments(Guid clientId)
+        {
+            var getClientPayments = await _context.Payments
+                .Where(x => x.ClientId == clientId).ToListAsync();
+
+            return getClientPayments;
+        }
     }
 }

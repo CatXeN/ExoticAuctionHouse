@@ -1,0 +1,49 @@
+<div class="my-payments">
+  <div class="mat-elevation-z8 my-payments__table">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.amount}} EUR</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> Created at </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdAt | date}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="lastModify">
+        <th mat-header-cell *matHeaderCellDef> Last modify </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastModify | date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> status </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon [ngClass]="{
+          'canceled': element.paymentStatus === 2,
+          'created': element.paymentStatus === 0,
+          'paid': element.paymentStatus === 4
+          }" aria-hidden="false" fontIcon="payments"></mat-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>

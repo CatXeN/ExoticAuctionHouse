@@ -1,8 +1,11 @@
 using AuthModels.Authorization;
 using AuthModels.Configs;
 using ExoticAuctionHouse_API.Data;
-using ExoticAuctionHouse_API.Repositories;
-using ExoticAuctionHouse_API.Services;
+using ExoticAuctionHouse_API.Repositories.Attributes;
+using ExoticAuctionHouse_API.Repositories.Auctions;
+using ExoticAuctionHouse_API.Repositories.Cars;
+using ExoticAuctionHouse_API.Services.Auctions;
+using ExoticAuctionHouse_API.Services.Cars;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

@@ -2,7 +2,7 @@
 using ExoticAuctionHouseModel.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ExoticAuctionHouse_API.Repositories
+namespace ExoticAuctionHouse_API.Repositories.Cars
 {
     public class CarRepository : ICarRepository
     {
@@ -18,6 +18,18 @@ namespace ExoticAuctionHouse_API.Repositories
             await _context.Cars.AddAsync(car);
             await _context.SaveChangesAsync();
             return car.Id;
+        }
+
+        public async Task<IEnumerable<Car>> AvailableCars()
+        {
+            var exhabitedCarsId = _context.Auctions
+                .Where(x => !x.IsEnd)
+                .Select(x => x.CarId);
+
+            var notSoldCars = _context.Cars
+                .Where(x => !x.IsSold && !exhabitedCarsId.Contains(x.Id));
+
+            return await notSoldCars.ToListAsync();
         }
 
         public async Task DeleteCar(Guid id)

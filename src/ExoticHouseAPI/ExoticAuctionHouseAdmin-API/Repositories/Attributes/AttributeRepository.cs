@@ -1,7 +1,7 @@
 ﻿using ExoticAuctionHouse_API.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace ExoticAuctionHouse_API.Repositories
+namespace ExoticAuctionHouse_API.Repositories.Attributes
 {
     public class AttributeRepository : IAttributeRepository
     {

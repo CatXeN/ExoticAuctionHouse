@@ -95,4 +95,12 @@ public class PaymentController : ControllerBase
             return BadRequest("Error not paid");
         }
     }
+
+    [HttpGet("getClientPayments/{clientId}")]
+    public async Task<IActionResult> GetClientPayments(Guid clientId)
+    {
+        var payments = await _paymentRepository.GetClientPayments(clientId);
+
+        return Ok(payments);
+    }
 }

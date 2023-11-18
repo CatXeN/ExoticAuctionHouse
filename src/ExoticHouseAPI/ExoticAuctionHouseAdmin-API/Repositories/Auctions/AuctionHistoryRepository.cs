@@ -3,7 +3,7 @@ using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ExoticAuctionHouse_API.Repositories
+namespace ExoticAuctionHouse_API.Repositories.Auctions
 {
     public class AuctionHistoryRepository : IAuctionHistoryRepository
     {
@@ -38,6 +38,16 @@ namespace ExoticAuctionHouse_API.Repositories
                 .FirstOrDefaultAsync(auction => auction.Id == id);
 
             return auction ?? throw new InvalidOperationException();
+        }
+
+        public async Task<IEnumerable<AuctionHistory>> MyAuctions(Guid UserId)
+        {
+            var myAuctions = await _context.AuctionHistory
+                .Include(x => x.Car)
+                .Where(x => x.UserId == UserId)
+                .ToListAsync();
+
+            return myAuctions;
         }
     }
 }

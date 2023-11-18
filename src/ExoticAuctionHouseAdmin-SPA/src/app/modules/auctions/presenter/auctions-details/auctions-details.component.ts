@@ -51,7 +51,7 @@ export class AuctionsDetailsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.carsService.getCars().subscribe(result => {
+    this.carsService.getAvailableCars().subscribe(result => {
       this.cars = result;
     });
   }
@@ -64,7 +64,7 @@ export class AuctionsDetailsComponent implements OnInit {
     let auction: any = {
       amountStarting: this.auctionForm.get('amountStarting')?.value!,
       currentPrice: this.auctionForm.get('currentPrice')?.value!,
-      biddingBegins: moment(this.auctionForm.get('startDate')?.value!),
+      biddingBegins: moment(this.auctionForm.get('biddingBegins')?.value!),
       createdAt: moment(this.auctionForm.get('creationDate')?.value!),
       carId: this.auctionForm.get('carId')?.value!,
       location: this.auctionForm.get('location')?.value!,

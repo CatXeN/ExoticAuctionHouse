@@ -1,7 +1,7 @@
 ﻿using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 
-namespace ExoticAuctionHouse_API.Repositories
+namespace ExoticAuctionHouse_API.Repositories.Cars
 {
     public interface ICarAttributeRepository
     {

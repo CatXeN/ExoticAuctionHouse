@@ -1,0 +1,8 @@
+<div class="winner-auctions">
+  <div class="winner-auctions__box" *ngFor="let car of myAuctions">
+    <img class="winner-auctions__box--image" src="{{car.car.mainImage}}" alt="car image">
+    <span class="winner-auctions__box--name">{{car.car.brand}} {{car.car.model}} {{car.car.generation}}</span>
+    <span>Date: {{car.soldAt | date}}</span>
+    <span>Price: {{car.price}} EUR</span>
+  </div>
+</div>

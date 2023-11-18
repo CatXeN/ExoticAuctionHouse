@@ -1,4 +1,4 @@
-﻿namespace ExoticAuctionHouse_API.Repositories
+﻿namespace ExoticAuctionHouse_API.Repositories.Attributes
 {
     public interface IAttributeRepository
     {

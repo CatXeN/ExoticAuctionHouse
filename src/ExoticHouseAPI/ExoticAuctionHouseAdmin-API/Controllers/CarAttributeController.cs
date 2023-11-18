@@ -1,8 +1,6 @@
-﻿using ExoticAuctionHouse_API.Repositories;
-using ExoticAuctionHouse_API.Services;
+﻿using ExoticAuctionHouse_API.Repositories.Cars;
+using ExoticAuctionHouse_API.Services.Cars;
 using ExoticAuctionHouseModel.Informations;
-using ExoticAuctionHouseModel.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExoticAuctionHouse_API.Controllers

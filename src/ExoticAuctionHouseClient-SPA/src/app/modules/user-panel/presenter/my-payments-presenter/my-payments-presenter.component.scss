@@ -1,0 +1,21 @@
+.my-payments {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+
+  &__table  {
+    width: 90%;
+  }
+
+  .canceled {
+    color: red;
+  }
+
+  .paid {
+    color: green;
+  }
+
+  .created {
+    color: orange;
+  }
+}

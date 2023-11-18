@@ -1,10 +1,11 @@
-﻿using ExoticAuctionHouse_API.Repositories;
+﻿using ExoticAuctionHouse_API.Repositories.Auctions;
+using ExoticAuctionHouse_API.Repositories.Cars;
 using ExoticAuctionHouseModel.Enums;
 using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ExoticAuctionHouse_API.Services
+namespace ExoticAuctionHouse_API.Services.Auctions
 {
     public class AuctionService : IAuctionService
     {

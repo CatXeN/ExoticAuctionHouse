@@ -44,4 +44,8 @@ export class CarsService {
   public updateImage(formData: FormData, carId: string): Observable<boolean> {
     return this.httpClient.post<boolean>(apiEndpoints.cars.uploadImages + carId, formData);
   }
+
+  public getAvailableCars(): Observable<Car[]> {
+    return this.httpClient.get<Car[]>(apiEndpoints.cars.availableCars);
+  }
 }

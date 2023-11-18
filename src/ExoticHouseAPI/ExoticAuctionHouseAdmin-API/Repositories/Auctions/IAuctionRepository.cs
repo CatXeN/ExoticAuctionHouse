@@ -1,7 +1,7 @@
 ﻿using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 
-namespace ExoticAuctionHouse_API.Repositories
+namespace ExoticAuctionHouse_API.Repositories.Auctions
 {
     public interface IAuctionRepository
     {

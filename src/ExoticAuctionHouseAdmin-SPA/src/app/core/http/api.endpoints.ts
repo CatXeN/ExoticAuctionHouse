@@ -7,7 +7,8 @@ export const apiEndpoints = {
   cars: {
     carController: `${environment.apiUrl}/api/car/`,
     pageData: `${environment.apiUrl}/api/car/pageData`,
-    uploadImages: `${environment.apiUrl}/api/car/uploadImages/`
+    uploadImages: `${environment.apiUrl}/api/car/uploadImages/`,
+    availableCars: `${environment.apiUrl}/api/car/availableCars`
   },
   carAttributes: {
     carAttributeController: `${environment.apiUrl}/api/CarAttribute/`

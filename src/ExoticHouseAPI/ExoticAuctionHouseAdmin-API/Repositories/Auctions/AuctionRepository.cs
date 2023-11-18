@@ -5,7 +5,7 @@ using ExoticAuctionHouseModel.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace ExoticAuctionHouse_API.Repositories
+namespace ExoticAuctionHouse_API.Repositories.Auctions
 {
     public class AuctionRepository : IAuctionRepository
     {

@@ -1,17 +1,13 @@
-﻿using Azure.Core;
-using ExoticAuctionHouse_API.Helpers;
+﻿using ExoticAuctionHouse_API.Helpers;
 using ExoticAuctionHouse_API.Repositories;
+using ExoticAuctionHouse_API.Repositories.Attributes;
+using ExoticAuctionHouse_API.Repositories.Cars;
 using ExoticAuctionHouseModel.Enums;
 using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 using FluentFTP;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
-using System.IO.Pipes;
-using System.Net;
 
-namespace ExoticAuctionHouse_API.Services
+namespace ExoticAuctionHouse_API.Services.Cars
 {
     public class CarService : ICarService
     {

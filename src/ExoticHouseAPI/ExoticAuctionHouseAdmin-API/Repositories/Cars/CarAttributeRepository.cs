@@ -3,7 +3,7 @@ using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ExoticAuctionHouse_API.Repositories
+namespace ExoticAuctionHouse_API.Repositories.Cars
 {
     public class CarAttributeRepository : ICarAttributeRepository
     {

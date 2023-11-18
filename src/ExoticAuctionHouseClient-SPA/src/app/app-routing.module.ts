@@ -46,6 +46,11 @@ const routes: Routes = [
         path: 'bet',
         loadChildren: () => import('./modules/bet/bet.module').then(m => m.BetModule),
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'panel',
+        loadChildren: () => import('./modules/user-panel/user-panel.module').then(m => m.UserPanelModule),
+        canActivate: [AuthGuard]
       }
     ]
   }

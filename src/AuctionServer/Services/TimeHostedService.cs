@@ -47,7 +47,7 @@ namespace AuctionServer.Services
 
                 if (auctions != null && auctions.Any())
                 {
-                    var newAuctions = auctions.Where(x => !lunchedAuctions.Contains(x.Id) && DateTimeOffset.Now >= x.BiddingBegins)
+                    var newAuctions = auctions.Where(x => !lunchedAuctions.Contains(x.Id) && DateTime.Now >= x.BiddingBegins)
                         .Select(b => new Bet
                         {
                             Id = Guid.NewGuid(),

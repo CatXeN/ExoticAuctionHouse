@@ -1,8 +1,6 @@
-﻿using ExoticAuctionHouse_API.Repositories;
-using ExoticAuctionHouse_API.Services;
+﻿using ExoticAuctionHouse_API.Repositories.Auctions;
+using ExoticAuctionHouse_API.Services.Auctions;
 using ExoticAuctionHouseModel.Informations;
-using ExoticAuctionHouseModel.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExoticAuctionHouse_API.Controllers
@@ -54,6 +52,13 @@ namespace ExoticAuctionHouse_API.Controllers
             }
             
             return Ok("Added auction history");
+        }
+
+        [HttpGet("myAuctions/{userId}")]
+        public async Task<IActionResult> MyAuction(Guid userId)
+        {
+            var myAuctions = await _auctionHistoryRepository.MyAuctions(userId);
+            return Ok(myAuctions);
         }
     }
 }
