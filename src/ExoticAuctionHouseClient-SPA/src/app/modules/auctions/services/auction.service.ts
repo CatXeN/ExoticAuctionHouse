@@ -8,6 +8,7 @@ import {TrasnlatedAttribute} from "../../../shared/models/translated-attribute.m
 import {CreatePayment} from "../../../shared/models/create-payment";
 import { environment } from '../../../../environments/environment';
 import { apiEndpoints } from 'src/app/core/http/api.endpoints';
+import {Car} from "../../../shared/models/car.model";
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,11 @@ export class AuctionService {
     return this.httpClient.get<TrasnlatedAttribute[]>(apiEndpoints.carAttributes.getAttributes + carId);
   }
 
-  createPayment(data: CreatePayment): Observable<any> {
+  public createPayment(data: CreatePayment): Observable<any> {
     return this.httpClient.post<any>(apiEndpoints.payments.createPayment, data);
+  }
+
+  public addCar(car: Car): Observable<string> {
+    return this.httpClient.post<string>(apiEndpoints.cars.carController, car);
   }
 }

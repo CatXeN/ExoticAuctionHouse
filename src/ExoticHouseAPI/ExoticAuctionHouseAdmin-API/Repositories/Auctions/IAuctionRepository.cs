@@ -7,7 +7,7 @@ namespace ExoticAuctionHouse_API.Repositories.Auctions
     {
         Task<IEnumerable<Auction>> Get();
         Task<IEnumerable<Auction>> GetNotEnded();
-        Task Add(AuctionInformation auction);
+        Task<Guid> Add(AuctionInformation auction);
         Task<Auction> GetById(Guid id);
         IQueryable<Auction> GetAuctionWithCarsQuerable(string brand);
         Task End(Guid[] ids);

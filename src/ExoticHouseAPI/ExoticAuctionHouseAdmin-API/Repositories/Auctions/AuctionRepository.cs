@@ -16,7 +16,7 @@ namespace ExoticAuctionHouse_API.Repositories.Auctions
             _context = context;
         }
 
-        public async Task Add(AuctionInformation auction)
+        public async Task<Guid> Add(AuctionInformation auction)
         {
             var auctionToAdd = new Auction
             {
@@ -31,6 +31,8 @@ namespace ExoticAuctionHouse_API.Repositories.Auctions
 
             await _context.AddAsync(auctionToAdd);
             await _context.SaveChangesAsync();
+
+            return auctionToAdd.Id;
         }
 
         public async Task End(Guid[] ids)

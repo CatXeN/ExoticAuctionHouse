@@ -6,6 +6,9 @@ export const apiEndpoints = {
     getExhibitedCars: `${environment.apiUrl}/api/auction/`,
     getAuction: `${environment.apiUrl}/api/auction/`
   },
+  attributes: {
+    getAttributes: `${environment.apiUrl}/api/attribute/`
+  },
   auctionHistory: {
     getMyAuctions: `${environment.apiUrl}/api/auctionHistory/myAuctions/`
   },
@@ -22,7 +25,10 @@ export const apiEndpoints = {
   },
   cars: {
     pageData: `${environment.apiUrl}/api/car/pageData`,
-    getModels: `${environment.apiUrl}/api/car/getModels/`
+    getModels: `${environment.apiUrl}/api/car/getModels/`,
+    carController: `${environment.apiUrl}/api/car/`,
+    sellCar: `${environment.apiUrl}/api/car/sellCar`,
+    uploadImages: `${environment.apiUrl}/api/car/uploadImages/`
   },
   bet: {
     getBetById: `${environment.auctionServer}/api/bet/`

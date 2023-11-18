@@ -1,1 +1,128 @@
-<p>sell-cars-presenter works!</p>
+<mat-vertical-stepper [linear]="false" #stepper>
+  <mat-step [stepControl]="carForm">
+    <form class="upper-spacer" [formGroup]="carForm">
+      <ng-template matStepLabel>Fill information about car</ng-template>
+      <div>
+        <mat-form-field>
+          <mat-label>Brand</mat-label>
+          <input formControlName="brand" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Model</mat-label>
+          <input formControlName="model" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Generation</mat-label>
+          <input formControlName="generation" matInput>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Fuel type</mat-label>
+          <mat-select formControlName="fuelType">
+            <mat-option *ngFor="let fuel of fuelTypes; let i = index;" [value]="i">{{fuel}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Body type</mat-label>
+          <mat-select formControlName="bodyType">
+            <mat-option *ngFor="let body of bodyTypes; let i = index;" [value]="i">{{body}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Production date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="productionDate">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Capacity</mat-label>
+          <input formControlName="capacity" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Horsepower</mat-label>
+          <input formControlName="horsepower" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Mileage</mat-label>
+          <input formControlName="mileage" matInput>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <div class="upper-spacer">
+      <ng-template matStepLabel>Accessories of your car</ng-template>
+      <mat-form-field>
+        <mat-label>Car attributes</mat-label>
+        <mat-select multiple [(ngModel)]="attributes" [compareWith]="compareObjects">
+          <mat-optgroup *ngFor="let group of groupedAttributes" [label]="group.category">
+            <mat-option *ngFor="let attribute of group.attributes" [value]="attribute">
+              {{attribute.value}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Images about car</ng-template>
+    <p>Upload car images:</p>
+
+    <input type="file" multiple (change)="handleFileInput($event.target)">
+  </mat-step>
+  <mat-step [stepControl]="auctionForm">
+    <form class="upper-spacer" [formGroup]="auctionForm">
+      <ng-template matStepLabel>Information about auction</ng-template>
+      <div>
+        <mat-form-field>
+          <mat-label>Starting amount</mat-label>
+          <input formControlName="amountStarting" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Current amount</mat-label>
+          <input formControlName="currentPrice" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Start date</mat-label>
+          <input matInput [matDatepicker]="startPicker" formControlName="biddingBegins">
+          <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Location</mat-label>
+          <input formControlName="location" matInput>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <button mat-raised-button color="primary" (click)="sell()">Sell your car</button>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+
