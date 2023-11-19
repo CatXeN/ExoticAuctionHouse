@@ -1,6 +1,5 @@
 ﻿using ExoticAuctionHouse_API.Helpers;
-using ExoticAuctionHouse_API.Repositories;
-using ExoticAuctionHouse_API.Repositories.Attributes;
+using ExoticAuctionHouse_API.Repositories.Auctions;
 using ExoticAuctionHouse_API.Repositories.Cars;
 using ExoticAuctionHouseModel.Enums;
 using ExoticAuctionHouseModel.Informations;
@@ -13,15 +12,15 @@ namespace ExoticAuctionHouse_API.Services.Cars
     {
         private readonly ICarRepository _carRepository;
         private readonly ICarAttributeRepository _carAttributeRepository;
-        private readonly IAttributeRepository _attributeRepository;
         private readonly IHostEnvironment _hostingEnv;
+        private readonly IAuctionRepository _auctionRepository;
 
-        public CarService(ICarRepository carRepository, ICarAttributeRepository carAttributeRepository, IAttributeRepository attributeRepository, IHostEnvironment hostingEnv)
+        public CarService(ICarRepository carRepository, ICarAttributeRepository carAttributeRepository, IHostEnvironment hostingEnv, IAuctionRepository auctionRepository)
         {
             _carRepository = carRepository;
             _carAttributeRepository = carAttributeRepository;
-            _attributeRepository = attributeRepository;
             _hostingEnv = hostingEnv;
+            _auctionRepository = auctionRepository;
         }
 
         public Task<Guid> AddCar(AddCarInformation addCarInformation)
@@ -68,6 +67,20 @@ namespace ExoticAuctionHouse_API.Services.Cars
                 Category = x.Attribute.Category,
                 Name = x.Attribute.Value
             }).ToList();
+        }
+
+        public async Task<CommonInformation> SellCar(SellCarInformation sellCarInformation)
+        {
+            var car = new Car(sellCarInformation.Car);
+            var carId = await _carRepository.AddCar(car);
+
+            sellCarInformation.Auction.CarId = carId;
+            var auctionId = await _auctionRepository.Add(sellCarInformation.Auction);
+
+            sellCarInformation.AddCarAttributeInformation.CarId = carId;
+            await _carAttributeRepository.AddAtribute(sellCarInformation.AddCarAttributeInformation);
+
+            return new CommonInformation() { CarId = carId, AuctionId = auctionId };
         }
 
         public async Task<List<string>> UploadFiles(List<IFormFile> files, string id)

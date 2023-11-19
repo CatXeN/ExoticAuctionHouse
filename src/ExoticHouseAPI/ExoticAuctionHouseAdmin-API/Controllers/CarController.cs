@@ -14,15 +14,11 @@ namespace ExoticAuctionHouse_API.Controllers
     {
         private readonly ICarRepository _carRepository;
         private readonly ICarService _carService;
-        private readonly IAuctionRepository _auctionRepository;
-        private readonly ICarAttributeRepository _carAttributeRepository;
 
-        public CarController(ICarRepository carRepository, ICarService carService, IAuctionRepository auctionRepository, ICarAttributeRepository carAttributeRepository)
+        public CarController(ICarRepository carRepository, ICarService carService)
         {
             _carRepository = carRepository;
             _carService = carService;
-            _auctionRepository = auctionRepository;
-            _carAttributeRepository = carAttributeRepository;
         }
 
         [HttpGet]
@@ -106,16 +102,8 @@ namespace ExoticAuctionHouse_API.Controllers
         [HttpPost("sellCar")]
         public async Task<IActionResult> SellCar(SellCarInformation sellCarInformation)
         {
-            var car = new Car(sellCarInformation.Car);
-            var carId = await _carRepository.AddCar(car);
-
-            sellCarInformation.Auction.CarId = carId;
-            var auctionId = await _auctionRepository.Add(sellCarInformation.Auction);
-
-            sellCarInformation.AddCarAttributeInformation.CarId = carId;
-            await _carAttributeRepository.AddAtribute(sellCarInformation.AddCarAttributeInformation);
-
-            return Ok(new CommonInformation() { CarId = carId, AuctionId = auctionId });
+            var soldCar = await _carService.SellCar(sellCarInformation);
+            return Ok(soldCar);
         }
     }
 }
