@@ -1,4 +1,5 @@
 ﻿using ExoticAuctionHouse_API.Data;
+using ExoticAuctionHouseModel.Informations;
 using ExoticAuctionHouseModel.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,10 +33,32 @@ namespace ExoticAuctionHouse_API.Repositories.Cars
             return await notSoldCars.ToListAsync();
         }
 
+        public async Task<bool> ClientFollowingCar(Guid clientId, Guid carId)
+        {
+            return await _context.FollowedCars.AnyAsync(x => x.ClientId == clientId && carId == x.CarId);
+        }
+
         public async Task DeleteCar(Guid id)
         {
             var car = await _context.Cars.FirstOrDefaultAsync(car => car.Id == id);
             _context.Cars.Remove(car);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task FollwingCar(FollowingCar followingCar)
+        {
+            var isFollowing = await _context.FollowedCars.FirstOrDefaultAsync(x => x.CarId == followingCar.CarId && x.ClientId == followingCar.ClientId);
+
+            if (isFollowing == null)
+            {
+                var followedCar = new FollowedCar(followingCar.ClientId, followingCar.CarId);
+                await _context.AddAsync(followedCar);
+            }
+            else
+            {
+                _context.FollowedCars.Remove(isFollowing);
+            }
+
             await _context.SaveChangesAsync();
         }
 

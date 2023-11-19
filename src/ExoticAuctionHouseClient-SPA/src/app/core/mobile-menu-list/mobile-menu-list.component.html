@@ -7,7 +7,8 @@
   </div>
 
   <ul class="menu">
-    <li class="menu__item" (click)="switchMenuState()" [routerLink]="['dashboard']">Search</li>
-    <li class="menu__item" (click)="switchMenuState()" [routerLink]="['auctions']">Auctions</li>
+    <li class="menu__item" (click)="switchMenuState()" [routerLink]="['/panel/dashboard']">Search</li>
+    <li class="menu__item" (click)="switchMenuState()" [routerLink]="['/panel/auctions']">Auctions</li>
+    <li class="menu__item" (click)="switchMenuState()" [routerLink]="['/user/panel']">User panel</li>
   </ul>
 </div>

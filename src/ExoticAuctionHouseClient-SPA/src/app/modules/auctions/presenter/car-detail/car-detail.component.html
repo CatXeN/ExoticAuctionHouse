@@ -14,7 +14,12 @@
     </div>
   </div>
   <div class="auction__information">
-    <h3>{{setFullName()}}</h3>
+    <div class="auction__information--name">
+      <h3>{{setFullName()}}</h3>
+      <button *ngIf="loggedIn" mat-icon-button [ngStyle]="{ 'color' : isFavorite ? 'red' : 'white' } " (click)="setFavorite()">
+        <mat-icon fontIcon="favorite"></mat-icon>
+      </button>
+    </div>
 
     <div class="auction__information--details">
       <span>

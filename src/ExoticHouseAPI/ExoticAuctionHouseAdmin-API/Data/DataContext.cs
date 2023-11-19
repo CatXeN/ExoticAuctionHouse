@@ -14,11 +14,6 @@ namespace ExoticAuctionHouse_API.Data
         public DbSet<Auction> Auctions { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<ExoticAuctionHouseModel.Models.Attribute> Attributes { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<ExoticAuctionHouseModel.Models.Attribute>()
-                .HasData(SeedAttributes.GetAttributes());
-        }
+        public DbSet<FollowedCar> FollowedCars { get; set; }
     }
 }

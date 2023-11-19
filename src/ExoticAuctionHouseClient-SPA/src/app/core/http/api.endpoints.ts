@@ -28,7 +28,9 @@ export const apiEndpoints = {
     getModels: `${environment.apiUrl}/api/car/getModels/`,
     carController: `${environment.apiUrl}/api/car/`,
     sellCar: `${environment.apiUrl}/api/car/sellCar`,
-    uploadImages: `${environment.apiUrl}/api/car/uploadImages/`
+    uploadImages: `${environment.apiUrl}/api/car/uploadImages/`,
+    setFavorite: `${environment.apiUrl}/api/car/followingCar`,
+    getFavorite: `${environment.apiUrl}/api/car/clientFollowingCar/`
   },
   bet: {
     getBetById: `${environment.auctionServer}/api/bet/`

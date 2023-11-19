@@ -9,6 +9,7 @@ import {CreatePayment} from "../../../shared/models/create-payment";
 import { environment } from '../../../../environments/environment';
 import { apiEndpoints } from 'src/app/core/http/api.endpoints';
 import {Car} from "../../../shared/models/car.model";
+import {SetFavorite} from "../../../shared/models/set-favorite.model";
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,13 @@ export class AuctionService {
 
   public addCar(car: Car): Observable<string> {
     return this.httpClient.post<string>(apiEndpoints.cars.carController, car);
+  }
+
+  public setFavorite(data: SetFavorite) {
+    return this.httpClient.post(apiEndpoints.cars.setFavorite, data);
+  }
+
+  public getIsFavorite(carId: string, clientId: string): Observable<boolean> {
+    return this.httpClient.get<boolean>(apiEndpoints.cars.getFavorite + carId + '/' + clientId);
   }
 }

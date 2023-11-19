@@ -1,4 +1,5 @@
-﻿using ExoticAuctionHouseModel.Models;
+﻿using ExoticAuctionHouseModel.Informations;
+using ExoticAuctionHouseModel.Models;
 
 namespace ExoticAuctionHouse_API.Repositories.Cars
 {
@@ -14,5 +15,7 @@ namespace ExoticAuctionHouse_API.Repositories.Cars
         Task<string[]> GetModels(string brand);
         IQueryable<Car> GetCarsQueryable(string brand);
         Task<IEnumerable<Car>> AvailableCars();
+        Task FollwingCar(FollowingCar followingCar);
+        Task<bool> ClientFollowingCar(Guid clientId, Guid carId);
     }
 }

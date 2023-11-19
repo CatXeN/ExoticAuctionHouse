@@ -4,6 +4,7 @@ import {AuctionService} from "../../services/auction.service";
 import {CreatePayment} from "../../../../shared/models/create-payment";
 import {environment} from "../../../../../environments/environment";
 import {SnackbarService} from "../../../../shared/services/snackbar.service";
+import {SetFavorite} from "../../../../shared/models/set-favorite.model";
 
 @Component({
   selector: 'app-car-detail',
@@ -16,6 +17,7 @@ export class CarDetailComponent {
   public images = [''];
   public currentImage: number = 0;
   public loggedIn: boolean = false;
+  public isFavorite: boolean = false;
 
   constructor(private auctionService: AuctionService, private snackBar: SnackbarService) {
     this.loggedIn = this.localStorage.getItem('token') != null;
@@ -25,6 +27,12 @@ export class CarDetailComponent {
     if (value !== undefined) {
       this.auction = value;
       this.images = this.auction.car.images.split(',');
+
+      if (this.loggedIn) {
+        this.auctionService.getIsFavorite(this.auction.carId!, this.localStorage.getItem('id')!).subscribe(result => {
+          this.isFavorite = result;
+        });
+      }
     }
   }
 
@@ -69,6 +77,17 @@ export class CarDetailComponent {
     }
 
     this.currentImage += index;
+  }
+
+  public setFavorite(): void {
+    let fav: SetFavorite = {
+      carId: this.auction?.car.id!,
+      clientId: this.localStorage.getItem('id')!
+    }
+
+    this.auctionService.setFavorite(fav).subscribe(res => {
+      this.isFavorite = !this.isFavorite;
+    });
   }
 
   protected readonly localStorage = localStorage;
