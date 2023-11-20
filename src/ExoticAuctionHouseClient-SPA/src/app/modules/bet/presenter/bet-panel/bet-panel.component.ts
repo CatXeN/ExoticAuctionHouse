@@ -5,6 +5,7 @@ import * as signalR from "@microsoft/signalr";
 import {Auction} from "../../../../shared/models/auction.model";
 import {inputNames} from "@angular/cdk/schematics";
 import {BetService} from "../../services/bet.service";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-bet-panel',
@@ -34,7 +35,7 @@ export class BetPanelComponent implements OnInit {
   ngOnInit(): void {
     this.userId = localStorage.getItem('id');
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl("https://localhost:7221/Auction", {
+      .withUrl(environment.auctionServer + "/Auction", {
         transport: signalR.HttpTransportType.WebSockets
       })
       .build();
@@ -61,6 +62,7 @@ export class BetPanelComponent implements OnInit {
   }
 
   sendMessage(): void {
+    this.remainingTime = 120;
     const offer: number = this.currentPrice + 1000;
     console.log(this.auction?.id);
 
