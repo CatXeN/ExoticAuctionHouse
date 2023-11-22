@@ -1,1 +1,8 @@
-<p>purchased-cars-presenter works!</p>
+<script src="purchased-cars-presenter.component.ts"></script>
+<div class="followed-auction">
+  <div class="followed-auction__box" *ngFor="let car of followedCars">
+    <img class="followed-auction__box--image" src="{{car.car.mainImage}}" alt="car image">
+    <span class="followed-auction__box--name">{{car.car.brand}} {{car.car.model}} {{car.car.generation}}</span>
+    <button (click)="getAuctionId(car.carId)" class="followed-auction__box--details" mat-raised-button color="primary">See details</button>
+  </div>
+</div>

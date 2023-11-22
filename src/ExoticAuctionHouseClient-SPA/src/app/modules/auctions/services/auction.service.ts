@@ -50,4 +50,8 @@ export class AuctionService {
   public getIsFavorite(carId: string, clientId: string): Observable<boolean> {
     return this.httpClient.get<boolean>(apiEndpoints.cars.getFavorite + carId + '/' + clientId);
   }
+
+  public getAuctionIdByCar(carId: string): Observable<string> {
+    return this.httpClient.get<string>(apiEndpoints.auction.getAuctionByCar + carId);
+  }
 }

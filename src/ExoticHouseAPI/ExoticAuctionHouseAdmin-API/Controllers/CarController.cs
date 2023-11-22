@@ -119,5 +119,12 @@ namespace ExoticAuctionHouse_API.Controllers
             var res = await _carRepository.ClientFollowingCar(clientId, carId);
             return new JsonResult(res);
         }
+
+        [HttpGet("getFollowedCars/{clientId}")]
+        public async Task<IActionResult> GetFollowedCars(Guid clientId)
+        {
+            var res = await _carRepository.GetFollowingCars(clientId);
+            return Ok(res);
+        }
     }
 }

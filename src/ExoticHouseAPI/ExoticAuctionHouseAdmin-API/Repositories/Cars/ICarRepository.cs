@@ -17,5 +17,6 @@ namespace ExoticAuctionHouse_API.Repositories.Cars
         Task<IEnumerable<Car>> AvailableCars();
         Task FollwingCar(FollowingCar followingCar);
         Task<bool> ClientFollowingCar(Guid clientId, Guid carId);
+        Task<List<FollowedCar>> GetFollowingCars(Guid clientId);
     }
 }

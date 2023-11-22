@@ -4,7 +4,8 @@ export const apiEndpoints = {
   auction: {
     getCarsByFilter: `${environment.apiUrl}/api/auction/search`,
     getExhibitedCars: `${environment.apiUrl}/api/auction/`,
-    getAuction: `${environment.apiUrl}/api/auction/`
+    getAuction: `${environment.apiUrl}/api/auction/`,
+    getAuctionByCar: `${environment.apiUrl}/api/auction/GetAuctionId/`
   },
   attributes: {
     getAttributes: `${environment.apiUrl}/api/attribute/`
@@ -30,7 +31,8 @@ export const apiEndpoints = {
     sellCar: `${environment.apiUrl}/api/car/sellCar`,
     uploadImages: `${environment.apiUrl}/api/car/uploadImages/`,
     setFavorite: `${environment.apiUrl}/api/car/followingCar`,
-    getFavorite: `${environment.apiUrl}/api/car/clientFollowingCar/`
+    getFavorite: `${environment.apiUrl}/api/car/clientFollowingCar/`,
+    getFollowedCars: `${environment.apiUrl}/api/car/getFollowedCars/`
   },
   bet: {
     getBetById: `${environment.auctionServer}/api/bet/`

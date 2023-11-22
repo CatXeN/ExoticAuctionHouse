@@ -7,6 +7,7 @@ import {Payment} from "../../../shared/models/payment.model";
 import {Attribute} from "../../../shared/models/attribute.model";
 import {SellCar} from "../../../shared/models/sell-car.model";
 import {CommonInformation} from "../../../shared/models/common-information.model";
+import {FollowedCar} from "../../../shared/models/followed-car.model";
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,9 @@ export class UserService {
 
   public sellCar(data: SellCar): Observable<CommonInformation> {
     return this._httpClient.post<CommonInformation>(apiEndpoints.cars.sellCar, data);
+  }
+
+  public getFollowedCars(): Observable<FollowedCar[]> {
+    return this._httpClient.get<FollowedCar[]>(apiEndpoints.cars.getFollowedCars + this.userId);
   }
 }

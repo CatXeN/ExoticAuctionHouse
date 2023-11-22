@@ -64,6 +64,12 @@ namespace ExoticAuctionHouse_API.Repositories.Auctions
             .Include(x => x.Car)
             .AsQueryable();
 
+        public async Task<Guid> GetByCarId(Guid carId)
+        {
+            var res = await _context.Auctions.FirstOrDefaultAsync(x => x.CarId == carId && !x.IsEnd);
+            return res.Id;
+        }
+
         public async Task<Auction> GetById(Guid id)
         {
             var auction = await _context.Auctions.Include(a => a.Car).FirstOrDefaultAsync(a => a.Id == id);

@@ -73,5 +73,12 @@ namespace ExoticAuctionHouse_API.Controllers
             await _auctionService.SoldCar(soldCarInformation);
             return Ok();
         }
+
+        [HttpGet("GetAuctionId/{carId}")]
+        public  async Task<IActionResult> GetAuctionIdByCarId(Guid carId)
+        {
+            var auctionId = await _auctionRepository.GetByCarId(carId);
+            return Ok(auctionId);
+        }
     }
 }

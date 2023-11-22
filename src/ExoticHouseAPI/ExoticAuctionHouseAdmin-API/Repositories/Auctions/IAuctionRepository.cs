@@ -13,5 +13,6 @@ namespace ExoticAuctionHouse_API.Repositories.Auctions
         Task End(Guid[] ids);
         Task Update(Auction auction);
         Task Update(UpdateAuctionInformation auction);
+        Task<Guid> GetByCarId(Guid carId);
     }
 }
