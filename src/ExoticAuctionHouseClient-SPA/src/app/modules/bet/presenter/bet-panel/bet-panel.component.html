@@ -1,16 +1,34 @@
 <div class="bid">
   <h3 class="bid__name" *ngIf="auction">{{auction.car.brand}} {{auction.car.model}} {{auction.car.generation}}</h3>
 
-  <b class="bid__price">{{currentPrice}} $</b>
+  <div class="bid__container">
+    <div class="bid__container--panel">
 
-  <mat-progress-spinner
-    class="example-margin"
-    color="primary"
-    mode="determinate"
-    value="{{(remainingTime / 120) * 100}}">
-  </mat-progress-spinner>
+    </div>
+    <div class="bid__container--panel">
+      <b class="bid__price">{{currentPrice}} $</b>
 
-  <h3>Time remaining: {{remainingTime}} sec</h3>
+      <mat-progress-spinner
+        class="example-margin"
+        color="primary"
+        mode="determinate"
+        value="{{(remainingTime / 120) * 100}}">
+      </mat-progress-spinner>
 
-  <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
+      <h3>Time remaining: {{remainingTime}} sec</h3>
+      <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
+    </div>
+    <div class="bid__container--panel">
+        <h3>Bet list:</h3>
+
+        <div class="bet-list">
+          <div class="bet-list--bet" *ngFor="let bet of userListBet">
+            <b>User:</b>
+            <p>{{bet.user}}</p>
+            <b>Amount:</b>
+            <p>{{bet.amount}}</p>
+          </div>
+        </div>
+    </div>
+  </div>
 </div>

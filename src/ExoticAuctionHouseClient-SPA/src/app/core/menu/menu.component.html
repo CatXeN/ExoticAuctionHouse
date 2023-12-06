@@ -16,20 +16,11 @@
     </ul>
 
     <ul class="menu__list">
-      <li class="menu__list--item" *ngIf="loggedIn">
-        <mat-icon fontIcon="add"></mat-icon>
-        <a>Create Auction</a>
-      </li>
-      <li class="menu__list--item" *ngIf="loggedIn">
-        <mat-icon fontIcon="shopping_cart"></mat-icon>
-        <a>My Bids</a>
-      </li>
-      <li class="menu__list--item" *ngIf="loggedIn">
-        <mat-icon fontIcon="favorite"></mat-icon>
-        <a>Followed</a>
-      </li>
       <li class="menu__list--profile" *ngIf="loggedIn">
-        <button mat-icon-button [routerLink]="['/user/panel']"> <mat-icon>person</mat-icon></button>
+        <span>User panel</span>
+        <button mat-icon-button color="accent" [routerLink]="['/user/panel']">
+          <mat-icon>person</mat-icon>
+        </button>
       </li>
       <li *ngIf="!loggedIn">
         <button mat-raised-button color="accent" [routerLink]="['/auth/login']">Log in</button>

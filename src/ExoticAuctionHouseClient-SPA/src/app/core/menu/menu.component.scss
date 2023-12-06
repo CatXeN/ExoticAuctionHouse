@@ -12,6 +12,8 @@
 
   &__container {
     display: flex;
+    width: 90%;
+    justify-content: space-between;
   }
 
   &__list {
@@ -40,8 +42,8 @@
       &--profile {
           margin-bottom: 10px;
           display: flex;
-          align-items: flex-end;
-          margin-left: 20px;
+          align-items: center;
+          margin-left: 40px;
 
           a {
               margin-left: 10px;

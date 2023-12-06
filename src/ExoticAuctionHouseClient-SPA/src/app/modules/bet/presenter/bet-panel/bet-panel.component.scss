@@ -13,4 +13,29 @@
     color: #0e9c0e;
     font-size: 40px;
   }
+
+  &__container {
+    width: 100%;
+    display: flex;
+
+    &--panel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 33%;
+      flex-direction: column;
+
+      .bet-list {
+        border: 1px solid white;
+        width: 90%;
+        height: 400px;
+        overflow-y: auto;
+
+        &--bet {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
 }
