@@ -23,12 +23,27 @@
           margin-bottom: 10px;
           display: flex;
           align-items: center;
+          width: 150px;
+          height: 40px;
+          border-radius: 14px;
 
           a {
               margin-left: 10px;
               text-decoration: none;
               color: #7F7E83;
           }
+
+          user-select: none;
+      }
+
+      &--item:hover {
+        a {
+            color: white;
+        }
+      }
+
+      .current {
+        background-color: #7F7E83;
       }
 
       .is-active {
