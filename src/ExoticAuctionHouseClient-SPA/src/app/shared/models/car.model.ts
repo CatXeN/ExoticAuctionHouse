@@ -12,4 +12,5 @@ export class Car {
     horsepower!: number;
     mainImage!: string;
     images!: string;
+    userId!: string;
 }

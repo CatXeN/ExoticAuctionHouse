@@ -35,7 +35,7 @@
         <mat-checkbox formControlName="agreeTerm">Agree term</mat-checkbox>
         <span class="text-danger" *ngIf="registerForm.controls['agreeTerm'].invalid && (registerForm.controls['agreeTerm'].dirty || registerForm.controls['agreeTerm'].touched)">Agree is required</span>
 
-        <button type="submit" mat-raised-button color="primary">Register</button>
+        <button type="submit" (click)="register()" mat-raised-button color="primary">Register</button>
       </div>
     </form>
   </div>

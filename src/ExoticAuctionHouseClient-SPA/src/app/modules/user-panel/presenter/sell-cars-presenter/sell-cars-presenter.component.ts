@@ -88,6 +88,8 @@ export class SellCarsPresenterComponent implements OnInit {
     Object.assign(car, this.carForm.value);
     Object.assign(auction, this.auctionForm.value);
 
+    car.userId = localStorage.getItem('id')!;
+
     let carAttributes: AddCarAttribute  = {
       attributes: this.attributes.map((attribute: CarAttribute) => attribute.id),
       carId: '00000000-0000-0000-0000-000000000000'
