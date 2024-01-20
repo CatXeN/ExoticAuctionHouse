@@ -18,5 +18,6 @@ namespace ExoticAuctionHouseModel.Informations
         public int Mileage { get; set; }
         public BodyType BodyType { get; set; }
         public DateTime ProductionDate { get; set; }
+        public Guid UserId { get; set; }
     }
 }

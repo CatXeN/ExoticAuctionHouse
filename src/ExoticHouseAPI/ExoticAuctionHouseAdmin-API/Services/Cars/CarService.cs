@@ -38,7 +38,8 @@ namespace ExoticAuctionHouse_API.Services.Cars
                 Mileage = addCarInformation.Mileage,
                 Model = addCarInformation.Model,
                 Images = "",
-                MainImage = ""
+                MainImage = "",
+                OwnerId = addCarInformation.UserId
             };
 
             var id = _carRepository.AddCar(car);

@@ -1,11 +1,6 @@
 ﻿using ExoticAuctionHouseModel.Enums;
 using ExoticAuctionHouseModel.Informations;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExoticAuctionHouseModel.Models
 {
@@ -25,6 +20,7 @@ namespace ExoticAuctionHouseModel.Models
         public bool IsSold { get; set; }
         public string MainImage { get; set; }
         public string Images { get; set; }
+        public Guid OwnerId { get; set; }
 
         public Car()
         {
@@ -45,6 +41,7 @@ namespace ExoticAuctionHouseModel.Models
             Mileage = addCarInformation.Mileage;
             Model = addCarInformation.Model;
             ProductionDate = addCarInformation.ProductionDate;
+            OwnerId = addCarInformation.UserId;
         }
     }
 }
