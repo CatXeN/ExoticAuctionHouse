@@ -62,7 +62,7 @@ namespace ExoticAuctionHouse_API.Repositories.Auctions
 
         public IQueryable<Auction> GetAuctionWithCarsQuerable(string brand) => _context.Auctions
             .Include(x => x.Car)
-            .AsQueryable();
+            .Where(x => !x.IsEnd);
 
         public async Task<Guid> GetByCarId(Guid carId)
         {
