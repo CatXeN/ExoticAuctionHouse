@@ -10,5 +10,5 @@ export interface Car {
   isSold: boolean;
   capacity: number;
   horsepower: number;
-  userId: string;
+  ownerId: string;
 }

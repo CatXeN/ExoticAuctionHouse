@@ -73,7 +73,7 @@ export class CarDetailsComponent implements OnInit {
       bodyType: this.carForm.get('bodyType')?.value!,
       productionDate: new Date(this.carForm.get('productionDate')?.value!),
       isSold: this.carForm.get('isSold')?.value!,
-      userId: localStorage.getItem('id')!
+      ownerId: localStorage.getItem('id')!
     };
 
     if (car.id === '') {
