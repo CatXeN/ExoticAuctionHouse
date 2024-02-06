@@ -1,10 +1,10 @@
-import {Component, Input} from '@angular/core';
-import {Auction} from "../../../../shared/models/auction.model";
-import {AuctionService} from "../../services/auction.service";
-import {CreatePayment} from "../../../../shared/models/create-payment";
-import {environment} from "../../../../../environments/environment";
-import {SnackbarService} from "../../../../shared/services/snackbar.service";
-import {SetFavorite} from "../../../../shared/models/set-favorite.model";
+import { Component, Input } from '@angular/core';
+import { Auction } from "../../../../shared/models/auction.model";
+import { AuctionService } from "../../services/auction.service";
+import { CreatePayment } from "../../../../shared/models/create-payment";
+import { environment } from "../../../../../environments/environment";
+import { SnackbarService } from "../../../../shared/services/snackbar.service";
+import { SetFavorite } from "../../../../shared/models/set-favorite.model";
 
 @Component({
   selector: 'app-car-detail',
@@ -18,6 +18,7 @@ export class CarDetailComponent {
   public currentImage: number = 0;
   public loggedIn: boolean = false;
   public isFavorite: boolean = false;
+  public left: any;
 
   constructor(private auctionService: AuctionService, private snackBar: SnackbarService) {
     this.loggedIn = this.localStorage.getItem('token') != null;
@@ -33,6 +34,27 @@ export class CarDetailComponent {
           this.isFavorite = result;
         });
       }
+
+
+      setInterval(() => {
+        if (this.auction && this.auction.biddingBegins) {
+          let diffrence = new Date(this.auction.biddingBegins).getTime() - new Date().getTime();
+
+          let days = Math.floor(diffrence / (1000 * 60 * 60 * 24));
+          diffrence -= days * (1000 * 60 * 60 * 24);
+
+          let hours = Math.floor(diffrence / (1000 * 60 * 60));
+          diffrence -= hours * (1000 * 60 * 60);
+
+          let minutes = Math.floor(diffrence / (1000 * 60));
+
+          this.left = {
+            days: days,
+            hours: hours,
+            minutes: minutes
+          };
+        }
+      }, 1000);
     }
   }
 
