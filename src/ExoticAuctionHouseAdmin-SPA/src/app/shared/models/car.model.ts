@@ -11,4 +11,6 @@ export interface Car {
   capacity: number;
   horsepower: number;
   ownerId: string;
+  images: string;
+  mainImage: string;
 }

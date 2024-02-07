@@ -32,8 +32,11 @@ export class CarDetailsComponent implements OnInit {
         mileage: this.car.mileage,
         bodyType: this.car.bodyType,
         productionDate: this.car.productionDate.toString(),
-        isSold: this.car.isSold
-      });
+        isSold: this.car.isSold,
+        ownerId: this.car.ownerId,
+        images: this.car.images,
+        mainImage: this.car.mainImage
+     });
     }
   }
 
@@ -48,7 +51,10 @@ export class CarDetailsComponent implements OnInit {
     mileage: [0, Validators.required],
     bodyType: [0, Validators.required],
     productionDate: ['', Validators.required],
-    isSold: [false, Validators.required]
+    isSold: [false, Validators.required],
+    ownerId: ['', Validators.required],
+    images: ['', Validators.required],
+    mainImage: ['', Validators.required]
   });
 
   constructor(private fb: FormBuilder, private carService: CarsService, private snackbarService: SnackbarService, private router: Router) {}
@@ -73,7 +79,9 @@ export class CarDetailsComponent implements OnInit {
       bodyType: this.carForm.get('bodyType')?.value!,
       productionDate: new Date(this.carForm.get('productionDate')?.value!),
       isSold: this.carForm.get('isSold')?.value!,
-      ownerId: localStorage.getItem('id')!
+      ownerId: localStorage.getItem('id')!,
+      images: this.carForm.get('images')?.value!,
+      mainImage: this.carForm.get('mainImage')?.value!
     };
 
     if (car.id === '') {
