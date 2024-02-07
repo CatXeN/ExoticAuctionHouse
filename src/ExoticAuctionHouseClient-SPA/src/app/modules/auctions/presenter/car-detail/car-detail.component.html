@@ -39,7 +39,7 @@
       </span>
     </div>
 
-    <h2 class="auction__information--price">{{auction.currentPrice}} EUR</h2>
+    <h2 [@enterAnimation] class="auction__information--price">{{auction.currentPrice}} EUR</h2>
 
     <div class="auction__information--action" *ngIf="loggedIn">
       <button mat-raised-button color="primary" (click)="createPayment()">Buy</button>
