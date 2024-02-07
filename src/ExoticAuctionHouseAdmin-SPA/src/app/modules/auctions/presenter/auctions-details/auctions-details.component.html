@@ -15,12 +15,21 @@
         <input formControlName="currentPrice" matInput>
       </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Start date</mat-label>
-        <input matInput [matDatepicker]="startPicker" formControlName="biddingBegins">
-        <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
-        <mat-datepicker #startPicker></mat-datepicker>
-      </mat-form-field>
+      <div class="auction-start">
+        <mat-form-field>
+          <mat-label>Start date</mat-label>
+          <input matInput [matDatepicker]="startPicker" formControlName="biddingBegins">
+          <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+
+        <div class="auction-start__hours">
+          <span>Hour: </span>
+          <input formControlName="time" [ngxTimepicker]="picker" [format]="24">
+          <ngx-material-timepicker #picker></ngx-material-timepicker>
+        </div>
+      </div>
+
     </div>
 
     <div class="edit-auction__form--row">

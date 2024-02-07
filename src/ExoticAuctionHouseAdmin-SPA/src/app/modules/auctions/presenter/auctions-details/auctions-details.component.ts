@@ -44,7 +44,8 @@ export class AuctionsDetailsComponent implements OnInit {
     createdAt: ['', Validators.required],
     carId: ['', Validators.required],
     location: ['', Validators.required],
-    isEnd: [false, Validators.required]
+    isEnd: [false, Validators.required],
+    time: ['', Validators.required]
   });
 
   constructor(private fb: FormBuilder, private auctionService: AuctionsService, private snackbarService: SnackbarService, private router: Router, private carsService: CarsService) {}
@@ -61,10 +62,19 @@ export class AuctionsDetailsComponent implements OnInit {
   }
 
   saveChanges(): void {
+    let date = '';
+
+    if (this.auctionForm.get('biddingBegins')?.value!) {
+      const hour = this.auctionForm.get('time')?.value!;
+      const dateWithHour = moment(this.auctionForm.get('biddingBegins')?.value!).format("YYYY-MM-DDTH:mm:ss");
+      date = dateWithHour.split('T')[0];
+      date = date + 'T' + hour + ':00.000Z';
+    }
+
     let auction: any = {
       amountStarting: this.auctionForm.get('amountStarting')?.value!,
       currentPrice: this.auctionForm.get('currentPrice')?.value!,
-      biddingBegins: moment(this.auctionForm.get('biddingBegins')?.value!),
+      biddingBegins: date,
       createdAt: moment(this.auctionForm.get('creationDate')?.value!),
       carId: this.auctionForm.get('carId')?.value!,
       location: this.auctionForm.get('location')?.value!,

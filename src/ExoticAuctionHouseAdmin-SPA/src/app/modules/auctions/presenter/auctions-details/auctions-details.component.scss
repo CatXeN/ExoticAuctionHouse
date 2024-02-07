@@ -2,6 +2,16 @@
   margin-top: 20px;
   margin-left: 20px;
 
+  .auction-start {
+    display: flex;
+
+    &__hours {
+      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
   &__form {
     &--row {
       mat-form-field:first-child {
