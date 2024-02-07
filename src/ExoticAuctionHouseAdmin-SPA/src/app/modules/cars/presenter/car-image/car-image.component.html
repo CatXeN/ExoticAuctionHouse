@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="car" class="container">
   <p>Upload car images:</p>
 
   <input type="file" multiple (change)="handleFileInput($event.target)">
