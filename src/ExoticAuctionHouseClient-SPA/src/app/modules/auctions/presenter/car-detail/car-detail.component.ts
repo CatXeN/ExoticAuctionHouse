@@ -5,11 +5,26 @@ import { CreatePayment } from "../../../../shared/models/create-payment";
 import { environment } from "../../../../../environments/environment";
 import { SnackbarService } from "../../../../shared/services/snackbar.service";
 import { SetFavorite } from "../../../../shared/models/set-favorite.model";
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-car-detail',
   templateUrl: './car-detail.component.html',
-  styleUrls: ['./car-detail.component.scss']
+  styleUrls: ['./car-detail.component.scss'],
+  animations: [
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          style({transform: 'translateX(100%)', opacity: 0}),
+          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateX(0)', opacity: 1}),
+          animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
+        ])
+      ]
+    )
+  ],
 })
 export class CarDetailComponent {
   auction: Auction | undefined;

@@ -50,8 +50,8 @@
       <a [routerLink]="['/auth/login']">log in</a>
     </div>
 
-    <span class="auction__information--timer" *ngIf="left">
-      Auction will start: Days: {{left.days}} Hours: {{left.hours}} Minutes: {{left.minutes}}
+    <span class="auction__information--timer"  [@enterAnimation] *ngIf="left">
+      Auction will start: Days: {{left.days < 0 ? 0 : left.days}} Hours: {{left.hours < 0 ? 0 : left.hours}} Minutes: {{left.minutes < 0 ? 0 : left.minutes}}
     </span>
   </div>
 </div>
