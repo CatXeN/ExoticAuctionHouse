@@ -44,13 +44,14 @@
     <div class="auction__information--action" *ngIf="loggedIn">
       <button mat-raised-button color="primary" (click)="createPayment()">Buy</button>
       <button mat-raised-button color="accent" [routerLink]="['/user/bet/', auction.id]" [disabled]="!IsActive()">Bid</button>
-      <span *ngIf="left">
-        Auction has started: Days: {{left.days}} Hours: {{left.hours}} Minutes: {{left.minutes}}
-      </span>
     </div>
     <div class="auction__information--action" *ngIf="!loggedIn">
       <span>If you want to take part in the auction or buy a car you must </span>
       <a [routerLink]="['/auth/login']">log in</a>
     </div>
+
+    <span class="auction__information--timer" *ngIf="left">
+      Auction will start: Days: {{left.days}} Hours: {{left.hours}} Minutes: {{left.minutes}}
+    </span>
   </div>
 </div>
