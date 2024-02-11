@@ -22,7 +22,8 @@ export const apiEndpoints = {
   },
   auth: {
     register: `${environment.authApiUrl}/api/auth/register`,
-    getToken: `${environment.authApiUrl}/api/auth/login`
+    getToken: `${environment.authApiUrl}/api/auth/login`,
+    getUsers: `${environment.authApiUrl}/api/Users`
   },
   cars: {
     pageData: `${environment.apiUrl}/api/car/pageData`,

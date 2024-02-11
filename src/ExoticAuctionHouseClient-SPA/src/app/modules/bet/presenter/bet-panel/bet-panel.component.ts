@@ -6,6 +6,7 @@ import {Auction} from "../../../../shared/models/auction.model";
 import {inputNames} from "@angular/cdk/schematics";
 import {BetService} from "../../services/bet.service";
 import {environment} from "../../../../../environments/environment";
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-bet-panel',
@@ -20,6 +21,7 @@ export class BetPanelComponent implements OnInit {
   public remainingTime: number = 120;
   private interval: any;
   public userListBet: any = [];
+  public users: User[] = [];
 
   @Input() set auctionInput(value: Auction | null) {
     if (value !== undefined && value !== null) {
@@ -34,6 +36,10 @@ export class BetPanelComponent implements OnInit {
   constructor(private betService: BetService) {}
 
   ngOnInit(): void {
+    this.betService.getUsers().subscribe(res => {
+      this.users = res;
+    })
+
     this.userId = localStorage.getItem('id');
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl(environment.auctionServer + "/Auction", {
@@ -72,5 +78,9 @@ export class BetPanelComponent implements OnInit {
     console.log(this.auction?.id);
 
     this.connection?.invoke("SendMessage", this.userId, this.auction?.id, offer);
+  }
+
+  public getUserName(guid: string) {
+    return this.users.find(x => x.id == guid)?.username;
   }
 }

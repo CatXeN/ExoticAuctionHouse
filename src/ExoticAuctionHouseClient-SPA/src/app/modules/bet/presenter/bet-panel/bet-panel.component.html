@@ -6,7 +6,7 @@
 
     </div>
     <div class="bid__container--panel">
-      <b class="bid__price">{{currentPrice}} $</b>
+      <b class="bid__price">{{currentPrice}} EUR</b>
 
       <mat-progress-spinner
         class="example-margin"
@@ -16,15 +16,15 @@
       </mat-progress-spinner>
 
       <h3>Time remaining: {{remainingTime}} sec</h3>
-      <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
+      <button mat-raised-button color="primary" (click)="sendMessage()">Send 1000 EUR</button>
     </div>
     <div class="bid__container--panel">
         <h3>Bet list:</h3>
 
         <div class="bet-list">
           <div class="bet-list--bet" *ngFor="let bet of userListBet">
-            <b>User:</b>
-            <p>{{bet.user}}</p>
+            <b>User: </b>
+            <p class="username">{{getUserName(bet.user)}}</p>
             <b>Amount:</b>
             <p>{{bet.amount}}</p>
           </div>
