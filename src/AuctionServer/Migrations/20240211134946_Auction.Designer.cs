@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuctionServer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230919164155_changedDateTimeOffsettoDateTime")]
-    partial class changedDateTimeOffsettoDateTime
+    [Migration("20240211134946_Auction")]
+    partial class Auction
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

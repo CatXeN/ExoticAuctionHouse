@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AuctionServer.Migrations
 {
     /// <inheritdoc />
-    public partial class InvidualBetDb : Migration
+    public partial class Auction : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,7 @@ namespace AuctionServer.Migrations
                     CarId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CurrentPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     LastUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LastTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                    LastTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

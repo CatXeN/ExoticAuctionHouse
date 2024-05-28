@@ -28,7 +28,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: "Angular",
         builder =>
         {
-            builder.WithOrigins("http://localhost:4201")
+            builder.WithOrigins("https://exoticah.pl")
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials(); //TODO: https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/signalr/authn-and-authz.md
